@@ -1,0 +1,103 @@
+/* Hero Section Component Styles */
+
+.heroContainer {
+  background: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
+  color: white;
+  padding: 64px 0 96px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .heroContainer {
+    padding: 96px 0 128px 0;
+  }
+}
+
+.title {
+  font-weight: bold;
+  font-size: 3rem;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 4rem;
+  }
+}
+
+.subtitle {
+  margin-bottom: 32px;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 576px) {
+  .buttonContainer {
+    flex-direction: row;
+  }
+}
+
+.downloadButton {
+  background-color: white;
+  color: var(--primary-main, #6750A4);
+}
+
+.downloadButton:hover {
+  background-color: #f5f5f5;
+}
+
+.learnMoreButton {
+  border-color: white;
+  color: white;
+}
+
+.learnMoreButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.featureCards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+@media (min-width: 768px) {
+  .featureCards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.featureCard {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.featureIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.featureTitle {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.featureDescription {
+  opacity: 0.9;
+}

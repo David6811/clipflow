@@ -1,0 +1,59 @@
+/* Navigation Component Styles */
+
+.appBar {
+  background: var(--surface-main, #FEF7FF);
+  color: var(--on-surface, #1D1B20);
+}
+
+.toolbar {
+  padding: 0 24px;
+  min-height: 64px;
+}
+
+.logo {
+  margin-right: 16px;
+  color: var(--primary-main, #6750A4);
+}
+
+.title {
+  flex-grow: 1;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.desktopNav {
+  display: none;
+  margin-right: 24px;
+}
+
+@media (min-width: 768px) {
+  .desktopNav {
+    display: flex;
+  }
+}
+
+.navButton {
+  margin-right: 16px;
+  text-transform: none;
+  font-weight: 500;
+}
+
+.ctaButtons {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .ctaButtons {
+    display: flex;
+  }
+}
+
+.mobileMenu {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .mobileMenu {
+    display: none;
+  }
+}
