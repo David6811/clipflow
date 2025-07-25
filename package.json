@@ -1,6 +1,7 @@
 {
   "name": "clipflow",
-  "private": true,
+  "private": false,
+  "homepage": "https://david6811.github.io/clipflow",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
