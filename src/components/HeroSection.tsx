@@ -25,10 +25,63 @@ const HeroSection: React.FC = () => {
         width: '100%',
         margin: 0,
         paddingLeft: 0,
-        paddingRight: 0
+        paddingRight: 0,
+        overflow: 'hidden'
       }}
     >
-      <Container maxWidth="lg" sx={{ position: 'relative' }}>
+      {/* Geometric Abstract Background - Square Shapes */}
+      {/* Left Mint Green/Teal Square */}
+      <div 
+        className="absolute"
+        style={{
+          left: '-15%',
+          bottom: '-15%',
+          width: '450px',
+          height: '450px',
+          background: 'linear-gradient(135deg, #A7F3D0 0%, #6EE7B7 30%, #34D399 60%, #10B981 100%)',
+          transform: 'rotate(-20deg)',
+          opacity: 0.7,
+          zIndex: 0,
+          filter: 'blur(1px)',
+          animation: 'organicFlow1 30s ease-in-out infinite'
+        }}
+      ></div>
+      
+      {/* Top Right Yellow/Gold Square */}
+      <div 
+        className="absolute"
+        style={{
+          right: '-15%',
+          top: '-15%',
+          width: '400px',
+          height: '400px',
+          background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 25%, #F59E0B 60%, #D97706 100%)',
+          transform: 'rotate(25deg)',
+          opacity: 0.6,
+          zIndex: 0,
+          filter: 'blur(1px)',
+          animation: 'organicFlow2 35s ease-in-out infinite'
+        }}
+      ></div>
+      
+      {/* Bottom Right Purple/Lavender Square */}
+      <div 
+        className="absolute"
+        style={{
+          right: '-12%',
+          bottom: '-18%',
+          width: '430px',
+          height: '430px',
+          background: 'linear-gradient(135deg, #E9D5FF 0%, #C4B5FD 25%, #8B5CF6 60%, #7C3AED 100%)',
+          transform: 'rotate(-12deg)',
+          opacity: 0.5,
+          zIndex: 0,
+          filter: 'blur(1px)',
+          animation: 'organicFlow3 25s ease-in-out infinite'
+        }}
+      ></div>
+
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
         {/* App Badge */}
         <Chip 
           label="Smart OCR for Android" 
@@ -172,6 +225,47 @@ const HeroSection: React.FC = () => {
           </Box>
         </Stack>
       </Container>
+
+      {/* CSS Animations for Reference Image Style */}
+      <style>
+        {`
+          @keyframes organicFlow1 {
+            0%, 100% { 
+              transform: rotate(-20deg) translate(0px, 0px) scale(1);
+            }
+            33% { 
+              transform: rotate(-17deg) translate(-20px, -15px) scale(1.02);
+            }
+            66% { 
+              transform: rotate(-23deg) translate(15px, 20px) scale(0.98);
+            }
+          }
+          
+          @keyframes organicFlow2 {
+            0%, 100% { 
+              transform: rotate(25deg) translate(0px, 0px) scale(1);
+            }
+            40% { 
+              transform: rotate(28deg) translate(-25px, 15px) scale(1.01);
+            }
+            80% { 
+              transform: rotate(22deg) translate(20px, -18px) scale(0.99);
+            }
+          }
+          
+          @keyframes organicFlow3 {
+            0%, 100% { 
+              transform: rotate(-12deg) translate(0px, 0px) scale(1);
+            }
+            30% { 
+              transform: rotate(-9deg) translate(25px, -20px) scale(1.03);
+            }
+            70% { 
+              transform: rotate(-15deg) translate(-18px, 25px) scale(0.97);
+            }
+          }
+        `}
+      </style>
       
     </Box>
   )
