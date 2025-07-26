@@ -24,6 +24,8 @@ const NoteDetailSection: React.FC = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
+        } else {
+          setIsVisible(false)
         }
       },
       { threshold: 0.3 }
