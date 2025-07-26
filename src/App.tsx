@@ -21,9 +21,9 @@ function App() {
       <Toolbar />
       <HeroSection />
       <FeaturesSection />
+      <NoteDetailSection />
       <SecuritySection />
       <BackupSection />
-      <NoteDetailSection />
       <BankingShowcase />
       <ArchitectureSection />
       <FloatingActionButton />
