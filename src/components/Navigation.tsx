@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   AppBar,
   Toolbar,
@@ -18,6 +18,7 @@ import {
 
 const Navigation: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [scrolled, setScrolled] = useState(false)
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -27,16 +28,28 @@ const Navigation: React.FC = () => {
     setAnchorEl(null)
   }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50
+      setScrolled(isScrolled)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <AppBar 
       position="fixed" 
-      elevation={0} 
+      elevation={scrolled ? 1 : 0} 
       sx={{ 
         borderBottom: '1px solid',
-        borderColor: 'rgba(84, 67, 66, 0.2)',
+        borderColor: scrolled ? 'rgba(84, 67, 66, 0.3)' : 'rgba(84, 67, 66, 0.2)',
         zIndex: 1100,
         backdropFilter: 'blur(10px)',
-        bgcolor: 'rgba(248, 245, 242, 0.95)'
+        bgcolor: scrolled ? 'rgba(248, 245, 242, 0.98)' : 'rgba(248, 245, 242, 0.95)',
+        transition: 'all 0.3s ease',
+        boxShadow: scrolled ? '0 2px 8px rgba(84, 67, 66, 0.15)' : 'none'
       }}
     >
       <Container maxWidth="xl">
