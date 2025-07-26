@@ -49,13 +49,69 @@ const FeaturesSection: React.FC = () => {
       sx={{ 
         py: { xs: 8, md: 12 },
         minHeight: '100vh',
-        background: 'linear-gradient(145deg, #f5f1eb 0%, #e8ddd4 100%)',
+        background: 'linear-gradient(145deg, #f0ebe3 0%, #f2ede5 15%, #f1ece4 30%, #f0ebe1 50%, #ede8de 75%, #e8ddd4 100%)',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
       }}
     >
+      {/* Simplified Wave Reception */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '150px',
+          overflow: 'hidden',
+          pointerEvents: 'none',
+          zIndex: 1
+        }}
+      >
+        {/* Main Reception Wave */}
+        <Box
+          component="svg"
+          viewBox="0 0 1200 150"
+          sx={{
+            position: 'absolute',
+            top: 0,
+            width: '100%',
+            height: '150px',
+            fill: '#f0ebe3'
+          }}
+        >
+          <path d="M0,0 L1200,0 L1200,50 C1050,80 900,20 600,50 C300,80 150,20 0,50 Z" />
+        </Box>
+        
+        {/* Soft Blend Layer */}
+        <Box
+          component="svg"
+          viewBox="0 0 1200 120"
+          sx={{
+            position: 'absolute',
+            top: '30px',
+            width: '100%',
+            height: '120px',
+            fill: 'rgba(241, 236, 228, 0.6)'
+          }}
+        >
+          <path d="M0,0 L1200,0 L1200,40 C1000,65 800,15 600,40 C400,65 200,15 0,40 Z" />
+        </Box>
+        
+        {/* Final Fade */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '80px',
+            left: 0,
+            right: 0,
+            height: '70px',
+            background: 'linear-gradient(180deg, rgba(240, 235, 227, 0.3) 0%, rgba(240, 235, 227, 0.1) 60%, transparent 100%)',
+          }}
+        />
+      </Box>
+      
       <Container maxWidth="lg" sx={{ position: 'relative', height: '80vh' }}>
         
         {/* Clipboard Header */}

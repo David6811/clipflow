@@ -18,7 +18,7 @@ const HeroSection: React.FC = () => {
   return (
     <Box 
       sx={{ 
-        background: 'linear-gradient(180deg, #FFF8F7 0%, rgba(246, 228, 226, 0.95) 80%, rgba(246, 228, 226, 0.8) 100%)',
+        background: 'linear-gradient(180deg, #FFF8F7 0%, rgba(250, 245, 241, 0.98) 40%, rgba(247, 242, 237, 0.95) 70%, rgba(245, 241, 235, 0.92) 85%, #f4f0e8 100%)',
         position: 'relative',
         py: { xs: 10, md: 16 },
         textAlign: 'center',
@@ -178,6 +178,109 @@ const HeroSection: React.FC = () => {
           </Box>
         </Stack>
       </Container>
+      
+      {/* Fusion Wave Transition */}
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '200px',
+          overflow: 'hidden',
+          pointerEvents: 'none'
+        }}
+      >
+        {/* Wave Layer 1 - Base */}
+        <Box
+          component="svg"
+          viewBox="0 0 1200 200"
+          sx={{
+            position: 'absolute',
+            bottom: 0,
+            width: '100%',
+            height: '200px',
+            fill: '#f0ebe3',
+            animation: 'waveFloat1 8s ease-in-out infinite',
+            '@keyframes waveFloat1': {
+              '0%, 100%': { transform: 'translateX(0px)' },
+              '50%': { transform: 'translateX(10px)' }
+            }
+          }}
+        >
+          <path d="M0,120 C150,140 300,60 600,100 C900,160 1050,80 1200,120 L1200,200 L0,200 Z" />
+        </Box>
+        
+        {/* Wave Layer 2 - Mid */}
+        <Box
+          component="svg"
+          viewBox="0 0 1200 180"
+          sx={{
+            position: 'absolute',
+            bottom: '20px',
+            width: '100%',
+            height: '180px',
+            fill: 'rgba(240, 235, 227, 0.8)',
+            animation: 'waveFloat2 10s ease-in-out infinite',
+            '@keyframes waveFloat2': {
+              '0%, 100%': { transform: 'translateX(0px)' },
+              '50%': { transform: 'translateX(-15px)' }
+            }
+          }}
+        >
+          <path d="M0,110 C200,80 450,160 750,120 C1000,60 1150,140 1200,100 L1200,180 L0,180 Z" />
+        </Box>
+        
+        {/* Wave Layer 3 - Top */}
+        <Box
+          component="svg"
+          viewBox="0 0 1200 160"
+          sx={{
+            position: 'absolute',
+            bottom: '40px',
+            width: '100%',
+            height: '160px',
+            fill: 'rgba(243, 238, 230, 0.6)',
+            animation: 'waveFloat3 12s ease-in-out infinite',
+            '@keyframes waveFloat3': {
+              '0%, 100%': { transform: 'translateX(0px)' },
+              '50%': { transform: 'translateX(8px)' }
+            }
+          }}
+        >
+          <path d="M0,80 C300,50 500,130 800,90 C950,40 1100,120 1200,80 L1200,160 L0,160 Z" />
+        </Box>
+        
+        {/* Wave Layer 4 - Blend */}
+        <Box
+          component="svg"
+          viewBox="0 0 1200 140"
+          sx={{
+            position: 'absolute',
+            bottom: '60px',
+            width: '100%',
+            height: '140px',
+            fill: 'rgba(246, 242, 236, 0.4)'
+          }}
+        >
+          <path d="M0,60 C250,30 550,110 900,70 C1050,20 1150,100 1200,60 L1200,140 L0,140 Z" />
+        </Box>
+        
+        {/* Wave Layer 5 - Subtle Top */}
+        <Box
+          component="svg"
+          viewBox="0 0 1200 120"
+          sx={{
+            position: 'absolute',
+            bottom: '80px',
+            width: '100%',
+            height: '120px',
+            fill: 'rgba(250, 245, 241, 0.2)'
+          }}
+        >
+          <path d="M0,40 C200,10 500,90 750,50 C950,0 1100,80 1200,40 L1200,120 L0,120 Z" />
+        </Box>
+      </Box>
     </Box>
   )
 }

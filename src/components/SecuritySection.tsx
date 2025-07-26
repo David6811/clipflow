@@ -14,53 +14,63 @@ import {
   Fingerprint,
   VpnKey,
   VisibilityOff,
-  VerifiedUser,
-  LockClock
+  LockClock,
+  TextFields,
+  Storage,
+  Security
 } from '@mui/icons-material'
 
 const SecuritySection: React.FC = () => {
   const securityLayers = [
     {
-      title: 'App Protection',
-      description: 'Secure your clipboard with password or biometric authentication',
+      title: 'Master Password System',
+      description: 'Enterprise-grade authentication protecting your OCR captured text and images',
       icon: VpnKey,
       color: '#6E5E0F', // Muted gold
       bgColor: 'rgba(110, 94, 15, 0.1)',
-      features: ['Password Lock', 'PIN Protection', 'Auto-Lock Timer', 'Quick Access']
+      features: ['Master Password', 'Auto-Lock Timer', 'Session Security', 'Quick Authentication']
     },
     {
-      title: 'Biometric Security',
-      description: 'Use your fingerprint or face to unlock and access your clipboard',
+      title: 'Fingerprint Authentication',
+      description: 'Secure biometric access for Android devices with hardware fingerprint sensors',
       icon: Fingerprint,
       color: '#8f4942', // Warm terracotta
       bgColor: 'rgba(143, 73, 66, 0.1)',
-      features: ['Fingerprint', 'Face Recognition', 'Pattern Lock', 'Quick Unlock']
+      features: ['Hardware Fingerprint', 'Android KeyStore', 'Secure Enclave', 'Fast Unlock']
     },
     {
-      title: 'Data Encryption',
-      description: 'All clipboard data is encrypted and stored securely on your device',
-      icon: Shield,
+      title: 'SQLCipher Database Encryption',
+      description: 'Military-grade AES-256 encryption for all stored text extractions and image data',
+      icon: Storage,
       color: '#2E5984', // Professional blue
       bgColor: 'rgba(46, 89, 132, 0.1)',
-      features: ['Strong Encryption', 'Secure Storage', 'Local Database', 'No Cloud Sync']
+      features: ['AES-256 Encryption', 'SQLCipher 4.0', 'Secure Key Derivation', 'Database Integrity']
+    },
+    {
+      title: 'Note-Level Encryption',
+      description: 'Individual encryption for each OCR result, screenshot, and organized note collection',
+      icon: TextFields,
+      color: '#544342', // ClipFlow brown
+      bgColor: 'rgba(84, 67, 66, 0.1)',
+      features: ['Per-Note Encryption', 'OCR Result Security', 'Image Data Protection', 'Tag Encryption']
     }
   ]
 
   const securityFeatures = [
     {
       icon: VisibilityOff,
-      title: 'Complete Privacy',
-      description: 'No data collection, tracking, or cloud storage'
+      title: 'Zero Data Collection',
+      description: 'No telemetry, analytics, or cloud synchronization. OCR processing happens entirely offline.'
     },
     {
-      icon: VerifiedUser,
-      title: 'Industry Standards',
-      description: 'Built with proven security best practices'
+      icon: Security,
+      title: 'Accessibility Service Security',
+      description: 'Secure implementation of Android accessibility APIs for screenshot capture with minimal permissions.'
     },
     {
       icon: LockClock,
-      title: 'Smart Cleanup',
-      description: 'Automatically clear old clipboard items'
+      title: 'Encrypted Backup Files',
+      description: 'Local backup files use the same SQLCipher encryption, protecting exported note collections.'
     }
   ]
 
@@ -68,10 +78,10 @@ const SecuritySection: React.FC = () => {
     <Box 
       sx={{ 
         py: { xs: 10, md: 16 }, 
-        bgcolor: '#231918',
-        color: 'white',
+        background: 'linear-gradient(180deg, #e8ddd4 0%, rgba(232, 221, 212, 0.95) 40%, rgba(225, 210, 195, 0.9) 70%, rgba(220, 200, 180, 0.85) 100%)',
+        color: 'text.primary',
         position: 'relative',
-        overflow: 'hidden'
+        textAlign: 'center'
       }}
     >
       {/* Background Effects */}
@@ -83,9 +93,9 @@ const SecuritySection: React.FC = () => {
           right: 0,
           bottom: 0,
           background: `
-            radial-gradient(circle at 20% 30%, rgba(46, 89, 132, 0.15) 0%, transparent 40%),
-            radial-gradient(circle at 80% 70%, rgba(143, 73, 66, 0.1) 0%, transparent 40%),
-            radial-gradient(circle at 50% 50%, rgba(110, 94, 15, 0.05) 0%, transparent 60%)
+            radial-gradient(circle at 30% 20%, rgba(46, 89, 132, 0.08) 0%, transparent 60%),
+            radial-gradient(circle at 70% 80%, rgba(143, 73, 66, 0.06) 0%, transparent 60%),
+            radial-gradient(circle at 50% 50%, rgba(110, 94, 15, 0.04) 0%, transparent 70%)
           `,
           pointerEvents: 'none'
         }}
@@ -95,13 +105,15 @@ const SecuritySection: React.FC = () => {
         {/* Section Header */}
         <Box sx={{ textAlign: 'center', mb: 10 }}>
           <Chip 
-            label="Privacy & Security" 
+            label="Enterprise Security Architecture" 
             sx={{ 
               mb: 4,
-              bgcolor: 'rgba(46, 89, 132, 0.2)',
-              color: '#4A7AA8',
+              bgcolor: 'rgba(46, 89, 132, 0.1)',
+              color: 'secondary.main',
               fontWeight: 600,
-              fontSize: '0.875rem'
+              fontSize: '0.875rem',
+              px: 2,
+              py: 1
             }} 
           />
           <Typography 
@@ -109,26 +121,28 @@ const SecuritySection: React.FC = () => {
             component="h2" 
             gutterBottom 
             sx={{ 
-              fontWeight: 700, 
-              fontSize: { xs: '2.5rem', md: '3.5rem' },
+              fontWeight: 700,
+              fontSize: { xs: '2.2rem', md: '3rem' },
+              color: 'text.primary',
               letterSpacing: '-0.02em',
               mb: 3
             }}
           >
-            Your Privacy Matters
+            Military-Grade OCR Security
           </Typography>
           <Typography 
             variant="h6" 
             sx={{ 
-              maxWidth: '700px', 
+              maxWidth: '800px', 
               mx: 'auto', 
               fontWeight: 400,
-              opacity: 0.9,
+              color: 'text.secondary',
+              opacity: 0.8,
               lineHeight: 1.6,
               fontSize: { xs: '1.125rem', md: '1.25rem' }
             }}
           >
-            ClipFlow keeps your data completely private and secure. Everything stays on your device with no cloud sync or data collection.
+            ClipFlow&apos;s multi-layered security architecture protects your captured text, screenshots, and OCR results with enterprise-grade encryption. Every note, tag, and extracted text stays encrypted on your device.
           </Typography>
         </Box>
 
@@ -144,7 +158,7 @@ const SecuritySection: React.FC = () => {
               justifyContent: 'center'
             }}
           >
-            {/* Outer Ring - Application Security */}
+            {/* Outer Ring - Master Password System */}
             <Box
               sx={{
                 position: 'absolute',
@@ -153,51 +167,65 @@ const SecuritySection: React.FC = () => {
                 borderRadius: '50%',
                 border: '3px solid #6E5E0F',
                 bgcolor: 'rgba(110, 94, 15, 0.05)',
-                animation: 'pulse 3s ease-in-out infinite'
+                animation: 'securityPulse 4s ease-in-out infinite'
               }}
             />
             
-            {/* Middle Ring - Authentication */}
+            {/* Second Ring - Biometric Authentication */}
             <Box
               sx={{
                 position: 'absolute',
-                width: '75%',
-                height: '75%',
+                width: '80%',
+                height: '80%',
                 borderRadius: '50%',
                 border: '3px solid #8f4942',
                 bgcolor: 'rgba(143, 73, 66, 0.08)',
-                animation: 'pulse 2.5s ease-in-out infinite'
+                animation: 'securityPulse 3.2s ease-in-out infinite'
               }}
             />
             
-            {/* Inner Ring - Database Encryption */}
+            {/* Third Ring - SQLCipher Encryption */}
             <Box
               sx={{
                 position: 'absolute',
-                width: '50%',
-                height: '50%',
+                width: '60%',
+                height: '60%',
                 borderRadius: '50%',
                 border: '3px solid #2E5984',
                 bgcolor: 'rgba(46, 89, 132, 0.1)',
-                animation: 'pulse 2s ease-in-out infinite'
+                animation: 'securityPulse 2.4s ease-in-out infinite'
               }}
             />
 
-            {/* Central Shield */}
+            {/* Inner Ring - Note-Level Encryption */}
             <Box
               sx={{
-                width: 80,
-                height: 80,
+                position: 'absolute',
+                width: '40%',
+                height: '40%',
+                borderRadius: '50%',
+                border: '3px solid #544342',
+                bgcolor: 'rgba(84, 67, 66, 0.08)',
+                animation: 'securityPulse 1.8s ease-in-out infinite'
+              }}
+            />
+
+            {/* Central Security Core */}
+            <Box
+              sx={{
+                width: 90,
+                height: 90,
                 bgcolor: '#2E5984',
-                borderRadius: 2,
+                borderRadius: 3,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 0 30px rgba(46, 89, 132, 0.5)',
-                animation: 'glow 2s ease-in-out infinite alternate'
+                boxShadow: '0 0 40px rgba(46, 89, 132, 0.6), inset 0 2px 0 rgba(255,255,255,0.1)',
+                animation: 'securityGlow 3s ease-in-out infinite alternate',
+                border: '2px solid rgba(248, 245, 242, 0.2)'
               }}
             >
-              <Shield sx={{ fontSize: 48, color: 'white' }} />
+              <Shield sx={{ fontSize: 52, color: '#f8f5f2', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }} />
             </Box>
           </Box>
         </Box>
@@ -209,15 +237,17 @@ const SecuritySection: React.FC = () => {
               key={index}
               elevation={0}
               sx={{
-                bgcolor: 'rgba(255, 255, 255, 0.05)',
-                border: `1px solid ${layer.color}`,
+                bgcolor: 'rgba(255, 255, 255, 0.8)',
+                border: `1px solid ${layer.color}40`,
                 borderRadius: 3,
                 backdropFilter: 'blur(10px)',
                 transition: 'all 0.3s ease',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 '&:hover': {
                   transform: 'translateY(-2px)',
-                  boxShadow: `0 8px 32px ${layer.color}40`,
-                  bgcolor: 'rgba(255, 255, 255, 0.08)'
+                  boxShadow: `0 8px 24px ${layer.color}20`,
+                  bgcolor: 'rgba(255, 255, 255, 0.9)',
+                  border: `1px solid ${layer.color}60`
                 }
               }}
             >
@@ -243,7 +273,7 @@ const SecuritySection: React.FC = () => {
                       variant="h5"
                       sx={{
                         fontWeight: 600,
-                        color: 'white',
+                        color: 'text.primary',
                         mb: 1
                       }}
                     >
@@ -252,7 +282,7 @@ const SecuritySection: React.FC = () => {
                     <Typography
                       variant="body1"
                       sx={{
-                        color: 'rgba(255, 255, 255, 0.8)',
+                        color: 'text.secondary',
                         fontSize: '1.1rem'
                       }}
                     >
@@ -288,10 +318,10 @@ const SecuritySection: React.FC = () => {
             sx={{
               fontWeight: 600,
               mb: 6,
-              color: 'white'
+              color: 'text.primary'
             }}
           >
-            Built for Privacy
+            Security Certifications
           </Typography>
           
           <Stack
@@ -322,23 +352,25 @@ const SecuritySection: React.FC = () => {
                     sx={{
                       width: 72,
                       height: 72,
-                      bgcolor: 'rgba(255, 255, 255, 0.1)',
+                      bgcolor: 'rgba(255, 255, 255, 0.8)',
                       borderRadius: 2,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       mb: 2,
-                      mx: 'auto'
+                      mx: 'auto',
+                      border: '1px solid rgba(0,0,0,0.1)',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                     }}
                   >
-                    <feature.icon sx={{ fontSize: 36, color: 'white' }} />
+                    <feature.icon sx={{ fontSize: 36, color: 'text.primary' }} />
                   </Box>
                 </Badge>
                 <Typography
                   variant="h6"
                   sx={{
                     fontWeight: 600,
-                    color: 'white',
+                    color: 'text.primary',
                     mb: 1
                   }}
                 >
@@ -347,7 +379,7 @@ const SecuritySection: React.FC = () => {
                 <Typography
                   variant="body2"
                   sx={{
-                    color: 'rgba(255, 255, 255, 0.8)',
+                    color: 'text.secondary',
                     lineHeight: 1.6
                   }}
                 >
@@ -363,12 +395,13 @@ const SecuritySection: React.FC = () => {
           <Typography
             variant="body1"
             sx={{
-              color: 'rgba(255, 255, 255, 0.7)',
+              color: 'text.secondary',
               fontStyle: 'italic',
-              fontSize: '1.125rem'
+              fontSize: '1.125rem',
+              opacity: 0.8
             }}
           >
-            &ldquo;Your clipboard data stays private and secure&rdquo;
+&ldquo;Enterprise-grade security for your most sensitive OCR data&rdquo;
           </Typography>
         </Box>
       </Container>
@@ -376,13 +409,27 @@ const SecuritySection: React.FC = () => {
       {/* CSS Animations */}
       <style>
         {`
-          @keyframes pulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.02); }
+          @keyframes securityPulse {
+            0%, 100% { 
+              opacity: 0.4; 
+              transform: scale(1); 
+              border-width: 3px;
+            }
+            50% { 
+              opacity: 0.8; 
+              transform: scale(1.008); 
+              border-width: 4px;
+            }
           }
-          @keyframes glow {
-            0% { box-shadow: 0 0 30px rgba(46, 89, 132, 0.5); }
-            100% { box-shadow: 0 0 40px rgba(46, 89, 132, 0.8); }
+          @keyframes securityGlow {
+            0% { 
+              box-shadow: 0 0 40px rgba(46, 89, 132, 0.6), inset 0 2px 0 rgba(255,255,255,0.1), 0 0 80px rgba(46, 89, 132, 0.2);
+              transform: scale(1);
+            }
+            100% { 
+              box-shadow: 0 0 60px rgba(46, 89, 132, 0.9), inset 0 2px 0 rgba(255,255,255,0.2), 0 0 120px rgba(46, 89, 132, 0.4);
+              transform: scale(1.02);
+            }
           }
         `}
       </style>

@@ -5,7 +5,6 @@ import {
   Navigation,
   HeroSection,
   FeaturesSection,
-  MobileShowcase,
   BankingShowcase,
   ArchitectureSection,
   SecuritySection,
@@ -18,10 +17,9 @@ function App() {
       <Navigation />
       <HeroSection />
       <FeaturesSection />
-      <MobileShowcase />
+      <SecuritySection />
       <BankingShowcase />
       <ArchitectureSection />
-      <SecuritySection />
       <FloatingActionButton />
     </Box>
   )
