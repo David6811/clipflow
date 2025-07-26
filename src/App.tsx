@@ -9,6 +9,7 @@ import {
   ArchitectureSection,
   SecuritySection,
   BackupSection,
+  NoteDetailSection,
   FloatingActionButton
 } from './components'
 import FooterSection from './components/FooterSection'
@@ -22,6 +23,7 @@ function App() {
       <FeaturesSection />
       <SecuritySection />
       <BackupSection />
+      <NoteDetailSection />
       <BankingShowcase />
       <ArchitectureSection />
       <FloatingActionButton />
