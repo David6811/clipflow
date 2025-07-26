@@ -6,18 +6,14 @@ import {
   Card,
   CardContent,
   Stack,
-  Chip,
-  Badge
+  Chip
 } from '@mui/material'
 import {
   Shield,
   Fingerprint,
   VpnKey,
-  VisibilityOff,
-  LockClock,
   TextFields,
-  Storage,
-  Security
+  Storage
 } from '@mui/icons-material'
 
 const SecuritySection: React.FC = () => {
@@ -56,23 +52,6 @@ const SecuritySection: React.FC = () => {
     }
   ]
 
-  const securityFeatures = [
-    {
-      icon: VisibilityOff,
-      title: 'Zero Data Collection',
-      description: 'No telemetry, analytics, or cloud synchronization. OCR processing happens entirely offline.'
-    },
-    {
-      icon: Security,
-      title: 'Accessibility Service Security',
-      description: 'Secure implementation of Android accessibility APIs for screenshot capture with minimal permissions.'
-    },
-    {
-      icon: LockClock,
-      title: 'Encrypted Backup Files',
-      description: 'Local backup files use the same SQLCipher encryption, protecting exported note collections.'
-    }
-  ]
 
   return (
     <Box 
@@ -311,85 +290,6 @@ const SecuritySection: React.FC = () => {
             </Card>
           ))}
         </Stack>
-
-        {/* Additional Security Features */}
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography
-            variant="h4"
-            sx={{
-              fontWeight: 600,
-              mb: 6,
-              color: 'text.primary'
-            }}
-          >
-            Security Certifications
-          </Typography>
-          
-          <Stack
-            direction={{ xs: 'column', md: 'row' }}
-            spacing={4}
-            justifyContent="center"
-          >
-            {securityFeatures.map((feature, index) => (
-              <Box
-                key={index}
-                sx={{
-                  textAlign: 'center',
-                  maxWidth: 280,
-                  p: 3
-                }}
-              >
-                <Badge
-                  badgeContent="✓"
-                  sx={{
-                    '& .MuiBadge-badge': {
-                      bgcolor: '#22c55e',
-                      color: 'white',
-                      fontSize: '0.75rem'
-                    }
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 72,
-                      height: 72,
-                      bgcolor: 'rgba(255, 255, 255, 0.9)',
-                      borderRadius: 2,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      mb: 2,
-                      mx: 'auto',
-                      border: '1px solid rgba(0,0,0,0.1)',
-                      boxShadow: '0 4px 16px rgba(0,0,0,0.1)'
-                    }}
-                  >
-                    <feature.icon sx={{ fontSize: 36, color: 'text.primary' }} />
-                  </Box>
-                </Badge>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 600,
-                    color: 'text.primary',
-                    mb: 1
-                  }}
-                >
-                  {feature.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'text.secondary',
-                    lineHeight: 1.6
-                  }}
-                >
-                  {feature.description}
-                </Typography>
-              </Box>
-            ))}
-          </Stack>
-        </Box>
 
         {/* Security Badge */}
         <Box sx={{ textAlign: 'center' }}>
