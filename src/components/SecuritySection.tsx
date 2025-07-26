@@ -78,8 +78,8 @@ const SecuritySection: React.FC = () => {
     <Box 
       sx={{ 
         py: { xs: 10, md: 16 }, 
-        background: 'linear-gradient(180deg, #e8ddd4 0%, rgba(232, 221, 212, 0.95) 40%, rgba(225, 210, 195, 0.9) 70%, rgba(220, 200, 180, 0.85) 100%)',
-        color: 'text.primary',
+        background: 'linear-gradient(180deg, #0f1419 0%, #1a1f29 20%, #232938 40%, #2a3142 60%, #323847 80%, #3a404c 100%)',
+        color: '#f8f9fa',
         position: 'relative',
         textAlign: 'center'
       }}
@@ -93,9 +93,9 @@ const SecuritySection: React.FC = () => {
           right: 0,
           bottom: 0,
           background: `
-            radial-gradient(circle at 30% 20%, rgba(46, 89, 132, 0.08) 0%, transparent 60%),
-            radial-gradient(circle at 70% 80%, rgba(143, 73, 66, 0.06) 0%, transparent 60%),
-            radial-gradient(circle at 50% 50%, rgba(110, 94, 15, 0.04) 0%, transparent 70%)
+            radial-gradient(circle at 30% 20%, rgba(46, 89, 132, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 70% 80%, rgba(143, 73, 66, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, rgba(110, 94, 15, 0.1) 0%, transparent 60%)
           `,
           pointerEvents: 'none'
         }}
@@ -108,12 +108,13 @@ const SecuritySection: React.FC = () => {
             label="Enterprise Security Architecture" 
             sx={{ 
               mb: 4,
-              bgcolor: 'rgba(46, 89, 132, 0.1)',
-              color: 'secondary.main',
+              bgcolor: 'rgba(46, 89, 132, 0.3)',
+              color: '#64b5f6',
               fontWeight: 600,
               fontSize: '0.875rem',
               px: 2,
-              py: 1
+              py: 1,
+              border: '1px solid rgba(100, 181, 246, 0.3)'
             }} 
           />
           <Typography 
@@ -123,7 +124,7 @@ const SecuritySection: React.FC = () => {
             sx={{ 
               fontWeight: 700,
               fontSize: { xs: '2.2rem', md: '3rem' },
-              color: 'text.primary',
+              color: '#f8f9fa',
               letterSpacing: '-0.02em',
               mb: 3
             }}
@@ -136,8 +137,8 @@ const SecuritySection: React.FC = () => {
               maxWidth: '800px', 
               mx: 'auto', 
               fontWeight: 400,
-              color: 'text.secondary',
-              opacity: 0.8,
+              color: '#cbd5e1',
+              opacity: 0.9,
               lineHeight: 1.6,
               fontSize: { xs: '1.125rem', md: '1.25rem' }
             }}
@@ -237,17 +238,17 @@ const SecuritySection: React.FC = () => {
               key={index}
               elevation={0}
               sx={{
-                bgcolor: 'rgba(255, 255, 255, 0.8)',
-                border: `1px solid ${layer.color}40`,
+                bgcolor: 'rgba(30, 35, 45, 0.8)',
+                border: `1px solid ${layer.color}60`,
                 borderRadius: 3,
                 backdropFilter: 'blur(10px)',
                 transition: 'all 0.3s ease',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
                 '&:hover': {
                   transform: 'translateY(-2px)',
-                  boxShadow: `0 8px 24px ${layer.color}20`,
-                  bgcolor: 'rgba(255, 255, 255, 0.9)',
-                  border: `1px solid ${layer.color}60`
+                  boxShadow: `0 8px 32px ${layer.color}40`,
+                  bgcolor: 'rgba(40, 45, 55, 0.9)',
+                  border: `1px solid ${layer.color}80`
                 }
               }}
             >
@@ -273,7 +274,7 @@ const SecuritySection: React.FC = () => {
                       variant="h5"
                       sx={{
                         fontWeight: 600,
-                        color: 'text.primary',
+                        color: '#f8f9fa',
                         mb: 1
                       }}
                     >
@@ -282,7 +283,7 @@ const SecuritySection: React.FC = () => {
                     <Typography
                       variant="body1"
                       sx={{
-                        color: 'text.secondary',
+                        color: '#cbd5e1',
                         fontSize: '1.1rem'
                       }}
                     >
@@ -318,7 +319,7 @@ const SecuritySection: React.FC = () => {
             sx={{
               fontWeight: 600,
               mb: 6,
-              color: 'text.primary'
+              color: '#f8f9fa'
             }}
           >
             Security Certifications
@@ -352,25 +353,25 @@ const SecuritySection: React.FC = () => {
                     sx={{
                       width: 72,
                       height: 72,
-                      bgcolor: 'rgba(255, 255, 255, 0.8)',
+                      bgcolor: 'rgba(60, 70, 85, 0.8)',
                       borderRadius: 2,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       mb: 2,
                       mx: 'auto',
-                      border: '1px solid rgba(0,0,0,0.1)',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                      border: '1px solid rgba(255,255,255,0.2)',
+                      boxShadow: '0 4px 16px rgba(0,0,0,0.3)'
                     }}
                   >
-                    <feature.icon sx={{ fontSize: 36, color: 'text.primary' }} />
+                    <feature.icon sx={{ fontSize: 36, color: '#f8f9fa' }} />
                   </Box>
                 </Badge>
                 <Typography
                   variant="h6"
                   sx={{
                     fontWeight: 600,
-                    color: 'text.primary',
+                    color: '#f8f9fa',
                     mb: 1
                   }}
                 >
@@ -379,7 +380,7 @@ const SecuritySection: React.FC = () => {
                 <Typography
                   variant="body2"
                   sx={{
-                    color: 'text.secondary',
+                    color: '#cbd5e1',
                     lineHeight: 1.6
                   }}
                 >
@@ -395,10 +396,10 @@ const SecuritySection: React.FC = () => {
           <Typography
             variant="body1"
             sx={{
-              color: 'text.secondary',
+              color: '#94a3b8',
               fontStyle: 'italic',
               fontSize: '1.125rem',
-              opacity: 0.8
+              opacity: 0.9
             }}
           >
 &ldquo;Enterprise-grade security for your most sensitive OCR data&rdquo;
