@@ -28,6 +28,18 @@ const Navigation: React.FC = () => {
     setAnchorEl(null)
   }
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const offsetTop = element.offsetTop - 80 // Account for fixed navbar height
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      })
+    }
+    handleClose() // Close mobile menu if open
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 50
@@ -55,7 +67,19 @@ const Navigation: React.FC = () => {
       <Container maxWidth="xl">
         <Toolbar sx={{ py: 1.5, px: 0 }}>
           {/* Logo */}
-          <Box sx={{ display: 'flex', alignItems: 'center', mr: 3 }}>
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              mr: 3, 
+              cursor: 'pointer',
+              transition: 'opacity 0.2s ease',
+              '&:hover': {
+                opacity: 0.8
+              }
+            }}
+            onClick={() => scrollToSection('home')}
+          >
             <Box
               sx={{
                 width: 44,
@@ -102,6 +126,7 @@ const Navigation: React.FC = () => {
           <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 'auto', ml: 6 }}>
             <Button 
               color="inherit" 
+              onClick={() => scrollToSection('features')}
               sx={{ 
                 mr: 2,
                 color: 'text.secondary',
@@ -123,6 +148,7 @@ const Navigation: React.FC = () => {
             </Button>
             <Button 
               color="inherit" 
+              onClick={() => scrollToSection('showcase')}
               sx={{ 
                 mr: 2,
                 color: 'text.secondary',
@@ -140,10 +166,11 @@ const Navigation: React.FC = () => {
                 }
               }}
             >
-              Privacy
+              Demo
             </Button>
             <Button 
               color="inherit" 
+              onClick={() => scrollToSection('notes')}
               sx={{ 
                 mr: 2,
                 color: 'text.secondary',
@@ -161,7 +188,51 @@ const Navigation: React.FC = () => {
                 }
               }}
             >
-              About
+              Notes
+            </Button>
+            <Button 
+              color="inherit" 
+              onClick={() => scrollToSection('security')}
+              sx={{ 
+                mr: 2,
+                color: 'text.secondary',
+                fontWeight: 500,
+                textTransform: 'none',
+                fontSize: '1.05rem',
+                px: 3,
+                py: 1,
+                borderRadius: 2,
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  color: 'text.primary',
+                  bgcolor: 'rgba(84, 67, 66, 0.08)',
+                  transform: 'translateY(-1px)'
+                }
+              }}
+            >
+              Security
+            </Button>
+            <Button 
+              color="inherit" 
+              onClick={() => scrollToSection('backup')}
+              sx={{ 
+                mr: 2,
+                color: 'text.secondary',
+                fontWeight: 500,
+                textTransform: 'none',
+                fontSize: '1.05rem',
+                px: 3,
+                py: 1,
+                borderRadius: 2,
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  color: 'text.primary',
+                  bgcolor: 'rgba(84, 67, 66, 0.08)',
+                  transform: 'translateY(-1px)'
+                }
+              }}
+            >
+              Backup
             </Button>
           </Box>
 
@@ -224,17 +295,20 @@ const Navigation: React.FC = () => {
                 }
               }}
             >
-              <MenuItem onClick={handleClose} sx={{ color: 'text.secondary', py: 1.5 }}>
+              <MenuItem onClick={() => scrollToSection('features')} sx={{ color: 'text.secondary', py: 1.5 }}>
                 Features
               </MenuItem>
-              <MenuItem onClick={handleClose} sx={{ color: 'text.secondary', py: 1.5 }}>
-                Privacy
+              <MenuItem onClick={() => scrollToSection('showcase')} sx={{ color: 'text.secondary', py: 1.5 }}>
+                Demo
               </MenuItem>
-              <MenuItem onClick={handleClose} sx={{ color: 'text.secondary', py: 1.5 }}>
-                About
+              <MenuItem onClick={() => scrollToSection('notes')} sx={{ color: 'text.secondary', py: 1.5 }}>
+                Notes
               </MenuItem>
-              <MenuItem onClick={handleClose} sx={{ color: 'text.secondary', py: 1.5 }}>
-                Download App
+              <MenuItem onClick={() => scrollToSection('security')} sx={{ color: 'text.secondary', py: 1.5 }}>
+                Security
+              </MenuItem>
+              <MenuItem onClick={() => scrollToSection('backup')} sx={{ color: 'text.secondary', py: 1.5 }}>
+                Backup
               </MenuItem>
             </Menu>
           </Box>
