@@ -18,19 +18,22 @@ const HeroSection: React.FC = () => {
   return (
     <Box 
       sx={{ 
-        background: 'linear-gradient(180deg, #FFF8F7 0%, rgba(250, 245, 241, 0.98) 30%, rgba(247, 242, 237, 0.95) 60%, rgba(245, 241, 235, 0.92) 80%, rgba(240, 235, 227, 0.96) 95%, #f0ebe3 100%)',
+        background: 'linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 25%, #F1F5F9 50%, #E2E8F0 75%, #CBD5E1 100%)',
         position: 'relative',
-        py: { xs: 10, md: 16 },
+        py: { xs: 12, md: 20 },
         textAlign: 'center',
         width: '100%',
         margin: 0,
         paddingLeft: 0,
         paddingRight: 0,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        minHeight: { xs: '90vh', md: '100vh' },
+        display: 'flex',
+        alignItems: 'center'
       }}
     >
-      {/* Geometric Abstract Background - Square Shapes */}
-      {/* Left Mint Green/Teal Square */}
+      {/* Modern Geometric Background Elements */}
+      {/* Left Teal Gradient Square */}
       <div 
         className="absolute"
         style={{
@@ -38,16 +41,17 @@ const HeroSection: React.FC = () => {
           bottom: '-15%',
           width: '450px',
           height: '450px',
-          background: 'linear-gradient(135deg, #A7F3D0 0%, #6EE7B7 30%, #34D399 60%, #10B981 100%)',
+          background: 'linear-gradient(135deg, #14B8A6 0%, #0D9488 50%, #0F766E 100%)',
           transform: 'rotate(-20deg)',
-          opacity: 0.7,
+          opacity: 0.15,
           zIndex: 0,
-          filter: 'blur(1px)',
-          animation: 'organicFlow1 30s ease-in-out infinite'
+          filter: 'blur(2px)',
+          animation: 'modernFloat1 25s ease-in-out infinite',
+          borderRadius: '24px'
         }}
       ></div>
       
-      {/* Top Right Yellow/Gold Square */}
+      {/* Top Right Blue Gradient Square */}
       <div 
         className="absolute"
         style={{
@@ -55,16 +59,17 @@ const HeroSection: React.FC = () => {
           top: '-15%',
           width: '400px',
           height: '400px',
-          background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 25%, #F59E0B 60%, #D97706 100%)',
+          background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 50%, #1E40AF 100%)',
           transform: 'rotate(25deg)',
-          opacity: 0.6,
+          opacity: 0.2,
           zIndex: 0,
-          filter: 'blur(1px)',
-          animation: 'organicFlow2 35s ease-in-out infinite'
+          filter: 'blur(2px)',
+          animation: 'modernFloat2 30s ease-in-out infinite',
+          borderRadius: '24px'
         }}
       ></div>
       
-      {/* Bottom Right Purple/Lavender Square */}
+      {/* Bottom Right Purple Gradient Square */}
       <div 
         className="absolute"
         style={{
@@ -72,27 +77,49 @@ const HeroSection: React.FC = () => {
           bottom: '-18%',
           width: '430px',
           height: '430px',
-          background: 'linear-gradient(135deg, #E9D5FF 0%, #C4B5FD 25%, #8B5CF6 60%, #7C3AED 100%)',
+          background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%)',
           transform: 'rotate(-12deg)',
-          opacity: 0.5,
+          opacity: 0.18,
+          zIndex: 0,
+          filter: 'blur(2px)',
+          animation: 'modernFloat3 20s ease-in-out infinite',
+          borderRadius: '24px'
+        }}
+      ></div>
+      
+      {/* Additional floating elements for depth */}
+      <div 
+        className="absolute"
+        style={{
+          left: '60%',
+          top: '20%',
+          width: '120px',
+          height: '120px',
+          background: 'linear-gradient(135deg, #F43F5E 0%, #E11D48 100%)',
+          borderRadius: '50%',
+          opacity: 0.1,
           zIndex: 0,
           filter: 'blur(1px)',
-          animation: 'organicFlow3 25s ease-in-out infinite'
+          animation: 'modernFloat4 15s ease-in-out infinite'
         }}
       ></div>
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
         {/* App Badge */}
         <Chip 
-          label="Smart OCR for Android" 
+          label="🚀 Smart OCR for Android" 
           sx={{ 
-            mb: 4,
-            bgcolor: 'rgba(46, 89, 132, 0.1)',
+            mb: 6,
+            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)',
             color: 'secondary.main',
             fontWeight: 600,
-            fontSize: '0.875rem',
-            px: 2,
-            py: 1
+            fontSize: '0.95rem',
+            px: 3,
+            py: 1.5,
+            borderRadius: '50px',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            backdropFilter: 'blur(10px)',
+            animation: 'fadeInUp 0.8s ease-out'
           }} 
         />
         
@@ -102,11 +129,15 @@ const HeroSection: React.FC = () => {
           component="h1" 
           gutterBottom 
           sx={{ 
-            fontWeight: 700,
-            fontSize: { xs: '3rem', md: '4.5rem' },
-            color: 'text.primary',
-            letterSpacing: '-0.02em',
-            mb: 3
+            fontWeight: 800,
+            fontSize: { xs: '3.5rem', md: '5.5rem' },
+            background: 'linear-gradient(135deg, #1E293B 0%, #475569 50%, #64748B 100%)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            letterSpacing: '-0.03em',
+            mb: 4,
+            animation: 'fadeInUp 0.8s ease-out 0.2s both'
           }}
         >
           ClipFlow
@@ -116,13 +147,14 @@ const HeroSection: React.FC = () => {
         <Typography 
           variant="h4" 
           sx={{ 
-            mb: 4, 
-            maxWidth: '800px', 
+            mb: 5, 
+            maxWidth: '900px', 
             mx: 'auto', 
-            fontWeight: 400,
-            color: 'text.secondary',
-            fontSize: { xs: '1.5rem', md: '2.125rem' },
-            lineHeight: 1.3
+            fontWeight: 500,
+            color: 'text.primary',
+            fontSize: { xs: '1.75rem', md: '2.5rem' },
+            lineHeight: 1.2,
+            animation: 'fadeInUp 0.8s ease-out 0.4s both'
           }}
         >
           Smart Clipboard Management for Android
@@ -132,13 +164,14 @@ const HeroSection: React.FC = () => {
         <Typography 
           variant="h6" 
           sx={{ 
-            mb: 6, 
-            maxWidth: '700px', 
+            mb: 8, 
+            maxWidth: '750px', 
             mx: 'auto', 
             fontWeight: 400,
             color: 'text.secondary',
-            opacity: 0.8,
-            lineHeight: 1.6
+            fontSize: { xs: '1.1rem', md: '1.25rem' },
+            lineHeight: 1.7,
+            animation: 'fadeInUp 0.8s ease-out 0.6s both'
           }}
         >
           Copy text from any image, screenshot, or document instantly. 
@@ -148,27 +181,32 @@ const HeroSection: React.FC = () => {
         {/* CTA Buttons */}
         <Stack 
           direction={{ xs: 'column', sm: 'row' }} 
-          spacing={3} 
+          spacing={4} 
           justifyContent="center" 
-          sx={{ mb: 8 }}
+          sx={{ 
+            mb: 10,
+            animation: 'fadeInUp 0.8s ease-out 0.8s both'
+          }}
         >
           <Button 
             variant="contained" 
             size="large"
             startIcon={<GetApp />}
             sx={{ 
-              bgcolor: 'secondary.main', 
+              background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)',
               color: 'white',
-              px: 4,
-              py: 1.5,
-              fontSize: '1.1rem',
-              fontWeight: 600,
-              borderRadius: 2,
+              px: 6,
+              py: 2,
+              fontSize: '1.15rem',
+              fontWeight: 700,
+              borderRadius: '16px',
               textTransform: 'none',
-              boxShadow: '0 4px 14px rgba(46, 89, 132, 0.3)',
+              boxShadow: '0 8px 25px rgba(59, 130, 246, 0.3)',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               '&:hover': { 
-                bgcolor: 'secondary.dark',
-                boxShadow: '0 6px 20px rgba(46, 89, 132, 0.4)'
+                background: 'linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%)',
+                boxShadow: '0 12px 35px rgba(59, 130, 246, 0.4)',
+                transform: 'translateY(-2px) scale(1.02)'
               }
             }}
           >
@@ -180,16 +218,21 @@ const HeroSection: React.FC = () => {
             sx={{ 
               borderColor: 'primary.main', 
               color: 'primary.main',
-              px: 4,
-              py: 1.5,
-              fontSize: '1.1rem',
+              px: 6,
+              py: 2,
+              fontSize: '1.15rem',
               fontWeight: 600,
-              borderRadius: 2,
+              borderRadius: '16px',
               textTransform: 'none',
-              borderWidth: 2,
+              borderWidth: '2px',
+              background: 'rgba(255, 255, 255, 0.8)',
+              backdropFilter: 'blur(10px)',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               '&:hover': { 
-                bgcolor: 'rgba(84, 67, 66, 0.05)',
-                borderWidth: 2
+                bgcolor: 'rgba(30, 41, 59, 0.04)',
+                borderWidth: '2px',
+                transform: 'translateY(-2px) scale(1.02)',
+                boxShadow: '0 8px 25px rgba(30, 41, 59, 0.15)'
               }
             }}
           >
@@ -200,68 +243,147 @@ const HeroSection: React.FC = () => {
         {/* App Highlights */}
         <Stack 
           direction={{ xs: 'column', sm: 'row' }} 
-          spacing={4} 
+          spacing={6} 
           justifyContent="center"
           alignItems="center"
-          sx={{ mt: 6 }}
+          sx={{ 
+            mt: 4,
+            animation: 'fadeInUp 0.8s ease-out 1s both'
+          }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <DocumentScanner sx={{ color: 'secondary.main', fontSize: 24 }} />
-            <Typography variant="body1" sx={{ color: 'text.secondary', fontWeight: 500 }}>
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 2,
+            px: 3,
+            py: 2,
+            borderRadius: '12px',
+            background: 'rgba(255, 255, 255, 0.7)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              transform: 'translateY(-2px)',
+              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)'
+            }
+          }}>
+            <DocumentScanner sx={{ color: 'secondary.main', fontSize: 28 }} />
+            <Typography variant="body1" sx={{ color: 'text.primary', fontWeight: 600, fontSize: '1.05rem' }}>
               Smart OCR
             </Typography>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Security sx={{ color: 'tertiary.main', fontSize: 24 }} />
-            <Typography variant="body1" sx={{ color: 'text.secondary', fontWeight: 500 }}>
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 2,
+            px: 3,
+            py: 2,
+            borderRadius: '12px',
+            background: 'rgba(255, 255, 255, 0.7)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              transform: 'translateY(-2px)',
+              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)'
+            }
+          }}>
+            <Security sx={{ color: 'tertiary.main', fontSize: 28 }} />
+            <Typography variant="body1" sx={{ color: 'text.primary', fontWeight: 600, fontSize: '1.05rem' }}>
               Private & Secure
             </Typography>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <CloudOff sx={{ color: 'secondary.main', fontSize: 24 }} />
-            <Typography variant="body1" sx={{ color: 'text.secondary', fontWeight: 500 }}>
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 2,
+            px: 3,
+            py: 2,
+            borderRadius: '12px',
+            background: 'rgba(255, 255, 255, 0.7)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              transform: 'translateY(-2px)',
+              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)'
+            }
+          }}>
+            <CloudOff sx={{ color: 'success.main', fontSize: 28 }} />
+            <Typography variant="body1" sx={{ color: 'text.primary', fontWeight: 600, fontSize: '1.05rem' }}>
               Works Offline
             </Typography>
           </Box>
         </Stack>
       </Container>
 
-      {/* CSS Animations for Reference Image Style */}
+      {/* Modern CSS Animations */}
       <style>
         {`
-          @keyframes organicFlow1 {
+          @keyframes modernFloat1 {
             0%, 100% { 
               transform: rotate(-20deg) translate(0px, 0px) scale(1);
+              opacity: 0.15;
             }
             33% { 
-              transform: rotate(-17deg) translate(-20px, -15px) scale(1.02);
+              transform: rotate(-18deg) translate(-15px, -10px) scale(1.01);
+              opacity: 0.12;
             }
             66% { 
-              transform: rotate(-23deg) translate(15px, 20px) scale(0.98);
+              transform: rotate(-22deg) translate(10px, 15px) scale(0.99);
+              opacity: 0.18;
             }
           }
           
-          @keyframes organicFlow2 {
+          @keyframes modernFloat2 {
             0%, 100% { 
               transform: rotate(25deg) translate(0px, 0px) scale(1);
+              opacity: 0.2;
             }
             40% { 
-              transform: rotate(28deg) translate(-25px, 15px) scale(1.01);
+              transform: rotate(27deg) translate(-20px, 12px) scale(1.02);
+              opacity: 0.15;
             }
             80% { 
-              transform: rotate(22deg) translate(20px, -18px) scale(0.99);
+              transform: rotate(23deg) translate(18px, -14px) scale(0.98);
+              opacity: 0.25;
             }
           }
           
-          @keyframes organicFlow3 {
+          @keyframes modernFloat3 {
             0%, 100% { 
               transform: rotate(-12deg) translate(0px, 0px) scale(1);
+              opacity: 0.18;
             }
             30% { 
-              transform: rotate(-9deg) translate(25px, -20px) scale(1.03);
+              transform: rotate(-10deg) translate(20px, -15px) scale(1.01);
+              opacity: 0.15;
             }
             70% { 
-              transform: rotate(-15deg) translate(-18px, 25px) scale(0.97);
+              transform: rotate(-14deg) translate(-15px, 20px) scale(0.99);
+              opacity: 0.22;
+            }
+          }
+          
+          @keyframes modernFloat4 {
+            0%, 100% { 
+              transform: translate(0px, 0px) scale(1);
+              opacity: 0.1;
+            }
+            50% { 
+              transform: translate(-10px, -20px) scale(1.1);
+              opacity: 0.15;
+            }
+          }
+          
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
             }
           }
         `}

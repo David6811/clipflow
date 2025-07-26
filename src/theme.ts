@@ -1,62 +1,76 @@
 import { createTheme } from '@mui/material/styles';
 
-// ClipFlow Enterprise Brand Colors
+// ClipFlow Modern Professional Color System
 const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#544342', // Primary Text - Warm brown, professional, reliable
-      light: '#6E5D5C',
-      dark: '#3E312F',
+      main: '#1E293B', // Deep slate - Modern, sophisticated, professional
+      light: '#475569',
+      dark: '#0F172A',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#2E5984', // Accent Blue - Trust, technology
-      light: '#4A7AA8',
-      dark: '#1E3A5F',
+      main: '#3B82F6', // Vibrant blue - Innovation, trust, energy
+      light: '#60A5FA',
+      dark: '#1D4ED8',
       contrastText: '#FFFFFF',
     },
     tertiary: {
-      main: '#8f4942', // Accent Brown - Innovation, craft
-      light: '#A86D67',
-      dark: '#6B342E',
+      main: '#8B5CF6', // Modern purple - Creativity, premium, tech
+      light: '#A78BFA',
+      dark: '#7C3AED',
       contrastText: '#FFFFFF',
     },
     surface: {
-      main: '#FFF8F7', // Surface - Cream white, clean, premium
-      light: '#FFFFFF',
-      dark: '#F6E4E2',
-      contrastText: '#231918',
+      main: '#FFFFFF', // Pure white - Clean, modern, minimalist
+      light: '#FAFAFA',
+      dark: '#F8FAFC',
+      contrastText: '#1E293B',
     },
     surfaceVariant: {
-      main: '#F6E4E2', // Primary - Warm off-white, sophisticated
-      light: '#FFF8F7',
-      dark: '#E8D1CE',
-      contrastText: '#544342',
+      main: '#F8FAFC', // Subtle gray - Elegant background
+      light: '#FFFFFF',
+      dark: '#F1F5F9',
+      contrastText: '#475569',
     },
     background: {
-      default: '#F6E4E2', // Primary background
-      paper: '#FFF8F7', // Surface background
+      default: '#FFFFFF', // Clean white background
+      paper: '#FAFAFA', // Subtle paper background
     },
     text: {
-      primary: '#231918', // Surface Text - Dark brown, strong readability
-      secondary: '#544342', // Primary Text - Warm brown
+      primary: '#1E293B', // Deep slate - Strong readability
+      secondary: '#64748B', // Medium slate - Elegant secondary text
     },
     error: {
-      main: '#DC2626',
+      main: '#EF4444',
       light: '#F87171',
-      dark: '#991B1B',
+      dark: '#DC2626',
       contrastText: '#FFFFFF',
     },
-    // Custom ClipFlow colors
+    success: {
+      main: '#10B981',
+      light: '#34D399',
+      dark: '#059669',
+      contrastText: '#FFFFFF',
+    },
+    warning: {
+      main: '#F59E0B',
+      light: '#FBBF24',
+      dark: '#D97706',
+      contrastText: '#FFFFFF',
+    },
+    // Custom ClipFlow colors - Modern palette
     accent: {
-      gold: '#6E5E0F', // Muted gold - Intelligence, precision
-      blue: '#2E5984', // Professional blue
-      brown: '#8f4942', // Warm terracotta
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', // Premium gradient
+      purple: '#8B5CF6', // Modern purple
+      blue: '#3B82F6', // Vibrant blue
+      teal: '#14B8A6', // Fresh teal
+      rose: '#F43F5E', // Energetic rose
     },
     outline: {
-      main: '#544342',
-      variant: '#D1C7C6',
+      main: '#E2E8F0',
+      variant: '#F1F5F9',
     },
   },
   typography: {
@@ -154,45 +168,112 @@ const theme = createTheme({
     },
   },
   shape: {
-    borderRadius: 12, // Material 3 uses more rounded corners
+    borderRadius: 16, // Modern rounded corners
+  },
+  transitions: {
+    easing: {
+      easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
+      easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
+      sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
+    },
+    duration: {
+      shortest: 150,
+      shorter: 200,
+      short: 250,
+      standard: 300,
+      complex: 375,
+      enteringScreen: 225,
+      leavingScreen: 195,
+    },
   },
   components: {
-    // Material 3 Button styles
+    // Modern Button styles with smooth transitions
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: 'none',
-          borderRadius: '20px',
-          paddingTop: '10px',
-          paddingBottom: '10px',
+          borderRadius: '12px',
+          paddingTop: '12px',
+          paddingBottom: '12px',
           paddingLeft: '24px',
           paddingRight: '24px',
-          fontSize: '0.875rem',
-          fontWeight: 500,
-          letterSpacing: '0.1px',
+          fontSize: '0.95rem',
+          fontWeight: 600,
+          letterSpacing: '0.02em',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          '&:hover': {
+            transform: 'translateY(-2px)',
+          },
         },
         contained: {
-          boxShadow: 'none',
+          boxShadow: '0 4px 14px 0 rgba(59, 130, 246, 0.15)',
           '&:hover': {
-            boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+            boxShadow: '0 6px 20px 0 rgba(59, 130, 246, 0.25)',
+            transform: 'translateY(-2px)',
+          },
+        },
+        outlined: {
+          borderWidth: '2px',
+          '&:hover': {
+            borderWidth: '2px',
+            backgroundColor: 'rgba(59, 130, 246, 0.04)',
           },
         },
       },
     },
-    // Material 3 Card styles
+    // Modern Card styles with subtle shadows
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: '12px',
-          boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+          borderRadius: '20px',
+          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          '&:hover': {
+            boxShadow: '0 10px 25px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05)',
+            transform: 'translateY(-4px)',
+          },
         },
       },
     },
-    // Material 3 Paper styles
+    // Modern Paper styles
     MuiPaper: {
       styleOverrides: {
         root: {
+          borderRadius: '16px',
+          backgroundImage: 'none',
+        },
+        elevation1: {
+          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+        },
+        elevation2: {
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        },
+        elevation3: {
+          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        },
+      },
+    },
+    // Modern Chip styles
+    MuiChip: {
+      styleOverrides: {
+        root: {
           borderRadius: '12px',
+          fontWeight: 500,
+          transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+          '&:hover': {
+            transform: 'scale(1.02)',
+          },
+        },
+      },
+    },
+    // AppBar with backdrop blur
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backdropFilter: 'blur(20px) saturate(180%)',
+          backgroundColor: 'rgba(255, 255, 255, 0.85)',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         },
       },
     },
@@ -206,9 +287,11 @@ declare module '@mui/material/styles' {
     surface: Palette['primary'];
     surfaceVariant: Palette['primary'];
     accent: {
-      gold: string;
+      gradient: string;
+      purple: string;
       blue: string;
-      brown: string;
+      teal: string;
+      rose: string;
     };
     outline: {
       main: string;
@@ -221,9 +304,11 @@ declare module '@mui/material/styles' {
     surface?: PaletteOptions['primary'];
     surfaceVariant?: PaletteOptions['primary'];
     accent?: {
-      gold: string;
+      gradient: string;
+      purple: string;
       blue: string;
-      brown: string;
+      teal: string;
+      rose: string;
     };
     outline?: {
       main: string;
