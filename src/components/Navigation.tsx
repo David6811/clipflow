@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   AppBar,
   Toolbar,
@@ -7,7 +7,8 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Box
+  Box,
+  Container
 } from '@mui/material'
 import {
   DocumentScanner,
@@ -17,6 +18,7 @@ import {
 
 const Navigation: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [scrolled, setScrolled] = useState(false)
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -26,177 +28,218 @@ const Navigation: React.FC = () => {
     setAnchorEl(null)
   }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50
+      setScrolled(isScrolled)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <AppBar 
-      position="static" 
-      elevation={0} 
+      position="fixed" 
+      elevation={scrolled ? 1 : 0} 
       sx={{ 
-        bgcolor: 'surface.main',
         borderBottom: '1px solid',
-        borderColor: 'rgba(84, 67, 66, 0.1)'
+        borderColor: scrolled ? 'rgba(84, 67, 66, 0.3)' : 'rgba(84, 67, 66, 0.2)',
+        zIndex: 1100,
+        backdropFilter: 'blur(10px)',
+        bgcolor: scrolled ? 'rgba(248, 245, 242, 0.98)' : 'rgba(248, 245, 242, 0.95)',
+        transition: 'all 0.3s ease',
+        boxShadow: scrolled ? '0 2px 8px rgba(84, 67, 66, 0.15)' : 'none'
       }}
     >
-      <Toolbar sx={{ py: 1 }}>
-        {/* Logo */}
-        <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
-          <Box
-            sx={{
-              w: 40,
-              h: 40,
-              bgcolor: 'secondary.main',
-              borderRadius: 2,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              mr: 2
-            }}
-          >
-            <DocumentScanner sx={{ fontSize: 24, color: 'white' }} />
-          </Box>
-          <Box>
-            <Typography 
-              variant="h6" 
-              component="div" 
-              sx={{ 
-                fontWeight: 700,
-                color: 'text.primary',
-                fontSize: '1.375rem',
-                lineHeight: 1
+      <Container maxWidth="xl">
+        <Toolbar sx={{ py: 1.5, px: 0 }}>
+          {/* Logo */}
+          <Box sx={{ display: 'flex', alignItems: 'center', mr: 3 }}>
+            <Box
+              sx={{
+                width: 44,
+                height: 44,
+                bgcolor: 'secondary.main',
+                borderRadius: 2.5,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                mr: 2.5,
+                boxShadow: '0 2px 8px rgba(46, 89, 132, 0.2)'
               }}
             >
-              ClipFlow
-            </Typography>
-            <Typography 
-              variant="caption" 
-              sx={{ 
-                color: 'text.secondary',
-                fontSize: '0.75rem',
-                fontWeight: 500
-              }}
-            >
-              Smart Clipboard
-            </Typography>
+              <DocumentScanner sx={{ fontSize: 26, color: 'white' }} />
+            </Box>
+            <Box>
+              <Typography 
+                variant="h6" 
+                component="div" 
+                sx={{ 
+                  fontWeight: 700,
+                  color: 'text.primary',
+                  fontSize: '1.5rem',
+                  lineHeight: 1,
+                  letterSpacing: '-0.01em'
+                }}
+              >
+                ClipFlow
+              </Typography>
+              <Typography 
+                variant="caption" 
+                sx={{ 
+                  color: 'text.secondary',
+                  fontSize: '0.8rem',
+                  fontWeight: 500
+                }}
+              >
+                Smart Clipboard
+              </Typography>
+            </Box>
           </Box>
-        </Box>
         
-        {/* Desktop Navigation */}
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 'auto', ml: 4 }}>
-          <Button 
-            color="inherit" 
-            sx={{ 
-              mr: 1,
-              color: 'text.secondary',
-              fontWeight: 500,
-              textTransform: 'none',
-              fontSize: '1rem',
-              '&:hover': {
-                color: 'primary.main',
-                bgcolor: 'rgba(84, 67, 66, 0.05)'
-              }
-            }}
-          >
-            Features
-          </Button>
-          <Button 
-            color="inherit" 
-            sx={{ 
-              mr: 1,
-              color: 'text.secondary',
-              fontWeight: 500,
-              textTransform: 'none',
-              fontSize: '1rem',
-              '&:hover': {
-                color: 'primary.main',
-                bgcolor: 'rgba(84, 67, 66, 0.05)'
-              }
-            }}
-          >
-            Privacy
-          </Button>
-          <Button 
-            color="inherit" 
-            sx={{ 
-              mr: 1,
-              color: 'text.secondary',
-              fontWeight: 500,
-              textTransform: 'none',
-              fontSize: '1rem',
-              '&:hover': {
-                color: 'primary.main',
-                bgcolor: 'rgba(84, 67, 66, 0.05)'
-              }
-            }}
-          >
-            About
-          </Button>
-        </Box>
-
-        {/* CTA Buttons */}
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-          <Button 
-            variant="contained"
-            startIcon={<GetApp />}
-            sx={{ 
-              bgcolor: 'secondary.main',
-              color: 'white',
-              fontWeight: 600,
-              textTransform: 'none',
-              px: 4,
-              boxShadow: 'none',
-              '&:hover': {
-                bgcolor: 'secondary.dark',
-                boxShadow: '0 2px 8px rgba(46, 89, 132, 0.3)'
-              }
-            }}
-          >
-            Download App
-          </Button>
-        </Box>
-
-        {/* Mobile menu */}
-        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-          <IconButton
-            size="large"
-            aria-label="menu"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            sx={{ color: 'text.primary' }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            sx={{
-              '& .MuiPaper-root': {
-                bgcolor: 'surface.main',
-                border: '1px solid',
-                borderColor: 'rgba(84, 67, 66, 0.1)',
-                mt: 1
-              }
-            }}
-          >
-            <MenuItem onClick={handleClose} sx={{ color: 'text.secondary' }}>
+          {/* Desktop Navigation */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 'auto', ml: 6 }}>
+            <Button 
+              color="inherit" 
+              sx={{ 
+                mr: 2,
+                color: 'text.secondary',
+                fontWeight: 500,
+                textTransform: 'none',
+                fontSize: '1.05rem',
+                px: 3,
+                py: 1,
+                borderRadius: 2,
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  color: 'text.primary',
+                  bgcolor: 'rgba(84, 67, 66, 0.08)',
+                  transform: 'translateY(-1px)'
+                }
+              }}
+            >
               Features
-            </MenuItem>
-            <MenuItem onClick={handleClose} sx={{ color: 'text.secondary' }}>
+            </Button>
+            <Button 
+              color="inherit" 
+              sx={{ 
+                mr: 2,
+                color: 'text.secondary',
+                fontWeight: 500,
+                textTransform: 'none',
+                fontSize: '1.05rem',
+                px: 3,
+                py: 1,
+                borderRadius: 2,
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  color: 'text.primary',
+                  bgcolor: 'rgba(84, 67, 66, 0.08)',
+                  transform: 'translateY(-1px)'
+                }
+              }}
+            >
               Privacy
-            </MenuItem>
-            <MenuItem onClick={handleClose} sx={{ color: 'text.secondary' }}>
+            </Button>
+            <Button 
+              color="inherit" 
+              sx={{ 
+                mr: 2,
+                color: 'text.secondary',
+                fontWeight: 500,
+                textTransform: 'none',
+                fontSize: '1.05rem',
+                px: 3,
+                py: 1,
+                borderRadius: 2,
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  color: 'text.primary',
+                  bgcolor: 'rgba(84, 67, 66, 0.08)',
+                  transform: 'translateY(-1px)'
+                }
+              }}
+            >
               About
-            </MenuItem>
-            <MenuItem onClick={handleClose} sx={{ color: 'text.secondary' }}>
+            </Button>
+          </Box>
+
+          {/* CTA Buttons */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+            <Button 
+              variant="contained"
+              startIcon={<GetApp />}
+              sx={{ 
+                bgcolor: 'secondary.main',
+                color: 'white',
+                fontWeight: 600,
+                textTransform: 'none',
+                px: 5,
+                py: 1.2,
+                fontSize: '1.05rem',
+                borderRadius: 2,
+                boxShadow: '0 2px 8px rgba(46, 89, 132, 0.2)',
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  bgcolor: 'secondary.dark',
+                  boxShadow: '0 4px 16px rgba(46, 89, 132, 0.3)',
+                  transform: 'translateY(-1px)'
+                }
+              }}
+            >
               Download App
-            </MenuItem>
-          </Menu>
-        </Box>
-      </Toolbar>
+            </Button>
+          </Box>
+
+          {/* Mobile menu */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="menu"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              sx={{ color: 'text.primary' }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+              keepMounted
+              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              sx={{
+                '& .MuiPaper-root': {
+                  bgcolor: 'rgba(248, 245, 242, 0.95)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid',
+                  borderColor: 'rgba(84, 67, 66, 0.2)',
+                  mt: 1,
+                  borderRadius: 2,
+                  boxShadow: '0 4px 16px rgba(84, 67, 66, 0.1)'
+                }
+              }}
+            >
+              <MenuItem onClick={handleClose} sx={{ color: 'text.secondary', py: 1.5 }}>
+                Features
+              </MenuItem>
+              <MenuItem onClick={handleClose} sx={{ color: 'text.secondary', py: 1.5 }}>
+                Privacy
+              </MenuItem>
+              <MenuItem onClick={handleClose} sx={{ color: 'text.secondary', py: 1.5 }}>
+                About
+              </MenuItem>
+              <MenuItem onClick={handleClose} sx={{ color: 'text.secondary', py: 1.5 }}>
+                Download App
+              </MenuItem>
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
     </AppBar>
   )
 }
