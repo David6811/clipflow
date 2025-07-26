@@ -1,56 +1,66 @@
 import { createTheme } from '@mui/material/styles';
 
-// Material 3 Design Token Colors
+// ClipFlow Enterprise Brand Colors
 const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#6750A4', // Material 3 primary
-      light: '#7F67BE',
-      dark: '#53389E',
+      main: '#544342', // Primary Text - Warm brown, professional, reliable
+      light: '#6E5D5C',
+      dark: '#3E312F',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#625B71', // Material 3 secondary
-      light: '#7C7489',
-      dark: '#4A4458',
+      main: '#2E5984', // Accent Blue - Trust, technology
+      light: '#4A7AA8',
+      dark: '#1E3A5F',
       contrastText: '#FFFFFF',
     },
     tertiary: {
-      main: '#7D5260',
-      light: '#9A6B79',
-      dark: '#633B48',
+      main: '#8f4942', // Accent Brown - Innovation, craft
+      light: '#A86D67',
+      dark: '#6B342E',
       contrastText: '#FFFFFF',
     },
     surface: {
-      main: '#FEF7FF', // Material 3 surface
+      main: '#FFF8F7', // Surface - Cream white, clean, premium
       light: '#FFFFFF',
-      dark: '#F5EFFF',
-      contrastText: '#1D1B20',
+      dark: '#F6E4E2',
+      contrastText: '#231918',
     },
     surfaceVariant: {
-      main: '#E7E0EC',
-      light: '#F4EEFA',
-      dark: '#CAC4D0',
-      contrastText: '#49454F',
+      main: '#F6E4E2', // Primary - Warm off-white, sophisticated
+      light: '#FFF8F7',
+      dark: '#E8D1CE',
+      contrastText: '#544342',
     },
     background: {
-      default: '#F6E4E2',
-      paper: '#FFFFFF',
+      default: '#F6E4E2', // Primary background
+      paper: '#FFF8F7', // Surface background
+    },
+    text: {
+      primary: '#231918', // Surface Text - Dark brown, strong readability
+      secondary: '#544342', // Primary Text - Warm brown
     },
     error: {
-      main: '#BA1A1A',
-      light: '#DE3730',
-      dark: '#93000A',
+      main: '#DC2626',
+      light: '#F87171',
+      dark: '#991B1B',
       contrastText: '#FFFFFF',
     },
+    // Custom ClipFlow colors
+    accent: {
+      gold: '#6E5E0F', // Muted gold - Intelligence, precision
+      blue: '#2E5984', // Professional blue
+      brown: '#8f4942', // Warm terracotta
+    },
     outline: {
-      main: '#79747E',
-      variant: '#CAC4D0',
+      main: '#544342',
+      variant: '#D1C7C6',
     },
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     // Material 3 Typography Scale
     displayLarge: {
       fontSize: '3.5rem',
@@ -189,12 +199,17 @@ const theme = createTheme({
   },
 });
 
-// Extend the theme with custom Material 3 tokens
+// Extend the theme with ClipFlow brand tokens
 declare module '@mui/material/styles' {
   interface Palette {
     tertiary: Palette['primary'];
     surface: Palette['primary'];
     surfaceVariant: Palette['primary'];
+    accent: {
+      gold: string;
+      blue: string;
+      brown: string;
+    };
     outline: {
       main: string;
       variant: string;
@@ -205,6 +220,11 @@ declare module '@mui/material/styles' {
     tertiary?: PaletteOptions['primary'];
     surface?: PaletteOptions['primary'];
     surfaceVariant?: PaletteOptions['primary'];
+    accent?: {
+      gold: string;
+      blue: string;
+      brown: string;
+    };
     outline?: {
       main: string;
       variant: string;

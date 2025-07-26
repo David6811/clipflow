@@ -1,3 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ClipFlow Enterprise Brand Styles */
+:root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  
+  /* ClipFlow Brand Colors */
+  --color-primary: #F6E4E2; /* Warm off-white */
+  --color-primary-text: #544342; /* Warm brown */
+  --color-surface: #FFF8F7; /* Cream white */
+  --color-surface-text: #231918; /* Dark brown */
+  --color-accent-blue: #2E5984; /* Professional blue */
+  --color-accent-brown: #8f4942; /* Warm terracotta */
+  --color-accent-gold: #6E5E0F; /* Muted gold */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-primary);
+  color: var(--color-surface-text);
+}
+
+/* Professional typography hierarchy */
+.enterprise-heading {
+  font-weight: 600;
+  color: var(--color-surface-text);
+  letter-spacing: -0.02em;
+}
+
+.enterprise-body {
+  font-weight: 400;
+  color: var(--color-primary-text);
+  line-height: 1.6;
+}
