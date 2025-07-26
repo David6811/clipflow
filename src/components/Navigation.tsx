@@ -28,12 +28,14 @@ const Navigation: React.FC = () => {
 
   return (
     <AppBar 
-      position="static" 
+      position="fixed" 
       elevation={0} 
       sx={{ 
-        bgcolor: 'surface.main',
         borderBottom: '1px solid',
-        borderColor: 'rgba(84, 67, 66, 0.1)'
+        borderColor: 'rgba(84, 67, 66, 0.1)',
+        zIndex: 1100,
+        backdropFilter: 'blur(10px)',
+        bgcolor: 'rgba(255, 255, 255, 0.95)'
       }}
     >
       <Toolbar sx={{ py: 1 }}>

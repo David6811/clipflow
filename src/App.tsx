@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Toolbar } from '@mui/material'
 
 // Import components
 import {
@@ -10,17 +10,20 @@ import {
   SecuritySection,
   FloatingActionButton
 } from './components'
+import FooterSection from './components/FooterSection'
 
 function App() {
   return (
-    <Box sx={{ minHeight: '100vh' }}>
+    <Box sx={{ minHeight: '100vh', margin: 0, padding: 0, width: '100%' }}>
       <Navigation />
+      <Toolbar />
       <HeroSection />
       <FeaturesSection />
       <SecuritySection />
       <BankingShowcase />
       <ArchitectureSection />
       <FloatingActionButton />
+      <FooterSection />
     </Box>
   )
 }
