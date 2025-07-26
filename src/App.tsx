@@ -7,6 +7,8 @@ import {
   FeaturesSection,
   MobileShowcase,
   BankingShowcase,
+  ArchitectureSection,
+  SecuritySection,
   FloatingActionButton
 } from './components'
 
@@ -18,6 +20,8 @@ function App() {
       <FeaturesSection />
       <MobileShowcase />
       <BankingShowcase />
+      <ArchitectureSection />
+      <SecuritySection />
       <FloatingActionButton />
     </Box>
   )
