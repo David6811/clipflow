@@ -46,9 +46,7 @@ const SecuritySection: React.FC = () => {
       sx={{ 
         py: { xs: 10, md: 16 },
         background: `
-          linear-gradient(180deg, rgba(248,250,252,0.95) 0%, rgba(241,245,249,0.92) 20%, rgba(226,232,240,0.88) 50%, rgba(203,213,225,0.85) 80%, rgba(191,201,215,0.9) 100%),
-          radial-gradient(ellipse at 30% 20%, rgba(71, 85, 105, 0.08) 0%, transparent 60%),
-          radial-gradient(ellipse at 70% 80%, rgba(71, 85, 105, 0.06) 0%, transparent 60%)
+          linear-gradient(135deg, rgba(252,252,253,0.6) 0%, rgba(248,250,252,0.4) 100%)
         `,
         color: 'text.primary',
         position: 'relative',

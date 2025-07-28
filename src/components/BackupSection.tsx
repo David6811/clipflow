@@ -41,10 +41,7 @@ const BackupSection: React.FC = () => {
       sx={{ 
         py: { xs: 8, md: 12 },
         background: `
-          linear-gradient(180deg, rgba(241,245,249,0.92) 0%, rgba(226,232,240,0.88) 25%, rgba(203,213,225,0.85) 50%, rgba(191,201,215,0.82) 75%, rgba(175,185,205,0.85) 100%),
-          radial-gradient(ellipse at 25% 25%, rgba(71, 85, 105, 0.06) 0%, transparent 60%),
-          radial-gradient(ellipse at 75% 75%, rgba(71, 85, 105, 0.06) 0%, transparent 60%),
-          radial-gradient(ellipse at 50% 10%, rgba(71, 85, 105, 0.04) 0%, transparent 50%)
+          linear-gradient(135deg, rgba(248,250,252,0.5) 0%, rgba(252,252,253,0.3) 100%)
         `,
         color: 'text.primary',
         position: 'relative',

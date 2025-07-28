@@ -34,9 +34,7 @@ function App() {
           bottom: 0,
           zIndex: -1,
           background: `
-            radial-gradient(ellipse at top left, rgba(71, 85, 105, 0.08) 0%, transparent 60%),
-            radial-gradient(ellipse at bottom right, rgba(71, 85, 105, 0.06) 0%, transparent 60%),
-            linear-gradient(135deg, #f8fafc 0%, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%, #f8fafc 100%)
+            linear-gradient(135deg, #fcfcfd 0%, #f8fafc 100%)
           `
         }}
       />

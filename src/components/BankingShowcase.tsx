@@ -233,10 +233,7 @@ const BankingShowcase: React.FC = () => {
       sx={{ 
         py: 8, 
         background: `
-          linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.92) 20%, rgba(241,245,249,0.9) 50%, rgba(226,232,240,0.88) 80%, rgba(203,213,225,0.9) 100%),
-          radial-gradient(ellipse at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-          radial-gradient(ellipse at 80% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
-          radial-gradient(ellipse at 50% 90%, rgba(16, 185, 129, 0.04) 0%, transparent 40%)
+          linear-gradient(135deg, rgba(252,252,253,0.5) 0%, rgba(248,250,252,0.3) 100%)
         `,
         position: 'relative', 
         overflow: 'hidden',
@@ -255,7 +252,7 @@ const BankingShowcase: React.FC = () => {
           width: '300px', 
           height: '200px', 
           borderRadius: '20px', 
-          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%)',
+          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(71, 85, 105, 0.04) 100%)',
           transform: 'rotate(-15deg)',
           backdropFilter: 'blur(2px)',
           border: '1px solid rgba(255,255,255,0.2)',
@@ -272,7 +269,7 @@ const BankingShowcase: React.FC = () => {
           width: '400px', 
           height: '400px', 
           borderRadius: '50%', 
-          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(59, 130, 246, 0.04) 100%)',
+          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.06) 0%, rgba(71, 85, 105, 0.04) 100%)',
           backdropFilter: 'blur(1px)',
           border: '1px solid rgba(255,255,255,0.15)',
           animation: 'float 8s ease-in-out infinite reverse'
@@ -288,7 +285,7 @@ const BankingShowcase: React.FC = () => {
           width: '150px', 
           height: '150px', 
           borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.08) 0%, transparent 70%)',
           backdropFilter: 'blur(1px)',
           animation: 'pulse 4s ease-in-out infinite'
         }} 

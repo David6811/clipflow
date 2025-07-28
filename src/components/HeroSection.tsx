@@ -20,9 +20,7 @@ const HeroSection: React.FC = () => {
       component="section"
       sx={{ 
         background: `
-          linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.9) 100%),
-          radial-gradient(ellipse at 30% 20%, rgba(71, 85, 105, 0.12) 0%, transparent 70%),
-          radial-gradient(ellipse at 70% 80%, rgba(71, 85, 105, 0.12) 0%, transparent 70%)
+          linear-gradient(135deg, rgba(252,252,253,0.8) 0%, rgba(248,250,252,0.6) 100%)
         `,
         position: 'relative',
         py: { xs: 12, md: 20 },

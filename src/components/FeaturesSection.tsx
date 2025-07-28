@@ -54,9 +54,7 @@ const FeaturesSection: React.FC = () => {
         py: { xs: 8, md: 12 },
         minHeight: '100vh',
         background: `
-          linear-gradient(180deg, rgba(248,250,252,0.8) 0%, rgba(241,245,249,0.9) 100%),
-          radial-gradient(ellipse at 20% 30%, rgba(71, 85, 105, 0.08) 0%, transparent 70%),
-          radial-gradient(ellipse at 80% 70%, rgba(71, 85, 105, 0.08) 0%, transparent 70%)
+          linear-gradient(135deg, rgba(248,250,252,0.4) 0%, rgba(252,252,253,0.2) 100%)
         `,
         position: 'relative',
         display: 'flex',
