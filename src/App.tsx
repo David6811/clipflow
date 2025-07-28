@@ -9,6 +9,7 @@ import {
   SecuritySection,
   BackupSection,
   NoteDetailSection,
+  CommentsSection,
   FloatingActionButton
 } from './components'
 import FooterSection from './components/FooterSection'
@@ -24,6 +25,7 @@ function App() {
       <div id="notes"><NoteDetailSection /></div>
       <div id="security"><SecuritySection /></div>
       <div id="backup"><BackupSection /></div>
+      <div id="comments"><CommentsSection /></div>
       <FloatingActionButton />
       <FooterSection />
     </Box>
