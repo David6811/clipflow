@@ -21,6 +21,7 @@ const BankingShowcase: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0) // 0: 1.png, 1: 2.png, 2: 3.png
   const [imageRotationActive, setImageRotationActive] = useState<boolean>(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -45,31 +46,46 @@ const BankingShowcase: React.FC = () => {
     return () => observer.disconnect()
   }, [])
 
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (autoPlayTimeoutRef.current) {
+        clearTimeout(autoPlayTimeoutRef.current)
+      }
+    }
+  }, [])
+
   // Simple image sequence: 1 -> 2 -> 3 -> switch phone
   useEffect(() => {
     if (!autoPlay || !isVisible) return
 
-    let timeoutId: NodeJS.Timeout
+    let timeout1: NodeJS.Timeout
+    let timeout2: NodeJS.Timeout  
+    let timeout3: NodeJS.Timeout
+    let timeout4: NodeJS.Timeout
     
     const runSequence = () => {
-      // Start with 1.png
+      // Start with 1.png immediately
       setCurrentImageIndex(0)
       
       // After 2 seconds, show 2.png
-      timeoutId = setTimeout(() => {
+      timeout1 = setTimeout(() => {
+        if (!autoPlay) return // Check if still auto-playing
         setCurrentImageIndex(1)
         
         // After another 2 seconds, show 3.png
-        timeoutId = setTimeout(() => {
+        timeout2 = setTimeout(() => {
+          if (!autoPlay) return // Check if still auto-playing
           setCurrentImageIndex(2)
           
           // After another 2 seconds, switch to next phone
-          timeoutId = setTimeout(() => {
+          timeout3 = setTimeout(() => {
+            if (!autoPlay) return // Check if still auto-playing
             setIsTransitioning(true)
             setCenterPhone(prev => (prev + 1) % 3)
             
-            // After transition completes, run sequence again
-            timeoutId = setTimeout(() => {
+            // After transition completes, reset transition state
+            timeout4 = setTimeout(() => {
               setIsTransitioning(false)
             }, 1200)
           }, 2000)
@@ -77,13 +93,16 @@ const BankingShowcase: React.FC = () => {
       }, 2000)
     }
     
-    // Start the sequence
+    // Start the sequence immediately
     runSequence()
     
     return () => {
-      if (timeoutId) clearTimeout(timeoutId)
+      clearTimeout(timeout1)
+      clearTimeout(timeout2)
+      clearTimeout(timeout3)
+      clearTimeout(timeout4)
     }
-  }, [centerPhone]) // Only restart when centerPhone changes
+  }, [autoPlay, isVisible, centerPhone])
 
   // Available images for rotation
   const availableImages = [
@@ -331,9 +350,15 @@ const BankingShowcase: React.FC = () => {
                   setIsTransitioning(true)
                   setCenterPhone(index) // This will trigger the useEffect to restart cycle
                   
+                  // Clear existing timeout
+                  if (autoPlayTimeoutRef.current) {
+                    clearTimeout(autoPlayTimeoutRef.current)
+                  }
+                  
                   // Resume auto-play after 10 seconds of user inactivity
-                  setTimeout(() => {
+                  autoPlayTimeoutRef.current = setTimeout(() => {
                     setAutoPlay(true)
+                    setIsTransitioning(false)
                   }, 10000)
                 }
               }}

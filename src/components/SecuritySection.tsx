@@ -18,24 +18,24 @@ const SecuritySection: React.FC = () => {
       title: 'Master Password System',
       description: 'Enterprise-grade authentication protecting your OCR captured text',
       icon: VpnKey,
-      color: '#6E5E0F', // Muted gold
-      bgColor: 'rgba(110, 94, 15, 0.1)',
+      color: '#2563EB', // Medium professional blue - balanced depth
+      bgColor: 'rgba(37, 99, 235, 0.12)',
       features: ['Master Password', 'Auto-Lock Timer', 'Session Security', 'Quick Authentication']
     },
     {
       title: 'Fingerprint Authentication',
       description: 'Secure biometric access for Android devices with hardware fingerprint sensors',
       icon: Fingerprint,
-      color: '#8f4942', // Warm terracotta
-      bgColor: 'rgba(143, 73, 66, 0.1)',
+      color: '#7C3AED', // Medium security purple - elegant depth
+      bgColor: 'rgba(124, 58, 237, 0.12)',
       features: ['Hardware Fingerprint', 'Android KeyStore', 'Secure Enclave', 'Fast Unlock']
     },
     {
       title: 'Note-Level Protection',
       description: 'Individual encryption for each OCR result, screenshot, and organized note collection',
       icon: TextFields,
-      color: '#544342', // ClipFlow brown
-      bgColor: 'rgba(84, 67, 66, 0.1)',
+      color: '#059669', // Medium protection green - trustworthy depth
+      bgColor: 'rgba(5, 150, 105, 0.12)',
       features: ['Per-Note Encryption', 'Data Protection', 'Secure Storage']
     }
   ]
