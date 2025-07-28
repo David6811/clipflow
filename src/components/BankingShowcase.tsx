@@ -207,15 +207,15 @@ const BankingShowcase: React.FC = () => {
       willChange: 'transform, opacity', // Performance optimization
       backfaceVisibility: 'hidden', // Prevent flickering
       boxShadow: relativePosition === 1
-        ? '0 25px 50px rgba(0,0,0,0.2)' // Simplified shadows
-        : '0 15px 30px rgba(0,0,0,0.1)',
+        ? '0 40px 80px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.2)' // Restored dramatic center shadow
+        : '0 20px 40px rgba(0,0,0,0.15)', // Enhanced side shadows
       transform: { 
         xs: relativePosition === 1 
           ? 'translate3d(-50%, -50%, 0) translateY(35px)'
           : relativePosition === 0
-            ? 'translate3d(-50%, -50%, 0) translate(-120px, 55px) scale(0.8)'
-            : 'translate3d(-50%, -50%, 0) translate(120px, 55px) scale(0.8)',
-        md: `translate3d(-50%, -50%, 0) translate(${x}px, ${y}px) scale(${scale})` // Simplified 3D transforms
+            ? 'translate3d(-50%, -50%, 0) translate(-120px, 55px) rotateY(25deg) scale(0.8)'
+            : 'translate3d(-50%, -50%, 0) translate(120px, 55px) rotateY(-25deg) scale(0.8)',
+        md: `translate3d(-50%, -50%, 0) translate3d(${x}px, ${y}px, ${z}px) rotateY(${phoneRotationY}deg) scale(${scale})` // Restored 3D transforms with depth
       },
       opacity,
       zIndex,
@@ -226,14 +226,14 @@ const BankingShowcase: React.FC = () => {
           xs: relativePosition === 1 
             ? 'translate3d(-50%, -50%, 0) translateY(20px) scale(1.02)'
             : relativePosition === 0
-              ? 'translate3d(-50%, -50%, 0) translate(-120px, 40px) scale(0.82)'
-              : 'translate3d(-50%, -50%, 0) translate(120px, 40px) scale(0.82)',
-          md: `translate3d(-50%, -50%, 0) translate(${x}px, ${y - 10}px) scale(${scale * 1.02})` // Reduced hover effect
+              ? 'translate3d(-50%, -50%, 0) translate(-120px, 40px) rotateY(25deg) scale(0.82)'
+              : 'translate3d(-50%, -50%, 0) translate(120px, 40px) rotateY(-25deg) scale(0.82)',
+          md: `translate3d(-50%, -50%, 0) translate3d(${x}px, ${y - 15}px, ${z + 20}px) rotateY(${phoneRotationY}deg) scale(${scale * 1.02})` // Restored 3D hover with depth
         },
         opacity: Math.min(1, opacity * 1.1),
         boxShadow: relativePosition === 1
-          ? '0 30px 60px rgba(0,0,0,0.25)' 
-          : '0 20px 40px rgba(0,0,0,0.15)',
+          ? '0 50px 100px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.25)' // Restored dramatic hover shadow
+          : '0 30px 60px rgba(0,0,0,0.2)', // Enhanced hover shadow for sides
         transition: 'all 0.2s ease-out' // Faster hover response
       }
     }
@@ -283,15 +283,16 @@ const BankingShowcase: React.FC = () => {
           </Typography>
         </Box>
 
-        {/* Interactive Phone Carousel - Optimized */}
+        {/* Interactive Phone Carousel - 3D Restored */}
         {isVisible ? (
           <Box 
             sx={{ 
               position: 'relative',
               width: '100%',
               height: { xs: '550px', md: '700px' },
-              perspective: '800px', // Reduced perspective for simpler 3D
-              perspectiveOrigin: 'center center',
+              perspective: '1200px', // Restored perspective for proper 3D depth
+              perspectiveOrigin: 'center 40%',
+              transformStyle: 'preserve-3d', // Restored 3D context
               overflow: 'visible',
               willChange: 'auto', // Let browser optimize
               containIntrinsicSize: '100% 700px' // Performance hint for layout
