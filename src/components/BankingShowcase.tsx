@@ -211,18 +211,98 @@ const BankingShowcase: React.FC = () => {
   return (
     <Box 
       ref={sectionRef}
-      sx={{ py: 8, background: 'linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 50%, #90CAF9 100%)', position: 'relative', overflow: 'hidden' }}
+      sx={{ 
+        py: 8, 
+        background: `
+          linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.92) 20%, rgba(241,245,249,0.9) 50%, rgba(226,232,240,0.88) 80%, rgba(203,213,225,0.9) 100%),
+          radial-gradient(ellipse at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+          radial-gradient(ellipse at 50% 90%, rgba(16, 185, 129, 0.04) 0%, transparent 40%)
+        `,
+        position: 'relative', 
+        overflow: 'hidden',
+        backdropFilter: 'blur(20px)',
+        borderTop: '1px solid rgba(226, 232, 240, 0.6)',
+        borderBottom: '1px solid rgba(226, 232, 240, 0.6)'
+      }}
     >
-      {/* Background decorative elements */}
-      <Box sx={{ position: 'absolute', top: '-50px', right: '-50px', width: '200px', height: '200px', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.2)' }} />
-      <Box sx={{ position: 'absolute', bottom: '-100px', left: '-100px', width: '300px', height: '300px', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.1)' }} />
+      {/* Modern Geometric Background Elements */}
+      {/* Top Right Rounded Rectangle */}
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          top: '-80px', 
+          right: '-80px', 
+          width: '300px', 
+          height: '200px', 
+          borderRadius: '20px', 
+          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%)',
+          transform: 'rotate(-15deg)',
+          backdropFilter: 'blur(2px)',
+          border: '1px solid rgba(255,255,255,0.2)',
+          animation: 'float 6s ease-in-out infinite'
+        }} 
+      />
+      
+      {/* Bottom Left Circle */}
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          bottom: '-120px', 
+          left: '-120px', 
+          width: '400px', 
+          height: '400px', 
+          borderRadius: '50%', 
+          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(59, 130, 246, 0.04) 100%)',
+          backdropFilter: 'blur(1px)',
+          border: '1px solid rgba(255,255,255,0.15)',
+          animation: 'float 8s ease-in-out infinite reverse'
+        }} 
+      />
+      
+      {/* Center Accent Circle */}
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          top: '60%', 
+          right: '10%', 
+          width: '150px', 
+          height: '150px', 
+          borderRadius: '50%', 
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
+          backdropFilter: 'blur(1px)',
+          animation: 'pulse 4s ease-in-out infinite'
+        }} 
+      />
       
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 3 }}>
-          <Typography variant="h2" component="h2" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', md: '2.5rem' }, color: '#1565C0' }}>
+          <Typography 
+            variant="h2" 
+            component="h2" 
+            gutterBottom 
+            sx={{ 
+              fontWeight: 700, 
+              fontSize: { xs: '2.2rem', md: '3rem' }, 
+              color: '#1E293B',
+              letterSpacing: '-0.02em',
+              mb: 2
+            }}
+          >
             ClipFlow in Action
           </Typography>
-          <Typography variant="h6" sx={{ maxWidth: '600px', mx: 'auto', fontWeight: 400, color: '#1976D2', opacity: 0.8 }}>
+          <Typography 
+            variant="h6" 
+            sx={{ 
+              maxWidth: '700px', 
+              mx: 'auto', 
+              fontWeight: 400, 
+              color: 'text.secondary',
+              opacity: 0.8,
+              lineHeight: 1.6,
+              fontSize: { xs: '1.125rem', md: '1.25rem' }
+            }}
+          >
             Experience seamless clipboard management with our intuitive mobile interface
           </Typography>
         </Box>
@@ -311,7 +391,7 @@ const BankingShowcase: React.FC = () => {
         )}
       </Container>
 
-      {/* CSS for skeleton loading */}
+      {/* CSS for skeleton loading and floating animations */}
       <style>
         {`
           @keyframes skeleton-pulse {
@@ -320,6 +400,26 @@ const BankingShowcase: React.FC = () => {
             }
             50% { 
               opacity: 0.7;
+            }
+          }
+          
+          @keyframes float {
+            0%, 100% { 
+              transform: translateY(0px) rotate(-15deg);
+            }
+            50% { 
+              transform: translateY(-20px) rotate(-15deg);
+            }
+          }
+          
+          @keyframes pulse {
+            0%, 100% { 
+              opacity: 0.6;
+              transform: scale(1);
+            }
+            50% { 
+              opacity: 0.8;
+              transform: scale(1.05);
             }
           }
         `}
