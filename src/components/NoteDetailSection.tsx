@@ -152,9 +152,10 @@ const NoteDetailSection: React.FC = () => {
             justifyContent: 'center',
             alignItems: 'center',
             gap: { xs: 2, md: 4 },
-            height: { xs: '500px', md: '600px' },
+            minHeight: { xs: '600px', md: '600px' },
             width: '100%',
-            flexDirection: { xs: 'column', md: 'row' }
+            flexDirection: { xs: 'column', md: 'row' },
+            py: { xs: 2, md: 0 }
           }}
         >
           {/* SVG Container with transparent background */}
@@ -475,14 +476,15 @@ const NoteDetailSection: React.FC = () => {
         </Box>
 
         {/* Bottom Quote */}
-        <Box sx={{ textAlign: 'center', mt: 4 }}>
+        <Box sx={{ textAlign: 'center', mt: { xs: 6, md: 4 } }}>
           <Typography
             variant="body1"
             sx={{
               color: 'text.secondary',
               fontStyle: 'italic',
-              fontSize: '1.125rem',
-              opacity: 0.8
+              fontSize: { xs: '1rem', md: '1.125rem' },
+              opacity: 0.8,
+              px: { xs: 2, md: 0 }
             }}
           >
             &ldquo;Every note, perfectly organized and completely under your control&rdquo;
