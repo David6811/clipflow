@@ -53,51 +53,6 @@ const SecuritySection: React.FC = () => {
         backdropFilter: 'blur(20px)',
       }}
     >
-      {/* Professional Geometric Background Elements */}
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: '60px', 
-          left: '60px', 
-          width: '280px', 
-          height: '180px', 
-          borderRadius: '16px', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.05) 0%, rgba(71, 85, 105, 0.025) 100%)',
-          transform: 'rotate(-12deg)',
-          backdropFilter: 'blur(2px)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          animation: 'float 8s ease-in-out infinite'
-        }} 
-      />
-      
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          bottom: '60px', 
-          right: '60px', 
-          width: '320px', 
-          height: '200px', 
-          borderRadius: '50%', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.06) 0%, rgba(71, 85, 105, 0.04) 100%)',
-          backdropFilter: 'blur(1px)',
-          border: '1px solid rgba(255,255,255,0.15)',
-          animation: 'float 10s ease-in-out infinite reverse'
-        }} 
-      />
-      
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: '40%', 
-          left: '8%', 
-          width: '120px', 
-          height: '120px', 
-          borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.06) 0%, transparent 70%)',
-          backdropFilter: 'blur(1px)',
-          animation: 'pulse 6s ease-in-out infinite'
-        }} 
-      />
 
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}

@@ -47,51 +47,6 @@ const BackupSection: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      {/* Professional Geometric Background Elements */}
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: '40px', 
-          right: '40px', 
-          width: '240px', 
-          height: '160px', 
-          borderRadius: '20px', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.05) 0%, rgba(71, 85, 105, 0.025) 100%)',
-          transform: 'rotate(18deg)',
-          backdropFilter: 'blur(2px)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          animation: 'float 7s ease-in-out infinite'
-        }} 
-      />
-      
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          bottom: '40px', 
-          left: '40px', 
-          width: '300px', 
-          height: '300px', 
-          borderRadius: '50%', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.06) 0%, rgba(71, 85, 105, 0.04) 100%)',
-          backdropFilter: 'blur(1px)',
-          border: '1px solid rgba(255,255,255,0.15)',
-          animation: 'float 9s ease-in-out infinite reverse'
-        }} 
-      />
-      
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: '30%', 
-          right: '12%', 
-          width: '100px', 
-          height: '100px', 
-          borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.05) 0%, transparent 70%)',
-          backdropFilter: 'blur(1px)',
-          animation: 'pulse 5s ease-in-out infinite'
-        }} 
-      />
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}

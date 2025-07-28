@@ -106,51 +106,6 @@ const CommentsSection: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      {/* Professional Geometric Background Elements */}
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: '50px', 
-          left: '50px', 
-          width: '260px', 
-          height: '180px', 
-          borderRadius: '18px', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.05) 0%, rgba(71, 85, 105, 0.025) 100%)',
-          transform: 'rotate(-8deg)',
-          backdropFilter: 'blur(2px)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          animation: 'float 6s ease-in-out infinite'
-        }} 
-      />
-      
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          bottom: '50px', 
-          right: '50px', 
-          width: '340px', 
-          height: '220px', 
-          borderRadius: '50%', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.06) 0%, rgba(71, 85, 105, 0.04) 100%)',
-          backdropFilter: 'blur(1px)',
-          border: '1px solid rgba(255,255,255,0.15)',
-          animation: 'float 8s ease-in-out infinite reverse'
-        }} 
-      />
-      
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: '50%', 
-          left: '15%', 
-          width: '90px', 
-          height: '90px', 
-          borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.05) 0%, transparent 70%)',
-          backdropFilter: 'blur(1px)',
-          animation: 'pulse 4s ease-in-out infinite'
-        }} 
-      />
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}

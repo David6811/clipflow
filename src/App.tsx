@@ -45,7 +45,7 @@ function App() {
         }}
       />
 
-      {/* Floating Geometric Elements */}
+      {/* Unified Background Shapes Layer */}
       <Box
         sx={{
           position: 'fixed',
@@ -55,32 +55,148 @@ function App() {
           bottom: 0,
           zIndex: -1,
           pointerEvents: 'none',
-          '&::before': {
-            content: '""',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Top Section Shapes */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '8%',
+            left: '5%',
+            width: '320px',
+            height: '240px',
+            background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(59, 130, 246, 0.04) 100%)',
+            borderRadius: '8px',
+            transform: 'rotate(-12deg)',
+            filter: 'blur(8px)',
+            animation: 'organicFloat1 20s ease-in-out infinite'
+          }}
+        />
+        
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '5%',
+            right: '8%',
+            width: '280px',
+            height: '160px',
+            background: 'linear-gradient(45deg, rgba(34, 197, 94, 0.05) 0%, rgba(168, 85, 247, 0.03) 100%)',
+            borderRadius: '8px',
+            transform: 'rotate(15deg)',
+            filter: 'blur(12px)',
+            animation: 'organicFloat2 25s ease-in-out infinite reverse'
+          }}
+        />
+        
+        {/* Mid Section Shapes */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '35%',
+            left: '15%',
+            width: '200px',
+            height: '120px',
+            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(34, 197, 94, 0.03) 100%)',
+            borderRadius: '8px',
+            transform: 'rotate(-25deg)',
+            filter: 'blur(12px)',
+            animation: 'organicFloat3 22s ease-in-out infinite'
+          }}
+        />
+        
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '40%',
+            right: '12%',
+            width: '350px',
+            height: '200px',
+            background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.06) 0%, rgba(236, 72, 153, 0.04) 100%)',
+            borderRadius: '8px',
+            transform: 'rotate(8deg)',
+            filter: 'blur(15px)',
+            animation: 'organicFloat4 18s ease-in-out infinite'
+          }}
+        />
+        
+        {/* Bottom Section Shapes */}
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '15%',
+            left: '10%',
+            width: '280px',
+            height: '180px',
+            background: 'radial-gradient(ellipse, rgba(99, 102, 241, 0.05) 0%, rgba(34, 197, 94, 0.03) 60%, transparent 100%)',
+            borderRadius: '8px',
+            filter: 'blur(20px)',
+            animation: 'organicFloat5 16s ease-in-out infinite reverse'
+          }}
+        />
+        
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '20%',
+            right: '15%',
+            width: '220px',
+            height: '140px',
+            background: 'linear-gradient(45deg, rgba(236, 72, 153, 0.05) 0%, rgba(99, 102, 241, 0.03) 100%)',
+            borderRadius: '8px',
+            transform: 'rotate(-18deg)',
+            filter: 'blur(10px)',
+            animation: 'organicFloat6 24s ease-in-out infinite'
+          }}
+        />
+        
+        {/* Large Feature Shape - Center */}
+        <Box
+          sx={{
             position: 'absolute',
             top: '20%',
-            right: '15%',
-            width: '200px',
-            height: '200px',
-            borderRadius: '50%',
-            background: 'rgba(71, 85, 105, 0.02)',
-            filter: 'blur(60px)',
-            animation: 'float 6s ease-in-out infinite'
-          },
-          '&::after': {
-            content: '""',
+            left: '40%',
+            width: '400px',
+            height: '300px',
+            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.03) 50%, rgba(236, 72, 153, 0.02) 100%)',
+            borderRadius: '8px',
+            transform: 'rotate(-5deg)',
+            filter: 'blur(25px)',
+            animation: 'organicFloat9 30s ease-in-out infinite',
+            opacity: 0.8
+          }}
+        />
+        
+        {/* Additional Accent Shapes */}
+        <Box
+          sx={{
             position: 'absolute',
-            bottom: '30%',
-            left: '10%',
+            top: '25%',
+            left: '70%',
             width: '150px',
             height: '150px',
-            borderRadius: '50%',
-            background: 'rgba(71, 85, 105, 0.015)',
-            filter: 'blur(40px)',
-            animation: 'float 8s ease-in-out infinite reverse'
-          }
-        }}
-      />
+            background: 'radial-gradient(circle, rgba(34, 197, 94, 0.04) 0%, transparent 70%)',
+            borderRadius: '8px',
+            filter: 'blur(15px)',
+            animation: 'organicFloat7 20s ease-in-out infinite reverse'
+          }}
+        />
+        
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '45%',
+            left: '5%',
+            width: '180px',
+            height: '100px',
+            background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.04) 0%, rgba(59, 130, 246, 0.02) 100%)',
+            borderRadius: '8px',
+            transform: 'rotate(12deg)',
+            filter: 'blur(6px)',
+            animation: 'organicFloat8 26s ease-in-out infinite'
+          }}
+        />
+      </Box>
 
       <Navigation />
       <Toolbar />
@@ -108,6 +224,119 @@ function App() {
             }
             50% {
               transform: translateY(-20px) rotate(180deg);
+            }
+          }
+
+          @keyframes gentleFloat {
+            0%, 100% {
+              transform: translateY(0px) scale(1);
+            }
+            50% {
+              transform: translateY(-15px) scale(1.02);
+            }
+          }
+
+          @keyframes organicFloat1 {
+            0%, 100% {
+              transform: translateY(0px) rotate(-12deg) scale(1);
+              border-radius: 8px;
+            }
+            33% {
+              transform: translateY(-15px) rotate(-8deg) scale(1.05);
+              border-radius: 8px;
+            }
+            66% {
+              transform: translateY(-8px) rotate(-15deg) scale(0.98);
+              border-radius: 8px;
+            }
+          }
+
+          @keyframes organicFloat2 {
+            0%, 100% {
+              transform: translateY(0px) rotate(15deg) scale(1);
+            }
+            50% {
+              transform: translateY(-12px) rotate(12deg) scale(1.03);
+            }
+          }
+
+          @keyframes organicFloat3 {
+            0%, 100% {
+              transform: translateY(0px) rotate(-25deg) scale(1);
+            }
+            50% {
+              transform: translateY(-10px) rotate(-20deg) scale(1.02);
+            }
+          }
+
+          @keyframes organicFloat4 {
+            0%, 100% {
+              transform: translateY(0px) rotate(8deg) scale(1);
+              border-radius: 8px;
+            }
+            25% {
+              transform: translateY(-8px) rotate(5deg) scale(1.02);
+              border-radius: 8px;
+            }
+            75% {
+              transform: translateY(-5px) rotate(12deg) scale(0.98);
+              border-radius: 8px;
+            }
+          }
+
+          @keyframes organicFloat5 {
+            0%, 100% {
+              transform: translateY(0px) scale(1);
+              opacity: 0.7;
+            }
+            50% {
+              transform: translateY(-12px) scale(1.02);
+              opacity: 0.9;
+            }
+          }
+
+          @keyframes organicFloat6 {
+            0%, 100% {
+              transform: translateY(0px) rotate(-18deg) scale(1);
+            }
+            50% {
+              transform: translateY(-14px) rotate(-15deg) scale(1.03);
+            }
+          }
+
+          @keyframes organicFloat7 {
+            0%, 100% {
+              transform: translateY(0px) scale(1);
+            }
+            33% {
+              transform: translateY(-6px) scale(1.01);
+            }
+            66% {
+              transform: translateY(-3px) scale(0.99);
+            }
+          }
+
+          @keyframes organicFloat8 {
+            0%, 100% {
+              transform: translateY(0px) rotate(12deg) scale(1);
+            }
+            50% {
+              transform: translateY(-8px) rotate(8deg) scale(1.01);
+            }
+          }
+
+          @keyframes organicFloat9 {
+            0%, 100% {
+              transform: translateY(0px) rotate(-5deg) scale(1);
+              border-radius: 8px;
+            }
+            33% {
+              transform: translateY(-10px) rotate(-2deg) scale(1.02);
+              border-radius: 8px;
+            }
+            66% {
+              transform: translateY(-15px) rotate(-8deg) scale(0.99);
+              border-radius: 8px;
             }
           }
 

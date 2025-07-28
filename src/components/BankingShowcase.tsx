@@ -237,55 +237,6 @@ const BankingShowcase: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      {/* Modern Geometric Background Elements */}
-      {/* Top Right Rounded Rectangle */}
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: '20px', 
-          right: '20px', 
-          width: '300px', 
-          height: '200px', 
-          borderRadius: '20px', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.05) 0%, rgba(71, 85, 105, 0.025) 100%)',
-          transform: 'rotate(-15deg)',
-          backdropFilter: 'blur(2px)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          animation: 'float 6s ease-in-out infinite'
-        }} 
-      />
-      
-      {/* Bottom Left Circle */}
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          bottom: '20px', 
-          left: '20px', 
-          width: '400px', 
-          height: '400px', 
-          borderRadius: '50%', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.06) 0%, rgba(71, 85, 105, 0.04) 100%)',
-          backdropFilter: 'blur(1px)',
-          border: '1px solid rgba(255,255,255,0.15)',
-          animation: 'float 8s ease-in-out infinite reverse'
-        }} 
-      />
-      
-      {/* Center Accent Circle */}
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: '60%', 
-          right: '10%', 
-          width: '150px', 
-          height: '150px', 
-          borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.05) 0%, transparent 70%)',
-          backdropFilter: 'blur(1px)',
-          animation: 'pulse 4s ease-in-out infinite'
-        }} 
-      />
-      
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 3 }}>
           <Typography 
