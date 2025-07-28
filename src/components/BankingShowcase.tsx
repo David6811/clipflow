@@ -23,20 +23,33 @@ const BankingShowcase: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Intersection Observer for lazy loading
+  // Optimized Intersection Observer with debouncing
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          // Preload all available images when component becomes visible
-          availableImages.forEach(imageSrc => {
-            const img = new Image()
-            img.src = imageSrc
-          })
-        }
+        // Debounce the visibility state changes
+        clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+            // Optimized preloading: Load images with higher priority and better caching
+            availableImages.forEach((imageSrc, index) => {
+              const img = new Image()
+              img.src = imageSrc
+              img.loading = 'eager'
+              img.fetchPriority = index === 0 ? 'high' : 'low'
+              // Add to cache immediately
+              img.onload = () => setImagesLoaded(prev => new Set([...prev, index]))
+            })
+          }
+        }, 100) // 100ms debounce
       },
-      { threshold: 0.1, rootMargin: '200px' }
+      { 
+        threshold: 0.05, 
+        rootMargin: '200px' // Reduced margin to prevent early loading
+      }
     )
 
     if (sectionRef.current) {
@@ -55,7 +68,7 @@ const BankingShowcase: React.FC = () => {
     }
   }, [])
 
-  // Simple image sequence: 1 -> 2 -> 3 -> switch phone
+  // Optimized image sequence with faster transitions
   useEffect(() => {
     if (!autoPlay || !isVisible) return
 
@@ -68,29 +81,27 @@ const BankingShowcase: React.FC = () => {
       // Start with 1.png immediately
       setCurrentImageIndex(0)
       
-      // After 2 seconds, show 2.png
+      // Faster transitions: 1.5 seconds instead of 2
       timeout1 = setTimeout(() => {
-        if (!autoPlay) return // Check if still auto-playing
+        if (!autoPlay) return
         setCurrentImageIndex(1)
         
-        // After another 2 seconds, show 3.png
         timeout2 = setTimeout(() => {
-          if (!autoPlay) return // Check if still auto-playing
+          if (!autoPlay) return
           setCurrentImageIndex(2)
           
-          // After another 2 seconds, switch to next phone
           timeout3 = setTimeout(() => {
-            if (!autoPlay) return // Check if still auto-playing
+            if (!autoPlay) return
             setIsTransitioning(true)
             setCenterPhone(prev => (prev + 1) % 3)
             
-            // After transition completes, reset transition state
+            // Faster transition: 800ms instead of 1200ms
             timeout4 = setTimeout(() => {
               setIsTransitioning(false)
-            }, 1200)
-          }, 2000)
-        }, 2000)
-      }, 2000)
+            }, 800)
+          }, 1500)
+        }, 1500)
+      }, 1500)
     }
     
     // Start the sequence immediately
@@ -188,41 +199,42 @@ const BankingShowcase: React.FC = () => {
       borderRadius: '32px',
       border: '4px solid rgba(255,255,255,0.2)',
       bgcolor: 'rgba(255,255,255,0.95)',
-      backdropFilter: 'blur(20px)',
+      backdropFilter: 'blur(10px)', // Reduced blur for better performance
       position: 'absolute',
       left: '50%',
       top: '50%',
       overflow: 'hidden',
+      willChange: 'transform, opacity', // Performance optimization
+      backfaceVisibility: 'hidden', // Prevent flickering
       boxShadow: relativePosition === 1
-        ? '0 40px 80px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.2)' 
-        : '0 20px 40px rgba(0,0,0,0.15)',
+        ? '0 25px 50px rgba(0,0,0,0.2)' // Simplified shadows
+        : '0 15px 30px rgba(0,0,0,0.1)',
       transform: { 
         xs: relativePosition === 1 
-          ? 'translate(-50%, -50%) translate3d(0px, 35px, 0px) rotateY(0deg) scale(1)'
+          ? 'translate3d(-50%, -50%, 0) translateY(35px)'
           : relativePosition === 0
-            ? 'translate(-50%, -50%) translate3d(-120px, 55px, -60px) rotateY(25deg) scale(0.8)'
-            : 'translate(-50%, -50%) translate3d(120px, 55px, -60px) rotateY(-25deg) scale(0.8)',
-        md: `translate(-50%, -50%) translate3d(${x}px, ${y}px, ${z}px) rotateY(${phoneRotationY}deg) scale(${scale})`
+            ? 'translate3d(-50%, -50%, 0) translate(-120px, 55px) scale(0.8)'
+            : 'translate3d(-50%, -50%, 0) translate(120px, 55px) scale(0.8)',
+        md: `translate3d(-50%, -50%, 0) translate(${x}px, ${y}px) scale(${scale})` // Simplified 3D transforms
       },
       opacity,
       zIndex,
-      transition: 'all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      transition: 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease', // Faster, smoother transitions
       cursor: 'pointer',
-      transformStyle: 'preserve-3d',
       '&:hover': {
         transform: { 
           xs: relativePosition === 1 
-            ? 'translate(-50%, -50%) translate3d(0px, 20px, 0px) rotateY(0deg) scale(1.05)'
+            ? 'translate3d(-50%, -50%, 0) translateY(20px) scale(1.02)'
             : relativePosition === 0
-              ? 'translate(-50%, -50%) translate3d(-120px, 40px, -30px) rotateY(25deg) scale(0.85)'
-              : 'translate(-50%, -50%) translate3d(120px, 40px, -30px) rotateY(-25deg) scale(0.85)',
-          md: `translate(-50%, -50%) translate3d(${x}px, ${y - 15}px, ${z + 30}px) rotateY(${phoneRotationY}deg) scale(${scale * 1.05})`
+              ? 'translate3d(-50%, -50%, 0) translate(-120px, 40px) scale(0.82)'
+              : 'translate3d(-50%, -50%, 0) translate(120px, 40px) scale(0.82)',
+          md: `translate3d(-50%, -50%, 0) translate(${x}px, ${y - 10}px) scale(${scale * 1.02})` // Reduced hover effect
         },
-        opacity: Math.min(1, opacity * 1.15),
+        opacity: Math.min(1, opacity * 1.1),
         boxShadow: relativePosition === 1
-          ? '0 50px 100px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.25)' 
-          : '0 30px 60px rgba(0,0,0,0.2)',
-        transition: 'all 0.3s ease-out'
+          ? '0 30px 60px rgba(0,0,0,0.25)' 
+          : '0 20px 40px rgba(0,0,0,0.15)',
+        transition: 'all 0.2s ease-out' // Faster hover response
       }
     }
   }, [centerPhone])
@@ -235,6 +247,8 @@ const BankingShowcase: React.FC = () => {
         background: 'linear-gradient(180deg, rgba(248,250,252,0.2) 0%, rgba(241,245,249,0.3) 100%)',
         position: 'relative', 
         overflow: 'hidden',
+        containIntrinsicSize: '100vw 800px', // Performance hint
+        willChange: 'auto' // Let browser optimize
       }}
     >
       <Container maxWidth="lg">
@@ -269,17 +283,18 @@ const BankingShowcase: React.FC = () => {
           </Typography>
         </Box>
 
-        {/* Interactive Phone Carousel */}
+        {/* Interactive Phone Carousel - Optimized */}
         {isVisible ? (
           <Box 
             sx={{ 
               position: 'relative',
               width: '100%',
               height: { xs: '550px', md: '700px' },
-              perspective: '1200px',
-              perspectiveOrigin: 'center 40%',
-              transformStyle: 'preserve-3d',
-              overflow: 'visible'
+              perspective: '800px', // Reduced perspective for simpler 3D
+              perspectiveOrigin: 'center center',
+              overflow: 'visible',
+              willChange: 'auto', // Let browser optimize
+              containIntrinsicSize: '100% 700px' // Performance hint for layout
             }}
           >
             {phones.map((phone, index) => (
@@ -310,14 +325,18 @@ const BankingShowcase: React.FC = () => {
                 component="img"
                 src={getCurrentImage(index)}
                 alt={phone.alt}
-                loading="lazy"
+                loading="eager" // Changed to eager for better performance
+                decoding="async"
+                fetchpriority={index === centerPhone ? "high" : "low"}
                 sx={{
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
                   borderRadius: '28px',
-                  transition: 'opacity 0.3s ease',
-                  opacity: imagesLoaded.has(index) ? 1 : 0
+                  transition: 'opacity 0.2s ease',
+                  opacity: 1, // Simplified opacity handling
+                  willChange: 'opacity',
+                  backfaceVisibility: 'hidden' // Prevent flickering
                 }}
                 onLoad={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -359,9 +378,14 @@ const BankingShowcase: React.FC = () => {
         )}
       </Container>
 
-      {/* CSS for skeleton loading and floating animations */}
+      {/* Optimized CSS animations */}
       <style>
         {`
+          /* Performance optimizations */
+          * {
+            transform-style: flat;
+          }
+          
           @keyframes skeleton-pulse {
             0%, 100% { 
               opacity: 0.4;
@@ -371,24 +395,30 @@ const BankingShowcase: React.FC = () => {
             }
           }
           
+          /* Simplified animations for better performance */
           @keyframes float {
             0%, 100% { 
-              transform: translateY(0px) rotate(-15deg);
+              transform: translateY(0px);
             }
             50% { 
-              transform: translateY(-20px) rotate(-15deg);
+              transform: translateY(-15px);
             }
           }
           
           @keyframes pulse {
             0%, 100% { 
               opacity: 0.6;
-              transform: scale(1);
             }
             50% { 
               opacity: 0.8;
-              transform: scale(1.05);
             }
+          }
+          
+          /* GPU acceleration hints */
+          .phone-container {
+            will-change: transform;
+            backface-visibility: hidden;
+            perspective: 1000px;
           }
         `}
       </style>
