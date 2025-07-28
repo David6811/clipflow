@@ -359,7 +359,7 @@ const NoteDetailSection: React.FC = () => {
             </Box>
           </Box>
 
-          {/* Dynamic Text Display */}
+          {/* Dynamic Text Display - Sticky Note Style */}
           <Box
             sx={{
               flex: 1,
@@ -374,100 +374,146 @@ const NoteDetailSection: React.FC = () => {
             }}
           >
 {activeAction !== null && activeAction >= 0 ? (
+              {/* Active Action Sticky Note */}
               <Box
                 sx={{
                   animation: 'textFadeIn 0.3s ease-out',
+                  background: `linear-gradient(145deg, ${noteActions[activeAction].color}15 0%, ${noteActions[activeAction].color}25 100%)`,
+                  borderRadius: '2px',
                   p: 2.5,
-                  borderRadius: 3,
-                  bgcolor: 'rgba(255, 255, 255, 0.8)',
-                  border: `2px solid ${noteActions[activeAction].color}`,
-                  boxShadow: `0 8px 24px ${noteActions[activeAction].color}20`
+                  boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                  border: `1px solid ${noteActions[activeAction].color}44`,
+                  position: 'relative',
+                  transform: 'rotate(-1deg)',
+                  transition: 'transform 0.2s ease',
+                  cursor: 'pointer',
+                  fontFamily: '"Kalam", cursive, "Inter", sans-serif',
+                  '&:hover': {
+                    transform: 'rotate(-1deg) scale(1.02)',
+                    zIndex: 10
+                  },
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: '-8px',
+                    right: '20px',
+                    width: '24px',
+                    height: '16px',
+                    background: 'linear-gradient(145deg, #ddd 0%, #bbb 100%)',
+                    borderRadius: '2px',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                  }
                 }}
               >
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
                   <Box
                     sx={{
-                      width: 40,
-                      height: 40,
-                      bgcolor: noteActions[activeAction].color,
+                      width: 32,
+                      height: 32,
                       borderRadius: '50%',
+                      background: noteActions[activeAction].color,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       mr: 1.5,
-                      boxShadow: `0 4px 12px ${noteActions[activeAction].color}40`
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                     }}
                   >
                     {React.createElement(noteActions[activeAction].icon, { 
-                      sx: { fontSize: 20, color: 'white' } 
+                      sx: { fontSize: 18, color: 'white' } 
                     })}
                   </Box>
                   <Typography
-                    variant="h5"
+                    variant="h6"
                     sx={{
-                      fontWeight: 700,
-                      color: 'text.primary',
-                      fontSize: { xs: '1.25rem', md: '1.5rem' }
+                      fontWeight: 600,
+                      fontSize: '1rem',
+                      color: '#2a2a2a',
+                      fontFamily: '"Kalam", cursive, "Inter", sans-serif'
                     }}
                   >
                     {noteActions[activeAction].title}
                   </Typography>
                 </Box>
                 <Typography
-                  variant="body1"
+                  variant="body2"
                   sx={{
-                    color: 'text.secondary',
-                    fontSize: { xs: '0.95rem', md: '1.05rem' },
-                    lineHeight: 1.5
+                    fontSize: '0.85rem',
+                    lineHeight: 1.4,
+                    color: '#4a4a4a',
+                    fontFamily: '"Kalam", cursive, "Inter", sans-serif'
                   }}
                 >
                   {noteActions[activeAction].description}
                 </Typography>
               </Box>
             ) : (
+              {/* Default Note Sticky Note */}
               <Box
                 sx={{
                   animation: 'textFadeIn 0.3s ease-out',
+                  background: 'linear-gradient(145deg, #DAA52015 0%, #DAA52025 100%)',
+                  borderRadius: '2px',
                   p: 2.5,
-                  borderRadius: 3,
-                  bgcolor: 'rgba(255, 255, 255, 0.8)',
-                  border: '2px solid #DAA520',
-                  boxShadow: '0 8px 24px rgba(218, 165, 32, 0.2)'
+                  boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                  border: '1px solid #DAA52044',
+                  position: 'relative',
+                  transform: 'rotate(1deg)',
+                  transition: 'transform 0.2s ease',
+                  cursor: 'pointer',
+                  fontFamily: '"Kalam", cursive, "Inter", sans-serif',
+                  '&:hover': {
+                    transform: 'rotate(1deg) scale(1.02)',
+                    zIndex: 10
+                  },
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: '-8px',
+                    right: '20px',
+                    width: '24px',
+                    height: '16px',
+                    background: 'linear-gradient(145deg, #ddd 0%, #bbb 100%)',
+                    borderRadius: '2px',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                  }
                 }}
               >
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
                   <Box
                     sx={{
-                      width: 40,
-                      height: 40,
-                      bgcolor: '#DAA520',
+                      width: 32,
+                      height: 32,
                       borderRadius: '50%',
+                      background: '#DAA520',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       mr: 1.5,
-                      boxShadow: '0 4px 12px rgba(218, 165, 32, 0.4)'
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                     }}
                   >
-                    <StickyNote2 sx={{ fontSize: 20, color: 'white' }} />
+                    <StickyNote2 sx={{ fontSize: 18, color: 'white' }} />
                   </Box>
                   <Typography
-                    variant="h5"
+                    variant="h6"
                     sx={{
-                      fontWeight: 700,
-                      color: 'text.primary',
-                      fontSize: { xs: '1.25rem', md: '1.5rem' }
+                      fontWeight: 600,
+                      fontSize: '1rem',
+                      color: '#2a2a2a',
+                      fontFamily: '"Kalam", cursive, "Inter", sans-serif'
                     }}
                   >
                     Note
                   </Typography>
                 </Box>
                 <Typography
-                  variant="body1"
+                  variant="body2"
                   sx={{
-                    color: 'text.secondary',
-                    fontSize: { xs: '0.95rem', md: '1.05rem' },
-                    lineHeight: 1.5
+                    fontSize: '0.85rem',
+                    lineHeight: 1.4,
+                    color: '#4a4a4a',
+                    fontFamily: '"Kalam", cursive, "Inter", sans-serif'
                   }}
                 >
                   Your captured text and OCR content. Each note can be organized, secured, and shared with powerful management tools.
@@ -493,6 +539,14 @@ const NoteDetailSection: React.FC = () => {
           </Typography>
         </Box>
       </Container>
+
+      {/* Add Google Fonts */}
+      <Box
+        component="link"
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Kalam:wght@300;400;700&display=swap"
+        rel="stylesheet"
+        sx={{ display: 'none' }}
+      />
 
       {/* CSS Animations */}
       <style>
