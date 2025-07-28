@@ -110,21 +110,21 @@ const BankingShowcase: React.FC = () => {
       zIndex = 10
     } else if (relativePosition === 0) {
       // Left phone - positioned to the left
-      x = -250
-      z = -80
-      y = 30
+      x = -350 // Desktop spacing
+      z = -120
+      y = 40
       scale = 0.9
       opacity = 0.8
-      phoneRotationY = 25 // Rotate to face center
+      phoneRotationY = 35 // Rotate to face center
       zIndex = 5
     } else {
       // Right phone - positioned to the right
-      x = 250
-      z = -80
-      y = 30
+      x = 350 // Desktop spacing
+      z = -120
+      y = 40
       scale = 0.9
       opacity = 0.8
-      phoneRotationY = -25 // Rotate to face center
+      phoneRotationY = -35 // Rotate to face center
       zIndex = 5
     }
 
@@ -143,6 +143,11 @@ const BankingShowcase: React.FC = () => {
         ? '0 40px 80px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.2)' 
         : '0 20px 40px rgba(0,0,0,0.15)',
       transform: { 
+        xs: relativePosition === 1 
+          ? 'translate(-50%, -50%) translate3d(0px, 35px, 0px) rotateY(0deg) scale(1)'
+          : relativePosition === 0
+            ? 'translate(-50%, -50%) translate3d(-120px, 55px, -60px) rotateY(25deg) scale(0.8)'
+            : 'translate(-50%, -50%) translate3d(120px, 55px, -60px) rotateY(-25deg) scale(0.8)',
         md: `translate(-50%, -50%) translate3d(${x}px, ${y}px, ${z}px) rotateY(${phoneRotationY}deg) scale(${scale})`
       },
       opacity,
@@ -152,6 +157,11 @@ const BankingShowcase: React.FC = () => {
       transformStyle: 'preserve-3d',
       '&:hover': {
         transform: { 
+          xs: relativePosition === 1 
+            ? 'translate(-50%, -50%) translate3d(0px, 20px, 0px) rotateY(0deg) scale(1.05)'
+            : relativePosition === 0
+              ? 'translate(-50%, -50%) translate3d(-120px, 40px, -30px) rotateY(25deg) scale(0.85)'
+              : 'translate(-50%, -50%) translate3d(120px, 40px, -30px) rotateY(-25deg) scale(0.85)',
           md: `translate(-50%, -50%) translate3d(${x}px, ${y - 15}px, ${z + 30}px) rotateY(${phoneRotationY}deg) scale(${scale * 1.05})`
         },
         opacity: Math.min(1, opacity * 1.15),
@@ -173,7 +183,7 @@ const BankingShowcase: React.FC = () => {
       <Box sx={{ position: 'absolute', bottom: '-100px', left: '-100px', width: '300px', height: '300px', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.1)' }} />
       
       <Container maxWidth="lg">
-        <Box sx={{ textAlign: 'center', mb: 6 }}>
+        <Box sx={{ textAlign: 'center', mb: 3 }}>
           <Typography variant="h2" component="h2" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', md: '2.5rem' }, color: '#1565C0' }}>
             ClipFlow in Action
           </Typography>
@@ -188,9 +198,9 @@ const BankingShowcase: React.FC = () => {
             sx={{ 
               position: 'relative',
               width: '100%',
-              height: { xs: '600px', md: '800px' },
+              height: { xs: '550px', md: '700px' },
               perspective: '1200px',
-              perspectiveOrigin: 'center center',
+              perspectiveOrigin: 'center 40%',
               transformStyle: 'preserve-3d',
               overflow: 'visible'
             }}
