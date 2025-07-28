@@ -16,7 +16,7 @@ const SecuritySection: React.FC = () => {
   const securityLayers = [
     {
       title: 'Master Password System',
-      description: 'Enterprise-grade authentication protecting your OCR captured text and images',
+      description: 'Enterprise-grade authentication protecting your OCR captured text',
       icon: VpnKey,
       color: '#6E5E0F', // Muted gold
       bgColor: 'rgba(110, 94, 15, 0.1)',
@@ -36,7 +36,7 @@ const SecuritySection: React.FC = () => {
       icon: TextFields,
       color: '#544342', // ClipFlow brown
       bgColor: 'rgba(84, 67, 66, 0.1)',
-      features: ['Per-Note Encryption', 'OCR Result Security', 'Image Data Protection', 'Tag Encryption']
+      features: ['Per-Note Encryption', 'Data Protection', 'Secure Storage']
     }
   ]
 
@@ -78,7 +78,7 @@ const SecuritySection: React.FC = () => {
               mb: 3
             }}
           >
-            Military-Grade OCR Security
+            App Authentication Security
           </Typography>
           <Typography 
             variant="h6" 
@@ -92,7 +92,7 @@ const SecuritySection: React.FC = () => {
               fontSize: { xs: '1.125rem', md: '1.25rem' }
             }}
           >
-            Multi-layered security architecture protecting your captured text, screenshots, and OCR results with enterprise-grade encryption.
+            Multi-layered authentication architecture protecting access to your captured text, screenshots, and OCR results with comprehensive access controls.
           </Typography>
         </Box>
 

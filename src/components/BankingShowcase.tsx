@@ -54,7 +54,7 @@ const BankingShowcase: React.FC = () => {
           setIsTransitioning(true)
           // Use requestAnimationFrame for smoother animations
           requestAnimationFrame(() => {
-            setTimeout(() => setIsTransitioning(false), 250)
+            setTimeout(() => setIsTransitioning(false), 1200)
           })
           return nextPhone
         })
@@ -86,60 +86,79 @@ const BankingShowcase: React.FC = () => {
     }
   ]
 
-  // Memoize phone style calculations for better performance
+  // Wide arc layout with center focus
   const getPhoneStyle = useMemo(() => (phoneIndex: number) => {
-    let transform = ''
-    let zIndex = 1
-    let order = phoneIndex + 1 // Default order based on original index
-    let width = { xs: 240, md: 280 }
-    let height = { xs: 500, md: 560 }
-
-    if (phoneIndex === centerPhone) {
-      // Center phone
-      transform = 'translate3d(0, 0, 100px) scale3d(1.1, 1.1, 1)'
-      zIndex = 3
-      order = 2 // Always center position
-      width = { xs: 240, md: 300 }
-      height = { xs: 500, md: 600 }
+    // Calculate position in a wide arc
+    const relativePosition = (phoneIndex - centerPhone + 3) % 3 // 0=left, 1=center, 2=right
+    
+    let x = 0
+    let z = 0
+    let y = 0
+    let scale = 1
+    let opacity = 1
+    let phoneRotationY = 0
+    let zIndex = 2
+    
+    if (relativePosition === 1) {
+      // Center phone - fully visible, no rotation
+      x = 0
+      z = 0
+      y = 0 // Centered vertically
+      scale = 1
+      opacity = 1
+      phoneRotationY = 0
+      zIndex = 10
+    } else if (relativePosition === 0) {
+      // Left phone - positioned to the left
+      x = -250
+      z = -80
+      y = 30
+      scale = 0.9
+      opacity = 0.8
+      phoneRotationY = 25 // Rotate to face center
+      zIndex = 5
     } else {
-      // Side phones - determine left/right based on their index relative to center
-      const leftIndex = (centerPhone - 1 + 3) % 3
-      const rightIndex = (centerPhone + 1) % 3
-      
-      if (phoneIndex === leftIndex) {
-        transform = 'translate3d(0, 0, 50px) rotateY(15deg)'
-        zIndex = 2
-        order = 1 // Left position
-      } else if (phoneIndex === rightIndex) {
-        transform = 'translate3d(0, 0, 50px) rotateY(-15deg)'
-        zIndex = 2
-        order = 3 // Right position
-      }
+      // Right phone - positioned to the right
+      x = 250
+      z = -80
+      y = 30
+      scale = 0.9
+      opacity = 0.8
+      phoneRotationY = -25 // Rotate to face center
+      zIndex = 5
     }
 
     return {
-      width,
-      height,
-      borderRadius: '40px',
-      border: '8px solid #1A1A1A',
-      position: 'relative',
+      width: { xs: 240, md: relativePosition === 1 ? 320 : 280 },
+      height: { xs: 500, md: relativePosition === 1 ? 640 : 560 },
+      borderRadius: '32px',
+      border: '4px solid rgba(255,255,255,0.2)',
+      bgcolor: 'rgba(255,255,255,0.95)',
+      backdropFilter: 'blur(20px)',
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
       overflow: 'hidden',
-      boxShadow: phoneIndex === centerPhone 
-        ? '0 30px 60px rgba(0,0,0,0.3)' 
+      boxShadow: relativePosition === 1
+        ? '0 40px 80px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.2)' 
         : '0 20px 40px rgba(0,0,0,0.15)',
-      transform: { md: transform },
-      zIndex,
-      order: { md: order }, // This controls the physical position
-      transition: 'transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), order 0.25s ease',
-      willChange: 'transform',
-      backfaceVisibility: 'hidden',
-      WebkitBackfaceVisibility: 'hidden',
-      cursor: 'pointer',
-      '&:hover': {
-        transform: { md: `${transform} translate3d(0, -5px, 0)` }
+      transform: { 
+        md: `translate(-50%, -50%) translate3d(${x}px, ${y}px, ${z}px) rotateY(${phoneRotationY}deg) scale(${scale})`
       },
-      '&:active': {
-        transform: { md: `${transform}` }
+      opacity,
+      zIndex,
+      transition: 'all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      cursor: 'pointer',
+      transformStyle: 'preserve-3d',
+      '&:hover': {
+        transform: { 
+          md: `translate(-50%, -50%) translate3d(${x}px, ${y - 15}px, ${z + 30}px) rotateY(${phoneRotationY}deg) scale(${scale * 1.05})`
+        },
+        opacity: Math.min(1, opacity * 1.15),
+        boxShadow: relativePosition === 1
+          ? '0 50px 100px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.25)' 
+          : '0 30px 60px rgba(0,0,0,0.2)',
+        transition: 'all 0.3s ease-out'
       }
     }
   }, [centerPhone])
@@ -147,14 +166,14 @@ const BankingShowcase: React.FC = () => {
   return (
     <Box 
       ref={sectionRef}
-      sx={{ py: 10, background: 'linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 50%, #90CAF9 100%)', position: 'relative', overflow: 'hidden' }}
+      sx={{ py: 8, background: 'linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 50%, #90CAF9 100%)', position: 'relative', overflow: 'hidden' }}
     >
       {/* Background decorative elements */}
       <Box sx={{ position: 'absolute', top: '-50px', right: '-50px', width: '200px', height: '200px', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.2)' }} />
       <Box sx={{ position: 'absolute', bottom: '-100px', left: '-100px', width: '300px', height: '300px', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.1)' }} />
       
       <Container maxWidth="lg">
-        <Box sx={{ textAlign: 'center', mb: 12 }}>
+        <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography variant="h2" component="h2" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', md: '2.5rem' }, color: '#1565C0' }}>
             ClipFlow in Action
           </Typography>
@@ -167,12 +186,13 @@ const BankingShowcase: React.FC = () => {
         {isVisible ? (
           <Box 
             sx={{ 
-              display: 'flex', 
-              justifyContent: 'center', 
-              alignItems: 'flex-end',
-              gap: { xs: 3, md: 6 },
-              flexDirection: { xs: 'column', md: 'row' },
-              perspective: '1000px'
+              position: 'relative',
+              width: '100%',
+              height: { xs: '600px', md: '800px' },
+              perspective: '1200px',
+              perspectiveOrigin: 'center center',
+              transformStyle: 'preserve-3d',
+              overflow: 'visible'
             }}
           >
             {phones.map((phone, index) => (
@@ -187,56 +207,35 @@ const BankingShowcase: React.FC = () => {
                   setCenterPhone(index)
                   // Use requestAnimationFrame for smoother animations
                   requestAnimationFrame(() => {
-                    setTimeout(() => setIsTransitioning(false), 250)
+                    setTimeout(() => setIsTransitioning(false), 1200)
                   })
                   // Resume auto-play after 8 seconds of user inactivity
                   setTimeout(() => setAutoPlay(true), 8000)
                 }
               }}
             >
-              {imagesLoaded.has(index) ? (
-                <Box
-                  component="img"
-                  src={phone.image}
-                  alt={phone.alt}
-                  sx={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    borderRadius: '32px',
-                    backgroundColor: '#f5f5f5'
-                  }}
-                />
-              ) : (
-                <Box
-                  component="img"
-                  src={phone.image}
-                  alt={phone.alt}
-                  loading="lazy"
-                  decoding="async"
-                  sx={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    borderRadius: '32px',
-                    backgroundColor: '#f5f5f5',
-                    transition: 'opacity 0.3s ease',
-                    opacity: 0
-                  }}
-                  onLoad={(e) => {
-                    e.target.style.opacity = '1';
-                    setImagesLoaded(prev => new Set([...prev, index]));
-                  }}
-                  onError={(e) => {
-                    console.error(`Failed to load ${phone.image}:`, e);
-                    e.target.style.backgroundColor = '#f0f0f0';
-                    e.target.style.display = 'flex';
-                    e.target.style.alignItems = 'center';
-                    e.target.style.justifyContent = 'center';
-                    e.target.innerHTML = `${phone.name} not found`;
-                  }}
-                />
-              )}
+              <Box
+                component="img"
+                src={phone.image}
+                alt={phone.alt}
+                loading="lazy"
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: '28px',
+                  transition: 'opacity 0.3s ease',
+                  opacity: imagesLoaded.has(index) ? 1 : 0
+                }}
+                onLoad={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.opacity = '1';
+                  setImagesLoaded(prev => new Set([...prev, index]));
+                }}
+                onError={(e) => {
+                  console.error(`Failed to load ${phone.image}:`, e);
+                }}
+              />
             </Box>
           ))}
           </Box>
@@ -268,7 +267,7 @@ const BankingShowcase: React.FC = () => {
         )}
       </Container>
 
-      {/* CSS for skeleton animation */}
+      {/* CSS for skeleton loading */}
       <style>
         {`
           @keyframes skeleton-pulse {

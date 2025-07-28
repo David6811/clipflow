@@ -15,6 +15,11 @@ import {
 const BackupSection: React.FC = () => {
   const backupFeatures = [
     {
+      icon: CloudOff,
+      title: 'Local Storage Only',
+      description: 'All backups remain on your device. No cloud storage, no external servers - complete privacy and control.'
+    },
+    {
       icon: Backup,
       title: 'Manual Backup',
       description: 'Create secure backups of your clipboard history, OCR results, and organized notes anytime with full encryption.'
@@ -28,11 +33,6 @@ const BackupSection: React.FC = () => {
       icon: Schedule,
       title: 'Auto Backup',
       description: 'Automatic scheduled backups ensure your data is always protected. Configure backup frequency and retention policies.'
-    },
-    {
-      icon: CloudOff,
-      title: 'Local Storage Only',
-      description: 'All backups remain on your device. No cloud storage, no external servers - complete privacy and control.'
     }
   ]
 
