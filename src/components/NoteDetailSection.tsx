@@ -374,7 +374,7 @@ const NoteDetailSection: React.FC = () => {
             }}
           >
 {activeAction !== null && activeAction >= 0 ? (
-              {/* Active Action Sticky Note */}
+              // Active Action Sticky Note
               <Box
                 sx={{
                   animation: 'textFadeIn 0.3s ease-out',
@@ -448,7 +448,7 @@ const NoteDetailSection: React.FC = () => {
                 </Typography>
               </Box>
             ) : (
-              {/* Default Note Sticky Note */}
+              // Default Note Sticky Note
               <Box
                 sx={{
                   animation: 'textFadeIn 0.3s ease-out',
