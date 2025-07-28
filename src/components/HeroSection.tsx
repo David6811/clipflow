@@ -17,8 +17,13 @@ import {
 const HeroSection: React.FC = () => {
   return (
     <Box 
+      component="section"
       sx={{ 
-        background: 'linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 25%, #F1F5F9 50%, #E2E8F0 75%, #CBD5E1 100%)',
+        background: `
+          linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.9) 100%),
+          radial-gradient(ellipse at 30% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 70%),
+          radial-gradient(ellipse at 70% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 70%)
+        `,
         position: 'relative',
         py: { xs: 12, md: 20 },
         textAlign: 'center',
@@ -28,6 +33,8 @@ const HeroSection: React.FC = () => {
         paddingRight: 0,
         overflow: 'hidden',
         minHeight: { xs: '90vh', md: '100vh' },
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
         display: 'flex',
         alignItems: 'center'
       }}

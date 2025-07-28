@@ -53,7 +53,11 @@ const FeaturesSection: React.FC = () => {
       sx={{ 
         py: { xs: 8, md: 12 },
         minHeight: '100vh',
-        background: 'linear-gradient(180deg, #f0ebe3 0%, rgba(241, 236, 228, 0.98) 20%, rgba(242, 237, 229, 0.95) 40%, rgba(240, 235, 225, 0.92) 60%, rgba(237, 232, 222, 0.95) 80%, #e8ddd4 100%)',
+        background: `
+          linear-gradient(180deg, rgba(248,250,252,0.8) 0%, rgba(241,245,249,0.9) 100%),
+          radial-gradient(ellipse at 20% 30%, rgba(16, 185, 129, 0.08) 0%, transparent 70%),
+          radial-gradient(ellipse at 80% 70%, rgba(245, 158, 11, 0.08) 0%, transparent 70%)
+        `,
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
@@ -62,7 +66,19 @@ const FeaturesSection: React.FC = () => {
         margin: 0,
         paddingLeft: 0,
         paddingRight: 0,
-        marginTop: 0
+        marginTop: 0,
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(226, 232, 240, 0.6)',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '100px',
+          background: 'linear-gradient(to bottom, rgba(255,255,255,0.4), transparent)',
+          pointerEvents: 'none'
+        }
       }}
     >
       

@@ -101,11 +101,66 @@ const CommentsSection: React.FC = () => {
       component="section"
       sx={{ 
         py: { xs: 8, md: 12 },
-        bgcolor: 'background.default',
-        position: 'relative'
+        background: `
+          linear-gradient(180deg, rgba(248,250,252,0.9) 0%, rgba(241,245,249,0.88) 25%, rgba(226,232,240,0.85) 50%, rgba(203,213,225,0.82) 75%, rgba(191,201,215,0.85) 100%),
+          radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
+          radial-gradient(ellipse at 80% 70%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
+          radial-gradient(ellipse at 50% 90%, rgba(16, 185, 129, 0.04) 0%, transparent 50%)
+        `,
+        position: 'relative',
+        overflow: 'hidden',
+        backdropFilter: 'blur(20px)',
+        borderTop: '1px solid rgba(226, 232, 240, 0.6)',
+        borderBottom: '1px solid rgba(226, 232, 240, 0.6)'
       }}
     >
-      <Container maxWidth="lg">
+      {/* Professional Geometric Background Elements */}
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          top: '-50px', 
+          left: '-50px', 
+          width: '260px', 
+          height: '180px', 
+          borderRadius: '18px', 
+          background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 100%)',
+          transform: 'rotate(-8deg)',
+          backdropFilter: 'blur(2px)',
+          border: '1px solid rgba(255,255,255,0.2)',
+          animation: 'float 6s ease-in-out infinite'
+        }} 
+      />
+      
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          bottom: '-70px', 
+          right: '-70px', 
+          width: '340px', 
+          height: '220px', 
+          borderRadius: '50%', 
+          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, rgba(16, 185, 129, 0.04) 100%)',
+          backdropFilter: 'blur(1px)',
+          border: '1px solid rgba(255,255,255,0.15)',
+          animation: 'float 8s ease-in-out infinite reverse'
+        }} 
+      />
+      
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          top: '50%', 
+          left: '15%', 
+          width: '90px', 
+          height: '90px', 
+          borderRadius: '50%', 
+          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%)',
+          backdropFilter: 'blur(1px)',
+          animation: 'pulse 4s ease-in-out infinite'
+        }} 
+      />
+
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}
         <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
           <Typography 
@@ -155,11 +210,14 @@ const CommentsSection: React.FC = () => {
                 border: '1px solid',
                 borderColor: 'divider',
                 position: 'relative',
+                bgcolor: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(10px)',
                 transition: 'all 0.3s ease',
                 animation: isVisible ? `slideInUp 0.6s ease-out ${index * 0.15}s both` : 'none',
                 '&:hover': {
                   transform: 'translateY(-4px)',
-                  boxShadow: 4
+                  boxShadow: 4,
+                  bgcolor: 'rgba(255, 255, 255, 0.98)'
                 }
               }}
             >
@@ -248,6 +306,26 @@ const CommentsSection: React.FC = () => {
             100% {
               opacity: 1;
               transform: translateY(0);
+            }
+          }
+          
+          @keyframes float {
+            0%, 100% { 
+              transform: translateY(0px) rotate(-8deg);
+            }
+            50% { 
+              transform: translateY(-10px) rotate(-8deg);
+            }
+          }
+          
+          @keyframes pulse {
+            0%, 100% { 
+              opacity: 0.6;
+              transform: scale(1);
+            }
+            50% { 
+              opacity: 0.8;
+              transform: scale(1.05);
             }
           }
         `}

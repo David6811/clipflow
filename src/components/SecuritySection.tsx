@@ -44,14 +44,69 @@ const SecuritySection: React.FC = () => {
   return (
     <Box 
       sx={{ 
-        py: { xs: 10, md: 16 }, 
-        background: 'linear-gradient(180deg, #e8ddd4 0%, rgba(232, 221, 212, 0.98) 20%, rgba(229, 218, 205, 0.95) 40%, rgba(225, 215, 200, 0.92) 60%, rgba(220, 210, 195, 0.95) 80%, #d4c9bb 100%)',
+        py: { xs: 10, md: 16 },
+        background: `
+          linear-gradient(180deg, rgba(248,250,252,0.95) 0%, rgba(241,245,249,0.92) 20%, rgba(226,232,240,0.88) 50%, rgba(203,213,225,0.85) 80%, rgba(191,201,215,0.9) 100%),
+          radial-gradient(ellipse at 30% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
+          radial-gradient(ellipse at 70% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 60%),
+          radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 70%)
+        `,
         color: 'text.primary',
         position: 'relative',
-        textAlign: 'center'
+        textAlign: 'center',
+        overflow: 'hidden',
+        backdropFilter: 'blur(20px)',
+        borderTop: '1px solid rgba(226, 232, 240, 0.6)',
+        borderBottom: '1px solid rgba(226, 232, 240, 0.6)'
       }}
     >
-      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
+      {/* Professional Geometric Background Elements */}
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          top: '-60px', 
+          left: '-60px', 
+          width: '280px', 
+          height: '180px', 
+          borderRadius: '16px', 
+          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(59, 130, 246, 0.04) 100%)',
+          transform: 'rotate(-12deg)',
+          backdropFilter: 'blur(2px)',
+          border: '1px solid rgba(255,255,255,0.2)',
+          animation: 'float 8s ease-in-out infinite'
+        }} 
+      />
+      
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          bottom: '-80px', 
+          right: '-80px', 
+          width: '320px', 
+          height: '200px', 
+          borderRadius: '50%', 
+          background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.06) 0%, rgba(139, 92, 246, 0.04) 100%)',
+          backdropFilter: 'blur(1px)',
+          border: '1px solid rgba(255,255,255,0.15)',
+          animation: 'float 10s ease-in-out infinite reverse'
+        }} 
+      />
+      
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          top: '40%', 
+          left: '8%', 
+          width: '120px', 
+          height: '120px', 
+          borderRadius: '50%', 
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%)',
+          backdropFilter: 'blur(1px)',
+          animation: 'pulse 6s ease-in-out infinite'
+        }} 
+      />
+
+      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Chip 
@@ -111,7 +166,8 @@ const SecuritySection: React.FC = () => {
               sx={{
                 textAlign: 'center',
                 p: 4,
-                bgcolor: 'rgba(255, 255, 255, 0.8)',
+                bgcolor: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(10px)',
                 borderRadius: 3,
                 border: '1px solid rgba(0,0,0,0.1)',
                 boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
@@ -193,6 +249,31 @@ const SecuritySection: React.FC = () => {
           </Typography>
         </Box>
       </Container>
+
+      {/* CSS for floating animations */}
+      <style>
+        {`
+          @keyframes float {
+            0%, 100% { 
+              transform: translateY(0px) rotate(-12deg);
+            }
+            50% { 
+              transform: translateY(-15px) rotate(-12deg);
+            }
+          }
+          
+          @keyframes pulse {
+            0%, 100% { 
+              opacity: 0.6;
+              transform: scale(1);
+            }
+            50% { 
+              opacity: 0.8;
+              transform: scale(1.05);
+            }
+          }
+        `}
+      </style>
     </Box>
   )
 }
