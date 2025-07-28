@@ -13,11 +13,13 @@ import {
 } from '@mui/icons-material'
 
 const BankingShowcase: React.FC = () => {
-  const [centerPhone, setCenterPhone] = useState<number>(1) // 0: Phone1, 1: Phone2, 2: Phone3
+  const [centerPhone, setCenterPhone] = useState<number>(0) // 0: Phone1, 1: Phone2, 2: Phone3
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false)
   const [autoPlay, setAutoPlay] = useState<boolean>(true)
   const [isVisible, setIsVisible] = useState<boolean>(false)
   const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set())
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0) // 0: 1.png, 1: 2.png, 2: 3.png
+  const [imageRotationActive, setImageRotationActive] = useState<boolean>(false)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   // Intersection Observer for lazy loading
@@ -26,10 +28,10 @@ const BankingShowcase: React.FC = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
-          // Preload images when component becomes visible
-          phones.forEach(phone => {
+          // Preload all available images when component becomes visible
+          availableImages.forEach(imageSrc => {
             const img = new Image()
-            img.src = phone.image
+            img.src = imageSrc
           })
         }
       },
@@ -43,48 +45,81 @@ const BankingShowcase: React.FC = () => {
     return () => observer.disconnect()
   }, [])
 
-  // Auto-play carousel (only when visible)
+  // Simple image sequence: 1 -> 2 -> 3 -> switch phone
   useEffect(() => {
     if (!autoPlay || !isVisible) return
 
-    const interval = setInterval(() => {
-      if (!isTransitioning) {
-        setCenterPhone(prevCenter => {
-          const nextPhone = (prevCenter + 1) % 3
-          setIsTransitioning(true)
-          // Use requestAnimationFrame for smoother animations
-          requestAnimationFrame(() => {
-            setTimeout(() => setIsTransitioning(false), 1200)
-          })
-          return nextPhone
-        })
-      }
-    }, 5000) // Change every 5 seconds
+    let timeoutId: NodeJS.Timeout
+    
+    const runSequence = () => {
+      // Start with 1.png
+      setCurrentImageIndex(0)
+      
+      // After 2 seconds, show 2.png
+      timeoutId = setTimeout(() => {
+        setCurrentImageIndex(1)
+        
+        // After another 2 seconds, show 3.png
+        timeoutId = setTimeout(() => {
+          setCurrentImageIndex(2)
+          
+          // After another 2 seconds, switch to next phone
+          timeoutId = setTimeout(() => {
+            setIsTransitioning(true)
+            setCenterPhone(prev => (prev + 1) % 3)
+            
+            // After transition completes, run sequence again
+            timeoutId = setTimeout(() => {
+              setIsTransitioning(false)
+            }, 1200)
+          }, 2000)
+        }, 2000)
+      }, 2000)
+    }
+    
+    // Start the sequence
+    runSequence()
+    
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId)
+    }
+  }, [centerPhone]) // Only restart when centerPhone changes
 
-    return () => clearInterval(interval)
-  }, [autoPlay, isTransitioning, isVisible])
+  // Available images for rotation
+  const availableImages = [
+    '/clipflow/1.png',
+    '/clipflow/2.png', 
+    '/clipflow/3.png'
+  ]
 
-  // Phone configuration
+  // Phone configuration with dynamic images
   const phones = [
     {
       id: 0,
       name: 'Phone 1',
-      image: '/clipflow/1.png',
       alt: 'Clipflow App Interface - Screen 1'
     },
     {
       id: 1,
-      name: 'Phone 2', 
-      image: '/clipflow/2.png',
+      name: 'Phone 2',
       alt: 'Clipflow App Interface - Screen 2'
     },
     {
       id: 2,
       name: 'Phone 3',
-      image: '/clipflow/3.png', 
       alt: 'Clipflow App Interface - Screen 3'
     }
   ]
+
+  // Get current image for a phone - center phone shows rotating images, others show static
+  const getCurrentImage = (phoneIndex: number) => {
+    const relativePosition = (phoneIndex - centerPhone + 3) % 3
+    if (relativePosition === 1) { // This phone is in center position
+      return availableImages[currentImageIndex]
+    }
+    // Non-center phones show static images: left shows 1.png, right shows 3.png
+    return relativePosition === 0 ? availableImages[0] : availableImages[2]
+  }
 
   // Wide arc layout with center focus
   const getPhoneStyle = useMemo(() => (phoneIndex: number) => {
@@ -214,19 +249,18 @@ const BankingShowcase: React.FC = () => {
                 if (!isTransitioning && centerPhone !== index) {
                   setAutoPlay(false) // Stop auto-play when user clicks
                   setIsTransitioning(true)
-                  setCenterPhone(index)
-                  // Use requestAnimationFrame for smoother animations
-                  requestAnimationFrame(() => {
-                    setTimeout(() => setIsTransitioning(false), 1200)
-                  })
-                  // Resume auto-play after 8 seconds of user inactivity
-                  setTimeout(() => setAutoPlay(true), 8000)
+                  setCenterPhone(index) // This will trigger the useEffect to restart cycle
+                  
+                  // Resume auto-play after 10 seconds of user inactivity
+                  setTimeout(() => {
+                    setAutoPlay(true)
+                  }, 10000)
                 }
               }}
             >
               <Box
                 component="img"
-                src={phone.image}
+                src={getCurrentImage(index)}
                 alt={phone.alt}
                 loading="lazy"
                 sx={{
@@ -243,7 +277,7 @@ const BankingShowcase: React.FC = () => {
                   setImagesLoaded(prev => new Set([...prev, index]));
                 }}
                 onError={(e) => {
-                  console.error(`Failed to load ${phone.image}:`, e);
+                  console.error(`Failed to load ${getCurrentImage(index)}:`, e);
                 }}
               />
             </Box>
@@ -265,8 +299,8 @@ const BankingShowcase: React.FC = () => {
               <Box
                 key={item}
                 sx={{
-                  width: { xs: 240, md: item === 2 ? 300 : 280 },
-                  height: { xs: 500, md: item === 2 ? 600 : 560 },
+                  width: { xs: 240, md: item === 1 ? 320 : 280 },
+                  height: { xs: 500, md: item === 1 ? 640 : 560 },
                   borderRadius: '40px',
                   bgcolor: 'rgba(255,255,255,0.3)',
                   animation: 'skeleton-pulse 1.5s ease-in-out infinite'
