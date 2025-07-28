@@ -71,7 +71,7 @@ const Navigation: React.FC = () => {
             sx={{ 
               display: 'flex', 
               alignItems: 'center', 
-              mr: 3, 
+              mr: 'auto', 
               cursor: 'pointer',
               transition: 'opacity 0.2s ease',
               '&:hover': {

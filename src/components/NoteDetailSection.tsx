@@ -84,7 +84,7 @@ const NoteDetailSection: React.FC = () => {
       description: 'Share notes via messaging, email, or social platforms',
       color: '#9C27B0',
       angle: 240, // Bottom Left
-      radius: 160,
+      radius: 220,
       size: 80,
       delay: '0.8s'
     },
@@ -152,9 +152,10 @@ const NoteDetailSection: React.FC = () => {
             justifyContent: 'center',
             alignItems: 'center',
             gap: { xs: 2, md: 4 },
-            height: { xs: '500px', md: '600px' },
+            minHeight: { xs: '600px', md: '600px' },
             width: '100%',
-            flexDirection: { xs: 'column', md: 'row' }
+            flexDirection: { xs: 'column', md: 'row' },
+            py: { xs: 2, md: 0 }
           }}
         >
           {/* SVG Container with transparent background */}
@@ -192,28 +193,30 @@ const NoteDetailSection: React.FC = () => {
               style={{ animation: isVisible ? 'backgroundPulse 4s ease-in-out infinite' : 'none' }}
             />
 
-            {/* Connection Lines */}
+            {/* Connection Lines with curve and elastic animation */}
             {noteActions.map((action, index) => {
               const angleRad = (action.angle * Math.PI) / 180
               const centerX = 300
               const centerY = 300
               const endX = centerX + Math.cos(angleRad) * action.radius
               const endY = centerY + Math.sin(angleRad) * action.radius
+              
+              // Create curved path for elastic feel
+              const controlX = centerX + Math.cos(angleRad) * (action.radius * 0.7)
+              const controlY = centerY + Math.sin(angleRad) * (action.radius * 0.7) - 20
 
               return (
-                <line
+                <path
                   key={`line-${index}`}
-                  x1={centerX}
-                  y1={centerY}
-                  x2={endX}
-                  y2={endY}
+                  d={`M ${centerX} ${centerY} Q ${controlX} ${controlY} ${endX} ${endY}`}
                   stroke={action.color}
                   strokeWidth="2"
-                  opacity="0.4"
+                  fill="none"
+                  opacity="0.5"
                   style={{
-                    animation: isVisible ? `lineGrow 1s ease-out ${action.delay} both` : 'none',
-                    strokeDasharray: '200',
-                    strokeDashoffset: isVisible ? '0' : '200'
+                    animation: isVisible ? `lineGrowElastic 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) ${action.delay} both` : 'none',
+                    strokeDasharray: '400',
+                    strokeDashoffset: isVisible ? '0' : '400'
                   }}
                 />
               )
@@ -475,14 +478,15 @@ const NoteDetailSection: React.FC = () => {
         </Box>
 
         {/* Bottom Quote */}
-        <Box sx={{ textAlign: 'center', mt: 4 }}>
+        <Box sx={{ textAlign: 'center', mt: { xs: 6, md: 4 } }}>
           <Typography
             variant="body1"
             sx={{
               color: 'text.secondary',
               fontStyle: 'italic',
-              fontSize: '1.125rem',
-              opacity: 0.8
+              fontSize: { xs: '1rem', md: '1.125rem' },
+              opacity: 0.8,
+              px: { xs: 2, md: 0 }
             }}
           >
             &ldquo;Every note, perfectly organized and completely under your control&rdquo;
@@ -531,6 +535,28 @@ const NoteDetailSection: React.FC = () => {
             100% { 
               stroke-dashoffset: 0;
               opacity: 0.4;
+            }
+          }
+          @keyframes lineGrowElastic {
+            0% { 
+              stroke-dashoffset: 400;
+              opacity: 0;
+            }
+            40% { 
+              stroke-dashoffset: -50;
+              opacity: 0.6;
+            }
+            70% { 
+              stroke-dashoffset: 20;
+              opacity: 0.7;
+            }
+            90% { 
+              stroke-dashoffset: -10;
+              opacity: 0.6;
+            }
+            100% { 
+              stroke-dashoffset: 0;
+              opacity: 0.5;
             }
           }
           @keyframes backgroundPulse {
