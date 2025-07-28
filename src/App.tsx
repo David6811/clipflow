@@ -34,10 +34,8 @@ function App() {
           bottom: 0,
           zIndex: -1,
           background: `
-            radial-gradient(ellipse at top left, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-            radial-gradient(ellipse at top right, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-            radial-gradient(ellipse at bottom left, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
-            radial-gradient(ellipse at bottom right, rgba(245, 158, 11, 0.15) 0%, transparent 50%),
+            radial-gradient(ellipse at top left, rgba(71, 85, 105, 0.08) 0%, transparent 60%),
+            radial-gradient(ellipse at bottom right, rgba(71, 85, 105, 0.06) 0%, transparent 60%),
             linear-gradient(135deg, #f8fafc 0%, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%, #f8fafc 100%)
           `
         }}
@@ -61,7 +59,7 @@ function App() {
             width: '200px',
             height: '200px',
             borderRadius: '50%',
-            background: 'rgba(59, 130, 246, 0.08)',
+            background: 'rgba(71, 85, 105, 0.06)',
             filter: 'blur(60px)',
             animation: 'float 6s ease-in-out infinite'
           },
@@ -73,7 +71,7 @@ function App() {
             width: '150px',
             height: '150px',
             borderRadius: '50%',
-            background: 'rgba(139, 92, 246, 0.08)',
+            background: 'rgba(71, 85, 105, 0.05)',
             filter: 'blur(40px)',
             animation: 'float 8s ease-in-out infinite reverse'
           }

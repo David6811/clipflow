@@ -17,33 +17,33 @@ const FeaturesSection: React.FC = () => {
       icon: CloudOff,
       title: 'Offline Processing',
       description: 'Works completely offline - no internet required. Extract text from any image instantly.',
-      color: '#2E5984',
+      color: '#475569',
       mobilePosition: { order: 1 },
-      desktopPosition: { top: '15%', left: '8%', rotation: '-2deg' }
+      desktopPosition: { top: '10%', left: '12%', rotation: '-2deg' }
     },
     {
       icon: Security,
       title: 'Private & Secure',
       description: 'Your data stays on your device. No cloud storage, no tracking, complete privacy.',
-      color: '#8f4942',
+      color: '#475569',
       mobilePosition: { order: 2 },
-      desktopPosition: { top: '20%', right: '12%', rotation: '3deg' }
+      desktopPosition: { top: '15%', right: '12%', rotation: '3deg' }
     },
     {
       icon: Psychology,
       title: 'Smart Recognition',
       description: 'Powered by Google ML Kit for accurate text recognition and language support.',
-      color: '#6E5E0F',
+      color: '#475569',
       mobilePosition: { order: 3 },
-      desktopPosition: { bottom: '35%', left: '15%', rotation: '1deg' }
+      desktopPosition: { bottom: '25%', left: '18%', rotation: '1deg' }
     },
     {
       icon: TouchApp,
       title: 'Easy to Use',
       description: 'Simple interface. Just point, tap, and copy. Smart clipboard organization.',
-      color: '#544342',
+      color: '#475569',
       mobilePosition: { order: 4 },
-      desktopPosition: { bottom: '30%', right: '10%', rotation: '-1deg' }
+      desktopPosition: { bottom: '20%', right: '12%', rotation: '-1deg' }
     }
   ]
 
@@ -55,8 +55,8 @@ const FeaturesSection: React.FC = () => {
         minHeight: '100vh',
         background: `
           linear-gradient(180deg, rgba(248,250,252,0.8) 0%, rgba(241,245,249,0.9) 100%),
-          radial-gradient(ellipse at 20% 30%, rgba(16, 185, 129, 0.08) 0%, transparent 70%),
-          radial-gradient(ellipse at 80% 70%, rgba(245, 158, 11, 0.08) 0%, transparent 70%)
+          radial-gradient(ellipse at 20% 30%, rgba(71, 85, 105, 0.08) 0%, transparent 70%),
+          radial-gradient(ellipse at 80% 70%, rgba(71, 85, 105, 0.08) 0%, transparent 70%)
         `,
         position: 'relative',
         display: 'flex',
@@ -92,10 +92,10 @@ const FeaturesSection: React.FC = () => {
             sx={{ 
               fontWeight: 700,
               fontSize: { xs: '2.2rem', md: '3rem' },
-              color: '#3a2f2a',
+              color: '#1e293b',
               mb: 2,
-              fontFamily: '"Caveat", cursive, "Inter", sans-serif',
-              transform: { xs: 'none', md: 'rotate(-1deg)' }
+              fontFamily: '"Inter", sans-serif',
+              letterSpacing: '-0.02em'
             }}
           >
             ClipFlow Features
@@ -103,9 +103,9 @@ const FeaturesSection: React.FC = () => {
           <Typography 
             variant="body1" 
             sx={{ 
-              color: '#6b5b50',
+              color: '#64748b',
               fontSize: '1.1rem',
-              fontStyle: 'italic'
+              fontWeight: 500
             }}
           >
             Everything you need for smart clipboard management
@@ -162,7 +162,7 @@ const FeaturesSection: React.FC = () => {
                       sx={{
                         fontWeight: 600,
                         color: '#2a2a2a',
-                        fontFamily: '"Kalam", cursive, "Inter", sans-serif'
+                        fontFamily: '"Inter", sans-serif'
                       }}
                     >
                       {feature.title}
@@ -173,7 +173,7 @@ const FeaturesSection: React.FC = () => {
                     sx={{
                       lineHeight: 1.6,
                       color: '#4a4a4a',
-                      fontFamily: '"Kalam", cursive, "Inter", sans-serif'
+                      fontFamily: '"Inter", sans-serif'
                     }}
                   >
                     {feature.description}
@@ -194,7 +194,7 @@ const FeaturesSection: React.FC = () => {
               maxWidth: '800px',
               mx: 'auto',
               background: `
-                linear-gradient(145deg, #8b7355 0%, #6b5643 20%, #544342 100%)
+                linear-gradient(145deg, #475569 0%, #3b4653 20%, #334155 100%)
               `,
               borderRadius: '8px 8px 16px 16px',
               boxShadow: `
@@ -276,7 +276,7 @@ const FeaturesSection: React.FC = () => {
                   sx={{
                     position: 'absolute',
                     ...feature.desktopPosition,
-                    width: '220px',
+                    width: '240px',
                     transform: `rotate(${feature.desktopPosition.rotation})`,
                     cursor: 'pointer',
                     transition: 'transform 0.2s ease',
@@ -291,7 +291,7 @@ const FeaturesSection: React.FC = () => {
                     sx={{
                       background: `linear-gradient(145deg, ${feature.color}22 0%, ${feature.color}33 100%)`,
                       borderRadius: '2px',
-                      p: 2.5,
+                      p: 3,
                       boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
                       border: `1px solid ${feature.color}44`,
                       position: 'relative',
@@ -330,7 +330,7 @@ const FeaturesSection: React.FC = () => {
                           fontWeight: 600,
                           fontSize: '1rem',
                           color: '#2a2a2a',
-                          fontFamily: '"Kalam", cursive, "Inter", sans-serif'
+                          fontFamily: '"Inter", sans-serif'
                         }}
                       >
                         {feature.title}
@@ -339,10 +339,10 @@ const FeaturesSection: React.FC = () => {
                     <Typography
                       variant="body2"
                       sx={{
-                        fontSize: '0.85rem',
-                        lineHeight: 1.4,
+                        fontSize: '0.82rem',
+                        lineHeight: 1.3,
                         color: '#4a4a4a',
-                        fontFamily: '"Kalam", cursive, "Inter", sans-serif'
+                        fontFamily: '"Inter", sans-serif'
                       }}
                     >
                       {feature.description}
@@ -367,16 +367,16 @@ const FeaturesSection: React.FC = () => {
                   width: '80px',
                   height: '80px',
                   borderRadius: '50%',
-                  border: '3px solid #8f4942',
+                  border: '3px solid #475569',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#8f4942',
+                  color: '#475569',
                   fontWeight: 'bold',
                   fontSize: '0.7rem',
                   textAlign: 'center',
-                  background: 'rgba(143, 73, 66, 0.05)'
+                  background: 'rgba(71, 85, 105, 0.05)'
                 }}
               >
                 <div>CLIPFLOW</div>
@@ -391,11 +391,10 @@ const FeaturesSection: React.FC = () => {
           <Typography
             variant="body1"
             sx={{
-              fontStyle: 'italic',
-              color: '#6b5b50',
+              color: '#64748b',
               fontSize: '1.1rem',
-              fontFamily: '"Caveat", cursive, "Inter", sans-serif',
-              transform: 'rotate(-0.5deg)'
+              fontFamily: '"Inter", sans-serif',
+              fontWeight: 500
             }}
           >
             &ldquo;Smart clipboard management made simple&rdquo;
@@ -403,13 +402,6 @@ const FeaturesSection: React.FC = () => {
         </Box>
       </Container>
 
-      {/* Add Google Fonts */}
-      <Box
-        component="link"
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Kalam:wght@300;400;700&display=swap"
-        rel="stylesheet"
-        sx={{ display: 'none' }}
-      />
     </Box>
   )
 }

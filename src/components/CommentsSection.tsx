@@ -103,9 +103,9 @@ const CommentsSection: React.FC = () => {
         py: { xs: 8, md: 12 },
         background: `
           linear-gradient(180deg, rgba(248,250,252,0.9) 0%, rgba(241,245,249,0.88) 25%, rgba(226,232,240,0.85) 50%, rgba(203,213,225,0.82) 75%, rgba(191,201,215,0.85) 100%),
-          radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
-          radial-gradient(ellipse at 80% 70%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
-          radial-gradient(ellipse at 50% 90%, rgba(16, 185, 129, 0.04) 0%, transparent 50%)
+          radial-gradient(ellipse at 20% 30%, rgba(71, 85, 105, 0.06) 0%, transparent 60%),
+          radial-gradient(ellipse at 80% 70%, rgba(71, 85, 105, 0.06) 0%, transparent 60%),
+          radial-gradient(ellipse at 50% 90%, rgba(71, 85, 105, 0.04) 0%, transparent 50%)
         `,
         position: 'relative',
         overflow: 'hidden',
@@ -123,7 +123,7 @@ const CommentsSection: React.FC = () => {
           width: '260px', 
           height: '180px', 
           borderRadius: '18px', 
-          background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 100%)',
+          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(71, 85, 105, 0.04) 100%)',
           transform: 'rotate(-8deg)',
           backdropFilter: 'blur(2px)',
           border: '1px solid rgba(255,255,255,0.2)',
@@ -139,7 +139,7 @@ const CommentsSection: React.FC = () => {
           width: '340px', 
           height: '220px', 
           borderRadius: '50%', 
-          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, rgba(16, 185, 129, 0.04) 100%)',
+          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.06) 0%, rgba(71, 85, 105, 0.04) 100%)',
           backdropFilter: 'blur(1px)',
           border: '1px solid rgba(255,255,255,0.15)',
           animation: 'float 8s ease-in-out infinite reverse'
@@ -154,7 +154,7 @@ const CommentsSection: React.FC = () => {
           width: '90px', 
           height: '90px', 
           borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.08) 0%, transparent 70%)',
           backdropFilter: 'blur(1px)',
           animation: 'pulse 4s ease-in-out infinite'
         }} 

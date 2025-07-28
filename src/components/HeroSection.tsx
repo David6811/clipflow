@@ -21,8 +21,8 @@ const HeroSection: React.FC = () => {
       sx={{ 
         background: `
           linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.9) 100%),
-          radial-gradient(ellipse at 30% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 70%),
-          radial-gradient(ellipse at 70% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 70%)
+          radial-gradient(ellipse at 30% 20%, rgba(71, 85, 105, 0.12) 0%, transparent 70%),
+          radial-gradient(ellipse at 70% 80%, rgba(71, 85, 105, 0.12) 0%, transparent 70%)
         `,
         position: 'relative',
         py: { xs: 12, md: 20 },
@@ -48,7 +48,7 @@ const HeroSection: React.FC = () => {
           bottom: '-15%',
           width: '450px',
           height: '450px',
-          background: 'linear-gradient(135deg, #14B8A6 0%, #0D9488 50%, #0F766E 100%)',
+          background: 'linear-gradient(135deg, #475569 0%, #3b4653 50%, #334155 100%)',
           transform: 'rotate(-20deg)',
           opacity: 0.15,
           zIndex: 0,
@@ -66,7 +66,7 @@ const HeroSection: React.FC = () => {
           top: '-15%',
           width: '400px',
           height: '400px',
-          background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 50%, #1E40AF 100%)',
+          background: 'linear-gradient(135deg, #475569 0%, #3b4653 50%, #334155 100%)',
           transform: 'rotate(25deg)',
           opacity: 0.2,
           zIndex: 0,
@@ -84,7 +84,7 @@ const HeroSection: React.FC = () => {
           bottom: '-18%',
           width: '430px',
           height: '430px',
-          background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%)',
+          background: 'linear-gradient(135deg, #475569 0%, #3b4653 50%, #334155 100%)',
           transform: 'rotate(-12deg)',
           opacity: 0.18,
           zIndex: 0,
@@ -102,7 +102,7 @@ const HeroSection: React.FC = () => {
           top: '20%',
           width: '120px',
           height: '120px',
-          background: 'linear-gradient(135deg, #F43F5E 0%, #E11D48 100%)',
+          background: 'linear-gradient(135deg, #475569 0%, #3b4653 100%)',
           borderRadius: '50%',
           opacity: 0.1,
           zIndex: 0,
@@ -114,7 +114,7 @@ const HeroSection: React.FC = () => {
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
         {/* App Badge */}
         <Chip 
-          label="🚀 Smart OCR for Android" 
+          label="Smart OCR for Android" 
           sx={{ 
             mb: 6,
             background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)',

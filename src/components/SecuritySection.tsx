@@ -18,24 +18,24 @@ const SecuritySection: React.FC = () => {
       title: 'Master Password System',
       description: 'Enterprise-grade authentication protecting your OCR captured text',
       icon: VpnKey,
-      color: '#2563EB', // Medium professional blue - balanced depth
-      bgColor: 'rgba(37, 99, 235, 0.12)',
+      color: '#475569', // Professional blue-gray - unified primary color
+      bgColor: 'rgba(71, 85, 105, 0.12)',
       features: ['Master Password', 'Auto-Lock Timer', 'Session Security', 'Quick Authentication']
     },
     {
       title: 'Fingerprint Authentication',
       description: 'Secure biometric access for Android devices with hardware fingerprint sensors',
       icon: Fingerprint,
-      color: '#7C3AED', // Medium security purple - elegant depth
-      bgColor: 'rgba(124, 58, 237, 0.12)',
+      color: '#475569', // Same unified color for consistency
+      bgColor: 'rgba(71, 85, 105, 0.12)',
       features: ['Hardware Fingerprint', 'Android KeyStore', 'Secure Enclave', 'Fast Unlock']
     },
     {
       title: 'Note-Level Protection',
       description: 'Individual encryption for each OCR result, screenshot, and organized note collection',
       icon: TextFields,
-      color: '#059669', // Medium protection green - trustworthy depth
-      bgColor: 'rgba(5, 150, 105, 0.12)',
+      color: '#475569', // Unified color scheme
+      bgColor: 'rgba(71, 85, 105, 0.12)',
       features: ['Per-Note Encryption', 'Data Protection', 'Secure Storage']
     }
   ]
@@ -47,9 +47,8 @@ const SecuritySection: React.FC = () => {
         py: { xs: 10, md: 16 },
         background: `
           linear-gradient(180deg, rgba(248,250,252,0.95) 0%, rgba(241,245,249,0.92) 20%, rgba(226,232,240,0.88) 50%, rgba(203,213,225,0.85) 80%, rgba(191,201,215,0.9) 100%),
-          radial-gradient(ellipse at 30% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
-          radial-gradient(ellipse at 70% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 60%),
-          radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 70%)
+          radial-gradient(ellipse at 30% 20%, rgba(71, 85, 105, 0.08) 0%, transparent 60%),
+          radial-gradient(ellipse at 70% 80%, rgba(71, 85, 105, 0.06) 0%, transparent 60%)
         `,
         color: 'text.primary',
         position: 'relative',
@@ -69,7 +68,7 @@ const SecuritySection: React.FC = () => {
           width: '280px', 
           height: '180px', 
           borderRadius: '16px', 
-          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(59, 130, 246, 0.04) 100%)',
+          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(71, 85, 105, 0.04) 100%)',
           transform: 'rotate(-12deg)',
           backdropFilter: 'blur(2px)',
           border: '1px solid rgba(255,255,255,0.2)',
@@ -85,7 +84,7 @@ const SecuritySection: React.FC = () => {
           width: '320px', 
           height: '200px', 
           borderRadius: '50%', 
-          background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.06) 0%, rgba(139, 92, 246, 0.04) 100%)',
+          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.06) 0%, rgba(71, 85, 105, 0.04) 100%)',
           backdropFilter: 'blur(1px)',
           border: '1px solid rgba(255,255,255,0.15)',
           animation: 'float 10s ease-in-out infinite reverse'
@@ -100,7 +99,7 @@ const SecuritySection: React.FC = () => {
           width: '120px', 
           height: '120px', 
           borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.06) 0%, transparent 70%)',
           backdropFilter: 'blur(1px)',
           animation: 'pulse 6s ease-in-out infinite'
         }} 
@@ -117,18 +116,18 @@ const SecuritySection: React.FC = () => {
               mb: 4,
               px: 3,
               py: 1.5,
-              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%)',
+              background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.12) 0%, rgba(71, 85, 105, 0.08) 100%)',
               backdropFilter: 'blur(10px)',
               border: '2px solid',
-              borderColor: 'rgba(16, 185, 129, 0.3)',
+              borderColor: 'rgba(71, 85, 105, 0.3)',
               borderRadius: 0,
               position: 'relative',
               transform: 'rotate(-1deg)',
-              boxShadow: '0 4px 12px rgba(16, 185, 129, 0.15)',
+              boxShadow: '0 4px 12px rgba(71, 85, 105, 0.15)',
               transition: 'all 0.3s ease',
               '&:hover': {
                 transform: 'rotate(-1deg) scale(1.05)',
-                boxShadow: '0 6px 20px rgba(16, 185, 129, 0.2)'
+                boxShadow: '0 6px 20px rgba(71, 85, 105, 0.2)'
               },
               '&::before': {
                 content: '""',
@@ -137,7 +136,7 @@ const SecuritySection: React.FC = () => {
                 left: '-2px',
                 right: '-2px',
                 bottom: '-2px',
-                background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.15) 100%)',
+                background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.2) 0%, rgba(71, 85, 105, 0.15) 100%)',
                 borderRadius: 0,
                 zIndex: -1
               }
@@ -147,7 +146,7 @@ const SecuritySection: React.FC = () => {
               sx={{
                 width: 8,
                 height: 8,
-                bgcolor: '#10B981',
+                bgcolor: '#475569',
                 borderRadius: '50%',
                 animation: 'pulse 2s ease-in-out infinite'
               }}
@@ -157,7 +156,7 @@ const SecuritySection: React.FC = () => {
               sx={{
                 fontWeight: 700,
                 fontSize: '0.95rem',
-                color: '#065F46',
+                color: '#1e293b',
                 letterSpacing: '0.5px',
                 textTransform: 'uppercase',
                 textShadow: '0 1px 2px rgba(255,255,255,0.8)'
