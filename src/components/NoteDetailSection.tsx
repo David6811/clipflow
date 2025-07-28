@@ -105,7 +105,7 @@ const NoteDetailSection: React.FC = () => {
       ref={sectionRef}
       sx={{ 
         py: { xs: 6, md: 8 }, 
-        background: 'linear-gradient(180deg, #d4c9bb 0%, rgba(212, 201, 187, 0.98) 20%, rgba(208, 195, 180, 0.95) 40%, rgba(200, 185, 170, 0.92) 60%, rgba(195, 180, 165, 0.95) 80%, #c8b5a0 100%)',
+        background: 'linear-gradient(180deg, rgba(241,245,249,0.3) 0%, rgba(241,245,249,0.4) 100%)',
         color: 'text.primary',
         position: 'relative',
         textAlign: 'center',
@@ -387,7 +387,7 @@ const NoteDetailSection: React.FC = () => {
                   transform: 'rotate(-1deg)',
                   transition: 'transform 0.2s ease',
                   cursor: 'pointer',
-                  fontFamily: '"Kalam", cursive, "Inter", sans-serif',
+                  fontFamily: '"Inter", sans-serif',
                   '&:hover': {
                     transform: 'rotate(-1deg) scale(1.02)',
                     zIndex: 10
@@ -429,7 +429,7 @@ const NoteDetailSection: React.FC = () => {
                       fontWeight: 600,
                       fontSize: '1rem',
                       color: '#2a2a2a',
-                      fontFamily: '"Kalam", cursive, "Inter", sans-serif'
+                      fontFamily: '"Inter", sans-serif'
                     }}
                   >
                     {noteActions[activeAction].title}
@@ -441,7 +441,7 @@ const NoteDetailSection: React.FC = () => {
                     fontSize: '0.85rem',
                     lineHeight: 1.4,
                     color: '#4a4a4a',
-                    fontFamily: '"Kalam", cursive, "Inter", sans-serif'
+                    fontFamily: '"Inter", sans-serif'
                   }}
                 >
                   {noteActions[activeAction].description}
@@ -461,7 +461,7 @@ const NoteDetailSection: React.FC = () => {
                   transform: 'rotate(1deg)',
                   transition: 'transform 0.2s ease',
                   cursor: 'pointer',
-                  fontFamily: '"Kalam", cursive, "Inter", sans-serif',
+                  fontFamily: '"Inter", sans-serif',
                   '&:hover': {
                     transform: 'rotate(1deg) scale(1.02)',
                     zIndex: 10
@@ -501,7 +501,7 @@ const NoteDetailSection: React.FC = () => {
                       fontWeight: 600,
                       fontSize: '1rem',
                       color: '#2a2a2a',
-                      fontFamily: '"Kalam", cursive, "Inter", sans-serif'
+                      fontFamily: '"Inter", sans-serif'
                     }}
                   >
                     Note
@@ -513,7 +513,7 @@ const NoteDetailSection: React.FC = () => {
                     fontSize: '0.85rem',
                     lineHeight: 1.4,
                     color: '#4a4a4a',
-                    fontFamily: '"Kalam", cursive, "Inter", sans-serif'
+                    fontFamily: '"Inter", sans-serif'
                   }}
                 >
                   Your captured text and OCR content. Each note can be organized, secured, and shared with powerful management tools.
@@ -539,14 +539,6 @@ const NoteDetailSection: React.FC = () => {
           </Typography>
         </Box>
       </Container>
-
-      {/* Add Google Fonts */}
-      <Box
-        component="link"
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Kalam:wght@300;400;700&display=swap"
-        rel="stylesheet"
-        sx={{ display: 'none' }}
-      />
 
       {/* CSS Animations */}
       <style>

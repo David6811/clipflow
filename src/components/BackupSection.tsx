@@ -40,66 +40,13 @@ const BackupSection: React.FC = () => {
     <Box 
       sx={{ 
         py: { xs: 8, md: 12 },
-        background: `
-          linear-gradient(180deg, rgba(241,245,249,0.92) 0%, rgba(226,232,240,0.88) 25%, rgba(203,213,225,0.85) 50%, rgba(191,201,215,0.82) 75%, rgba(175,185,205,0.85) 100%),
-          radial-gradient(ellipse at 25% 25%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
-          radial-gradient(ellipse at 75% 75%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
-          radial-gradient(ellipse at 50% 10%, rgba(16, 185, 129, 0.04) 0%, transparent 50%)
-        `,
+        background: 'linear-gradient(180deg, rgba(232,240,247,0.5) 0%, rgba(232,240,247,0.6) 100%)',
         color: 'text.primary',
         position: 'relative',
         textAlign: 'center',
         overflow: 'hidden',
-        backdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(226, 232, 240, 0.6)',
-        borderBottom: '1px solid rgba(226, 232, 240, 0.6)'
       }}
     >
-      {/* Professional Geometric Background Elements */}
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: '-40px', 
-          right: '-40px', 
-          width: '240px', 
-          height: '160px', 
-          borderRadius: '20px', 
-          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%)',
-          transform: 'rotate(18deg)',
-          backdropFilter: 'blur(2px)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          animation: 'float 7s ease-in-out infinite'
-        }} 
-      />
-      
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          bottom: '-60px', 
-          left: '-60px', 
-          width: '300px', 
-          height: '300px', 
-          borderRadius: '50%', 
-          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(59, 130, 246, 0.04) 100%)',
-          backdropFilter: 'blur(1px)',
-          border: '1px solid rgba(255,255,255,0.15)',
-          animation: 'float 9s ease-in-out infinite reverse'
-        }} 
-      />
-      
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: '30%', 
-          right: '12%', 
-          width: '100px', 
-          height: '100px', 
-          borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
-          backdropFilter: 'blur(1px)',
-          animation: 'pulse 5s ease-in-out infinite'
-        }} 
-      />
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}

@@ -13,10 +13,10 @@ import {
 
 const MobileShowcase: React.FC = () => {
   return (
-    <Box sx={{ py: 10, bgcolor: '#1A1A2E', color: 'white' }}>
+    <Box sx={{ py: 10, background: 'linear-gradient(180deg, rgba(232,240,247,0.4) 0%, rgba(232,240,247,0.5) 100%)', color: 'text.primary' }}>
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography variant="h2" component="h2" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', md: '2.5rem' }, color: 'white' }}>
+          <Typography variant="h2" component="h2" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', md: '2.5rem' }, color: 'text.primary' }}>
             Experience ClipFlow
           </Typography>
           <Typography variant="h6" sx={{ maxWidth: '600px', mx: 'auto', fontWeight: 400, opacity: 0.8 }}>
@@ -72,7 +72,7 @@ const MobileShowcase: React.FC = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 mb: 4,
-                background: 'linear-gradient(135deg, #6750A4 0%, #9C75FF 100%)'
+                background: 'linear-gradient(135deg, #475569 0%, #3b4653 100%)'
               }}>
                 <ContentCopy sx={{ fontSize: 48, color: 'white' }} />
               </Box>
@@ -145,7 +145,7 @@ const MobileShowcase: React.FC = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 mb: 4,
-                background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 100%)'
+                background: 'linear-gradient(135deg, #475569 0%, #3b4653 100%)'
               }}>
                 <Search sx={{ fontSize: 48, color: 'white' }} />
               </Box>
@@ -216,7 +216,7 @@ const MobileShowcase: React.FC = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 mb: 4,
-                background: 'linear-gradient(135deg, #7D5260 0%, #A67C7C 100%)'
+                background: 'linear-gradient(135deg, #475569 0%, #3b4653 100%)'
               }}>
                 <PhoneAndroid sx={{ fontSize: 48, color: 'white' }} />
               </Box>

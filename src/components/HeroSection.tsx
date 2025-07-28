@@ -19,11 +19,7 @@ const HeroSection: React.FC = () => {
     <Box 
       component="section"
       sx={{ 
-        background: `
-          linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.9) 100%),
-          radial-gradient(ellipse at 30% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 70%),
-          radial-gradient(ellipse at 70% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 70%)
-        `,
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(252,252,253,0.6) 100%)',
         position: 'relative',
         py: { xs: 12, md: 20 },
         textAlign: 'center',
@@ -33,88 +29,88 @@ const HeroSection: React.FC = () => {
         paddingRight: 0,
         overflow: 'hidden',
         minHeight: { xs: '90vh', md: '100vh' },
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
         display: 'flex',
         alignItems: 'center'
       }}
     >
-      {/* Modern Geometric Background Elements */}
-      {/* Left Teal Gradient Square */}
-      <div 
-        className="absolute"
-        style={{
-          left: '-15%',
-          bottom: '-15%',
-          width: '450px',
-          height: '450px',
-          background: 'linear-gradient(135deg, #14B8A6 0%, #0D9488 50%, #0F766E 100%)',
-          transform: 'rotate(-20deg)',
-          opacity: 0.15,
-          zIndex: 0,
-          filter: 'blur(2px)',
-          animation: 'modernFloat1 25s ease-in-out infinite',
-          borderRadius: '24px'
+      {/* Hero-specific Background Shapes */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1,
+          pointerEvents: 'none',
+          overflow: 'hidden'
         }}
-      ></div>
-      
-      {/* Top Right Blue Gradient Square */}
-      <div 
-        className="absolute"
-        style={{
-          right: '-15%',
-          top: '-15%',
-          width: '400px',
-          height: '400px',
-          background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 50%, #1E40AF 100%)',
-          transform: 'rotate(25deg)',
-          opacity: 0.2,
-          zIndex: 0,
-          filter: 'blur(2px)',
-          animation: 'modernFloat2 30s ease-in-out infinite',
-          borderRadius: '24px'
-        }}
-      ></div>
-      
-      {/* Bottom Right Purple Gradient Square */}
-      <div 
-        className="absolute"
-        style={{
-          right: '-12%',
-          bottom: '-18%',
-          width: '430px',
-          height: '430px',
-          background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%)',
-          transform: 'rotate(-12deg)',
-          opacity: 0.18,
-          zIndex: 0,
-          filter: 'blur(2px)',
-          animation: 'modernFloat3 20s ease-in-out infinite',
-          borderRadius: '24px'
-        }}
-      ></div>
-      
-      {/* Additional floating elements for depth */}
-      <div 
-        className="absolute"
-        style={{
-          left: '60%',
-          top: '20%',
-          width: '120px',
-          height: '120px',
-          background: 'linear-gradient(135deg, #F43F5E 0%, #E11D48 100%)',
-          borderRadius: '50%',
-          opacity: 0.1,
-          zIndex: 0,
-          filter: 'blur(1px)',
-          animation: 'modernFloat4 15s ease-in-out infinite'
-        }}
-      ></div>
+      >
+        {/* Hero Square Shapes */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '20%',
+            left: '10%',
+            width: '120px',
+            height: '120px',
+            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.04) 0%, rgba(139, 92, 246, 0.02) 100%)',
+            borderRadius: '8px',
+            transform: 'rotate(15deg)',
+            filter: 'blur(8px)',
+            animation: 'heroFloat1 20s ease-in-out infinite'
+          }}
+        />
+        
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '15%',
+            right: '15%',
+            width: '80px',
+            height: '80px',
+            background: 'linear-gradient(45deg, rgba(168, 85, 247, 0.04) 0%, rgba(236, 72, 153, 0.02) 100%)',
+            borderRadius: '8px',
+            transform: 'rotate(-20deg)',
+            filter: 'blur(6px)',
+            animation: 'heroFloat2 25s ease-in-out infinite reverse'
+          }}
+        />
+        
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '25%',
+            left: '5%',
+            width: '100px',
+            height: '60px',
+            background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.04) 0%, rgba(59, 130, 246, 0.02) 100%)',
+            borderRadius: '8px',
+            transform: 'rotate(8deg)',
+            filter: 'blur(10px)',
+            animation: 'heroFloat3 18s ease-in-out infinite'
+          }}
+        />
+        
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '20%',
+            right: '8%',
+            width: '90px',
+            height: '90px',
+            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.04) 0%, transparent 70%)',
+            borderRadius: '8px',
+            filter: 'blur(12px)',
+            animation: 'heroFloat4 22s ease-in-out infinite reverse'
+          }}
+        />
+      </Box>
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
         {/* App Badge */}
         <Chip 
-          label="🚀 Smart OCR for Android" 
+          label="Smart OCR for Android" 
           sx={{ 
             mb: 6,
             background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)',
@@ -134,255 +130,142 @@ const HeroSection: React.FC = () => {
         <Typography 
           variant="h1" 
           component="h1" 
-          gutterBottom 
           sx={{ 
+            fontSize: { xs: '2.8rem', md: '4.5rem' },
             fontWeight: 800,
-            fontSize: { xs: '3.5rem', md: '5.5rem' },
-            background: 'linear-gradient(135deg, #1E293B 0%, #475569 50%, #64748B 100%)',
+            mb: 3,
+            letterSpacing: '-0.02em',
+            background: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            letterSpacing: '-0.03em',
-            mb: 4,
-            animation: 'fadeInUp 0.8s ease-out 0.2s both'
+            animation: 'fadeInUp 1s ease-out 0.2s both'
           }}
         >
-          ClipFlow
+          Smart Clipboard
+          <br />
+          Management
         </Typography>
         
         {/* Subtitle */}
         <Typography 
-          variant="h4" 
+          variant="h5" 
           sx={{ 
-            mb: 5, 
-            maxWidth: '900px', 
-            mx: 'auto', 
-            fontWeight: 500,
-            color: 'text.primary',
-            fontSize: { xs: '1.75rem', md: '2.5rem' },
-            lineHeight: 1.2,
-            animation: 'fadeInUp 0.8s ease-out 0.4s both'
-          }}
-        >
-          Smart Clipboard Management for Android
-        </Typography>
-
-        {/* Description */}
-        <Typography 
-          variant="h6" 
-          sx={{ 
-            mb: 8, 
-            maxWidth: '750px', 
-            mx: 'auto', 
+            color: 'text.secondary', 
+            mb: 6,
+            maxWidth: '700px',
+            mx: 'auto',
+            lineHeight: 1.6,
             fontWeight: 400,
-            color: 'text.secondary',
-            fontSize: { xs: '1.1rem', md: '1.25rem' },
-            lineHeight: 1.7,
-            animation: 'fadeInUp 0.8s ease-out 0.6s both'
+            animation: 'fadeInUp 1s ease-out 0.4s both'
           }}
         >
-          Copy text from any image, screenshot, or document instantly. 
-          Smart, secure, and works completely offline on your Android device.
+          Powerful OCR technology meets intelligent clipboard organization. 
+          Extract text from images, organize your clips, and boost your productivity - all offline.
         </Typography>
         
         {/* CTA Buttons */}
         <Stack 
           direction={{ xs: 'column', sm: 'row' }} 
-          spacing={4} 
-          justifyContent="center" 
-          sx={{ 
-            mb: 10,
-            animation: 'fadeInUp 0.8s ease-out 0.8s both'
-          }}
+          spacing={3} 
+          justifyContent="center"
+          alignItems="center"
+          sx={{ mb: 8 }}
         >
-          <Button 
-            variant="contained" 
+          <Button
+            variant="contained"
             size="large"
             startIcon={<GetApp />}
-            sx={{ 
-              background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)',
-              color: 'white',
-              px: 6,
+            sx={{
+              px: 4,
               py: 2,
-              fontSize: '1.15rem',
-              fontWeight: 700,
+              fontSize: '1.1rem',
+              fontWeight: 600,
               borderRadius: '16px',
-              textTransform: 'none',
-              boxShadow: '0 8px 25px rgba(59, 130, 246, 0.3)',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              '&:hover': { 
-                background: 'linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%)',
-                boxShadow: '0 12px 35px rgba(59, 130, 246, 0.4)',
-                transform: 'translateY(-2px) scale(1.02)'
+              background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)',
+              boxShadow: '0 8px 32px rgba(59, 130, 246, 0.3)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              animation: 'fadeInUp 1s ease-out 0.6s both',
+              '&:hover': {
+                transform: 'translateY(-2px)',
+                boxShadow: '0 12px 40px rgba(59, 130, 246, 0.4)',
+                background: 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)'
               }
             }}
           >
-            Download for Android
+            Download Now
           </Button>
-          <Button 
-            variant="outlined" 
+          
+          <Button
+            variant="outlined"
             size="large"
-            sx={{ 
-              borderColor: 'primary.main', 
-              color: 'primary.main',
-              px: 6,
+            startIcon={<DocumentScanner />}
+            sx={{
+              px: 4,
               py: 2,
-              fontSize: '1.15rem',
+              fontSize: '1.1rem',
               fontWeight: 600,
               borderRadius: '16px',
-              textTransform: 'none',
-              borderWidth: '2px',
-              background: 'rgba(255, 255, 255, 0.8)',
+              borderColor: 'primary.main', 
+              color: 'primary.main',
               backdropFilter: 'blur(10px)',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              '&:hover': { 
-                bgcolor: 'rgba(30, 41, 59, 0.04)',
+              background: 'rgba(255, 255, 255, 0.1)',
+              borderWidth: '2px',
+              animation: 'fadeInUp 1s ease-out 0.8s both',
+              '&:hover': {
                 borderWidth: '2px',
-                transform: 'translateY(-2px) scale(1.02)',
-                boxShadow: '0 8px 25px rgba(30, 41, 59, 0.15)'
+                transform: 'translateY(-2px)',
+                background: 'rgba(59, 130, 246, 0.1)'
               }
             }}
           >
             Learn More
           </Button>
         </Stack>
-
-        {/* App Highlights */}
+        
+        {/* Feature Highlights */}
         <Stack 
-          direction={{ xs: 'column', sm: 'row' }} 
-          spacing={6} 
+          direction={{ xs: 'column', md: 'row' }} 
+          spacing={{ xs: 2, md: 4 }}
           justifyContent="center"
-          alignItems="center"
-          sx={{ 
-            mt: 4,
-            animation: 'fadeInUp 0.8s ease-out 1s both'
-          }}
+          sx={{ animation: 'fadeInUp 1s ease-out 1s both' }}
         >
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 2,
-            px: 3,
-            py: 2,
-            borderRadius: '12px',
-            background: 'rgba(255, 255, 255, 0.7)',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              transform: 'translateY(-2px)',
-              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)'
-            }
-          }}>
-            <DocumentScanner sx={{ color: 'secondary.main', fontSize: 28 }} />
-            <Typography variant="body1" sx={{ color: 'text.primary', fontWeight: 600, fontSize: '1.05rem' }}>
-              Smart OCR
-            </Typography>
-          </Box>
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 2,
-            px: 3,
-            py: 2,
-            borderRadius: '12px',
-            background: 'rgba(255, 255, 255, 0.7)',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              transform: 'translateY(-2px)',
-              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)'
-            }
-          }}>
-            <Security sx={{ color: 'tertiary.main', fontSize: 28 }} />
-            <Typography variant="body1" sx={{ color: 'text.primary', fontWeight: 600, fontSize: '1.05rem' }}>
-              Private & Secure
-            </Typography>
-          </Box>
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 2,
-            px: 3,
-            py: 2,
-            borderRadius: '12px',
-            background: 'rgba(255, 255, 255, 0.7)',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              transform: 'translateY(-2px)',
-              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)'
-            }
-          }}>
-            <CloudOff sx={{ color: 'success.main', fontSize: 28 }} />
-            <Typography variant="body1" sx={{ color: 'text.primary', fontWeight: 600, fontSize: '1.05rem' }}>
-              Works Offline
-            </Typography>
-          </Box>
+          {[
+            { icon: CloudOff, text: '100% Offline' },
+            { icon: Security, text: 'Privacy First' },
+            { icon: DocumentScanner, text: 'Smart OCR' }
+          ].map((feature, index) => (
+            <Box 
+              key={index}
+              sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: 1.5,
+                px: 3,
+                py: 1.5,
+                borderRadius: '12px',
+                background: 'rgba(255, 255, 255, 0.8)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.05)',
+                '&:hover': {
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'
+                }
+              }}
+            >
+              <feature.icon sx={{ color: 'primary.main', fontSize: 24 }} />
+              <Typography variant="body1" sx={{ fontWeight: 500, color: 'text.primary' }}>
+                {feature.text}
+              </Typography>
+            </Box>
+          ))}
         </Stack>
       </Container>
 
-      {/* Modern CSS Animations */}
+      {/* CSS Animations */}
       <style>
         {`
-          @keyframes modernFloat1 {
-            0%, 100% { 
-              transform: rotate(-20deg) translate(0px, 0px) scale(1);
-              opacity: 0.15;
-            }
-            33% { 
-              transform: rotate(-18deg) translate(-15px, -10px) scale(1.01);
-              opacity: 0.12;
-            }
-            66% { 
-              transform: rotate(-22deg) translate(10px, 15px) scale(0.99);
-              opacity: 0.18;
-            }
-          }
-          
-          @keyframes modernFloat2 {
-            0%, 100% { 
-              transform: rotate(25deg) translate(0px, 0px) scale(1);
-              opacity: 0.2;
-            }
-            40% { 
-              transform: rotate(27deg) translate(-20px, 12px) scale(1.02);
-              opacity: 0.15;
-            }
-            80% { 
-              transform: rotate(23deg) translate(18px, -14px) scale(0.98);
-              opacity: 0.25;
-            }
-          }
-          
-          @keyframes modernFloat3 {
-            0%, 100% { 
-              transform: rotate(-12deg) translate(0px, 0px) scale(1);
-              opacity: 0.18;
-            }
-            30% { 
-              transform: rotate(-10deg) translate(20px, -15px) scale(1.01);
-              opacity: 0.15;
-            }
-            70% { 
-              transform: rotate(-14deg) translate(-15px, 20px) scale(0.99);
-              opacity: 0.22;
-            }
-          }
-          
-          @keyframes modernFloat4 {
-            0%, 100% { 
-              transform: translate(0px, 0px) scale(1);
-              opacity: 0.1;
-            }
-            50% { 
-              transform: translate(-10px, -20px) scale(1.1);
-              opacity: 0.15;
-            }
-          }
-          
           @keyframes fadeInUp {
             from {
               opacity: 0;
@@ -393,9 +276,44 @@ const HeroSection: React.FC = () => {
               transform: translateY(0);
             }
           }
+
+          @keyframes heroFloat1 {
+            0%, 100% {
+              transform: translateY(0px) rotate(15deg) scale(1);
+            }
+            50% {
+              transform: translateY(-12px) rotate(18deg) scale(1.05);
+            }
+          }
+
+          @keyframes heroFloat2 {
+            0%, 100% {
+              transform: translateY(0px) rotate(-20deg) scale(1);
+            }
+            50% {
+              transform: translateY(-8px) rotate(-15deg) scale(1.02);
+            }
+          }
+
+          @keyframes heroFloat3 {
+            0%, 100% {
+              transform: translateY(0px) rotate(8deg) scale(1);
+            }
+            50% {
+              transform: translateY(-10px) rotate(5deg) scale(1.03);
+            }
+          }
+
+          @keyframes heroFloat4 {
+            0%, 100% {
+              transform: translateY(0px) scale(1);
+            }
+            50% {
+              transform: translateY(-6px) scale(1.01);
+            }
+          }
         `}
       </style>
-      
     </Box>
   )
 }
