@@ -45,28 +45,24 @@ const SecuritySection: React.FC = () => {
     <Box 
       sx={{ 
         py: { xs: 10, md: 16 },
-        background: `
-          linear-gradient(135deg, rgba(252,252,253,0.6) 0%, rgba(248,250,252,0.4) 100%)
-        `,
+        background: 'linear-gradient(180deg, rgba(241,245,249,0.4) 0%, rgba(232,240,247,0.5) 100%)',
         color: 'text.primary',
         position: 'relative',
         textAlign: 'center',
         overflow: 'hidden',
         backdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(226, 232, 240, 0.6)',
-        borderBottom: '1px solid rgba(226, 232, 240, 0.6)'
       }}
     >
       {/* Professional Geometric Background Elements */}
       <Box 
         sx={{ 
           position: 'absolute', 
-          top: '-60px', 
-          left: '-60px', 
+          top: '60px', 
+          left: '60px', 
           width: '280px', 
           height: '180px', 
           borderRadius: '16px', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(71, 85, 105, 0.04) 100%)',
+          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.05) 0%, rgba(71, 85, 105, 0.025) 100%)',
           transform: 'rotate(-12deg)',
           backdropFilter: 'blur(2px)',
           border: '1px solid rgba(255,255,255,0.2)',
@@ -77,8 +73,8 @@ const SecuritySection: React.FC = () => {
       <Box 
         sx={{ 
           position: 'absolute', 
-          bottom: '-80px', 
-          right: '-80px', 
+          bottom: '60px', 
+          right: '60px', 
           width: '320px', 
           height: '200px', 
           borderRadius: '50%', 

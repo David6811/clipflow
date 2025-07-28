@@ -232,14 +232,9 @@ const BankingShowcase: React.FC = () => {
       ref={sectionRef}
       sx={{ 
         py: 8, 
-        background: `
-          linear-gradient(135deg, rgba(252,252,253,0.5) 0%, rgba(248,250,252,0.3) 100%)
-        `,
+        background: 'linear-gradient(180deg, rgba(248,250,252,0.2) 0%, rgba(241,245,249,0.3) 100%)',
         position: 'relative', 
         overflow: 'hidden',
-        backdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(226, 232, 240, 0.6)',
-        borderBottom: '1px solid rgba(226, 232, 240, 0.6)'
       }}
     >
       {/* Modern Geometric Background Elements */}
@@ -247,12 +242,12 @@ const BankingShowcase: React.FC = () => {
       <Box 
         sx={{ 
           position: 'absolute', 
-          top: '-80px', 
-          right: '-80px', 
+          top: '20px', 
+          right: '20px', 
           width: '300px', 
           height: '200px', 
           borderRadius: '20px', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(71, 85, 105, 0.04) 100%)',
+          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.05) 0%, rgba(71, 85, 105, 0.025) 100%)',
           transform: 'rotate(-15deg)',
           backdropFilter: 'blur(2px)',
           border: '1px solid rgba(255,255,255,0.2)',
@@ -264,8 +259,8 @@ const BankingShowcase: React.FC = () => {
       <Box 
         sx={{ 
           position: 'absolute', 
-          bottom: '-120px', 
-          left: '-120px', 
+          bottom: '20px', 
+          left: '20px', 
           width: '400px', 
           height: '400px', 
           borderRadius: '50%', 
@@ -285,7 +280,7 @@ const BankingShowcase: React.FC = () => {
           width: '150px', 
           height: '150px', 
           borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.05) 0%, transparent 70%)',
           backdropFilter: 'blur(1px)',
           animation: 'pulse 4s ease-in-out infinite'
         }} 

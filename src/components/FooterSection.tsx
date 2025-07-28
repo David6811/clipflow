@@ -21,10 +21,10 @@ const FooterSection: React.FC = () => {
     <Box
       component="footer"
       sx={{
-        background: 'linear-gradient(135deg, rgba(252,252,253,0.8) 0%, rgba(248,250,252,0.6) 100%)',
+        bgcolor: 'rgba(248, 245, 242, 0.95)',
+        backdropFilter: 'blur(10px)',
         color: 'text.primary',
-        py: 6,
-        borderTop: '1px solid rgba(226, 232, 240, 0.5)'
+        py: 6
       }}
     >
       <Container maxWidth="lg">

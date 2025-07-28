@@ -105,7 +105,7 @@ const NoteDetailSection: React.FC = () => {
       ref={sectionRef}
       sx={{ 
         py: { xs: 6, md: 8 }, 
-        background: 'linear-gradient(135deg, rgba(248,250,252,0.6) 0%, rgba(252,252,253,0.4) 100%)',
+        background: 'linear-gradient(180deg, rgba(241,245,249,0.3) 0%, rgba(241,245,249,0.4) 100%)',
         color: 'text.primary',
         position: 'relative',
         textAlign: 'center',

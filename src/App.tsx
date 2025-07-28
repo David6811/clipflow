@@ -34,7 +34,13 @@ function App() {
           bottom: 0,
           zIndex: -1,
           background: `
-            linear-gradient(135deg, #fcfcfd 0%, #f8fafc 100%)
+            linear-gradient(180deg, 
+              #ffffff 0%, 
+              #fcfcfd 25%, 
+              #f8fafc 50%, 
+              #f1f5f9 75%, 
+              #e8f0f7 100%
+            )
           `
         }}
       />
@@ -52,24 +58,24 @@ function App() {
           '&::before': {
             content: '""',
             position: 'absolute',
-            top: '10%',
+            top: '20%',
             right: '15%',
             width: '200px',
             height: '200px',
             borderRadius: '50%',
-            background: 'rgba(71, 85, 105, 0.06)',
+            background: 'rgba(71, 85, 105, 0.02)',
             filter: 'blur(60px)',
             animation: 'float 6s ease-in-out infinite'
           },
           '&::after': {
             content: '""',
             position: 'absolute',
-            bottom: '20%',
+            bottom: '30%',
             left: '10%',
             width: '150px',
             height: '150px',
             borderRadius: '50%',
-            background: 'rgba(71, 85, 105, 0.05)',
+            background: 'rgba(71, 85, 105, 0.015)',
             filter: 'blur(40px)',
             animation: 'float 8s ease-in-out infinite reverse'
           }
@@ -80,35 +86,7 @@ function App() {
       <Toolbar />
       
       {/* Section with Professional Backgrounds and Smooth Transitions */}
-      <Box sx={{ 
-        position: 'relative', 
-        zIndex: 1,
-        '& > div': {
-          position: 'relative',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: '-1px',
-            left: 0,
-            right: 0,
-            height: '80px',
-            background: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
-            pointerEvents: 'none',
-            zIndex: 10
-          },
-          '&::after': {
-            content: '""',
-            position: 'absolute',
-            bottom: '-1px',
-            left: 0,
-            right: 0,
-            height: '80px',
-            background: 'linear-gradient(to top, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
-            pointerEvents: 'none',
-            zIndex: 10
-          }
-        }
-      }}>
+      <Box sx={{ position: 'relative', zIndex: 1 }}>
         <div id="home" style={{ scrollBehavior: 'smooth' }}><HeroSection /></div>
         <div id="features" style={{ scrollBehavior: 'smooth' }}><FeaturesSection /></div>
         <div id="showcase" style={{ scrollBehavior: 'smooth' }}><BankingShowcase /></div>

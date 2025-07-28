@@ -19,9 +19,7 @@ const HeroSection: React.FC = () => {
     <Box 
       component="section"
       sx={{ 
-        background: `
-          linear-gradient(135deg, rgba(252,252,253,0.8) 0%, rgba(248,250,252,0.6) 100%)
-        `,
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(252,252,253,0.6) 100%)',
         position: 'relative',
         py: { xs: 12, md: 20 },
         textAlign: 'center',
@@ -31,8 +29,6 @@ const HeroSection: React.FC = () => {
         paddingRight: 0,
         overflow: 'hidden',
         minHeight: { xs: '90vh', md: '100vh' },
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
         display: 'flex',
         alignItems: 'center'
       }}
@@ -42,8 +38,8 @@ const HeroSection: React.FC = () => {
       <div 
         className="absolute"
         style={{
-          left: '-15%',
-          bottom: '-15%',
+          left: '-10%',
+          bottom: '10%',
           width: '450px',
           height: '450px',
           background: 'linear-gradient(135deg, #475569 0%, #3b4653 50%, #334155 100%)',
@@ -60,8 +56,8 @@ const HeroSection: React.FC = () => {
       <div 
         className="absolute"
         style={{
-          right: '-15%',
-          top: '-15%',
+          right: '-10%',
+          top: '15%',
           width: '400px',
           height: '400px',
           background: 'linear-gradient(135deg, #475569 0%, #3b4653 50%, #334155 100%)',
@@ -78,8 +74,8 @@ const HeroSection: React.FC = () => {
       <div 
         className="absolute"
         style={{
-          right: '-12%',
-          bottom: '-18%',
+          right: '-8%',
+          bottom: '15%',
           width: '430px',
           height: '430px',
           background: 'linear-gradient(135deg, #475569 0%, #3b4653 50%, #334155 100%)',
@@ -97,7 +93,7 @@ const HeroSection: React.FC = () => {
         className="absolute"
         style={{
           left: '60%',
-          top: '20%',
+          top: '30%',
           width: '120px',
           height: '120px',
           background: 'linear-gradient(135deg, #475569 0%, #3b4653 100%)',

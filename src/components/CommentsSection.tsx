@@ -101,26 +101,21 @@ const CommentsSection: React.FC = () => {
       component="section"
       sx={{ 
         py: { xs: 8, md: 12 },
-        background: `
-          linear-gradient(135deg, rgba(252,252,253,0.7) 0%, rgba(248,250,252,0.5) 100%)
-        `,
+        background: 'linear-gradient(180deg, rgba(232,240,247,0.6) 0%, rgba(232,240,247,0.7) 100%)',
         position: 'relative',
         overflow: 'hidden',
-        backdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(226, 232, 240, 0.6)',
-        borderBottom: '1px solid rgba(226, 232, 240, 0.6)'
       }}
     >
       {/* Professional Geometric Background Elements */}
       <Box 
         sx={{ 
           position: 'absolute', 
-          top: '-50px', 
-          left: '-50px', 
+          top: '50px', 
+          left: '50px', 
           width: '260px', 
           height: '180px', 
           borderRadius: '18px', 
-          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(71, 85, 105, 0.04) 100%)',
+          background: 'linear-gradient(135deg, rgba(71, 85, 105, 0.05) 0%, rgba(71, 85, 105, 0.025) 100%)',
           transform: 'rotate(-8deg)',
           backdropFilter: 'blur(2px)',
           border: '1px solid rgba(255,255,255,0.2)',
@@ -131,8 +126,8 @@ const CommentsSection: React.FC = () => {
       <Box 
         sx={{ 
           position: 'absolute', 
-          bottom: '-70px', 
-          right: '-70px', 
+          bottom: '50px', 
+          right: '50px', 
           width: '340px', 
           height: '220px', 
           borderRadius: '50%', 
@@ -151,7 +146,7 @@ const CommentsSection: React.FC = () => {
           width: '90px', 
           height: '90px', 
           borderRadius: '50%', 
-          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(71, 85, 105, 0.05) 0%, transparent 70%)',
           backdropFilter: 'blur(1px)',
           animation: 'pulse 4s ease-in-out infinite'
         }} 

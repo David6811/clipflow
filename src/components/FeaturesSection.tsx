@@ -53,9 +53,7 @@ const FeaturesSection: React.FC = () => {
       sx={{ 
         py: { xs: 8, md: 12 },
         minHeight: '100vh',
-        background: `
-          linear-gradient(135deg, rgba(248,250,252,0.4) 0%, rgba(252,252,253,0.2) 100%)
-        `,
+        background: 'linear-gradient(180deg, rgba(248,250,252,0.4) 0%, rgba(248,250,252,0.2) 100%)',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
@@ -65,8 +63,6 @@ const FeaturesSection: React.FC = () => {
         paddingLeft: 0,
         paddingRight: 0,
         marginTop: 0,
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(226, 232, 240, 0.6)',
         '&::before': {
           content: '""',
           position: 'absolute',

@@ -13,7 +13,7 @@ import {
 
 const MobileShowcase: React.FC = () => {
   return (
-    <Box sx={{ py: 10, background: 'linear-gradient(135deg, rgba(248,250,252,0.7) 0%, rgba(252,252,253,0.5) 100%)', color: 'text.primary' }}>
+    <Box sx={{ py: 10, background: 'linear-gradient(180deg, rgba(232,240,247,0.4) 0%, rgba(232,240,247,0.5) 100%)', color: 'text.primary' }}>
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography variant="h2" component="h2" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', md: '2.5rem' }, color: 'text.primary' }}>
