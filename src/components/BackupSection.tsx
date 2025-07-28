@@ -6,21 +6,21 @@ import {
   Badge
 } from '@mui/material'
 import {
-  Backup,
   Restore,
   Schedule,
-  CloudOff
+  Storage,
+  Save
 } from '@mui/icons-material'
 
 const BackupSection: React.FC = () => {
   const backupFeatures = [
     {
-      icon: CloudOff,
+      icon: Storage,
       title: 'Local Storage Only',
       description: 'All backups remain on your device. No cloud storage, no external servers - complete privacy and control.'
     },
     {
-      icon: Backup,
+      icon: Save,
       title: 'Manual Backup',
       description: 'Create secure backups of your clipboard history, OCR results, and organized notes anytime with full encryption.'
     },
@@ -40,30 +40,68 @@ const BackupSection: React.FC = () => {
     <Box 
       sx={{ 
         py: { xs: 8, md: 12 },
-        background: 'linear-gradient(180deg, #d4c9bb 0%, rgba(212, 201, 187, 0.95) 30%, rgba(208, 195, 180, 0.9) 60%, rgba(200, 185, 170, 0.85) 85%, #c8b5a0 100%)',
+        background: `
+          linear-gradient(180deg, rgba(241,245,249,0.92) 0%, rgba(226,232,240,0.88) 25%, rgba(203,213,225,0.85) 50%, rgba(191,201,215,0.82) 75%, rgba(175,185,205,0.85) 100%),
+          radial-gradient(ellipse at 25% 25%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
+          radial-gradient(ellipse at 75% 75%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
+          radial-gradient(ellipse at 50% 10%, rgba(16, 185, 129, 0.04) 0%, transparent 50%)
+        `,
         color: 'text.primary',
         position: 'relative',
-        textAlign: 'center'
+        textAlign: 'center',
+        overflow: 'hidden',
+        backdropFilter: 'blur(20px)',
+        borderTop: '1px solid rgba(226, 232, 240, 0.6)',
+        borderBottom: '1px solid rgba(226, 232, 240, 0.6)'
       }}
     >
-      {/* Background Effects */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: `
-            radial-gradient(circle at 20% 30%, rgba(46, 89, 132, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(143, 73, 66, 0.06) 0%, transparent 50%),
-            radial-gradient(circle at 50% 50%, rgba(110, 94, 15, 0.04) 0%, transparent 60%)
-          `,
-          pointerEvents: 'none'
-        }}
+      {/* Professional Geometric Background Elements */}
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          top: '-40px', 
+          right: '-40px', 
+          width: '240px', 
+          height: '160px', 
+          borderRadius: '20px', 
+          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%)',
+          transform: 'rotate(18deg)',
+          backdropFilter: 'blur(2px)',
+          border: '1px solid rgba(255,255,255,0.2)',
+          animation: 'float 7s ease-in-out infinite'
+        }} 
+      />
+      
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          bottom: '-60px', 
+          left: '-60px', 
+          width: '300px', 
+          height: '300px', 
+          borderRadius: '50%', 
+          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(59, 130, 246, 0.04) 100%)',
+          backdropFilter: 'blur(1px)',
+          border: '1px solid rgba(255,255,255,0.15)',
+          animation: 'float 9s ease-in-out infinite reverse'
+        }} 
+      />
+      
+      <Box 
+        sx={{ 
+          position: 'absolute', 
+          top: '30%', 
+          right: '12%', 
+          width: '100px', 
+          height: '100px', 
+          borderRadius: '50%', 
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
+          backdropFilter: 'blur(1px)',
+          animation: 'pulse 5s ease-in-out infinite'
+        }} 
       />
 
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography
@@ -132,7 +170,8 @@ const BackupSection: React.FC = () => {
                     sx={{
                       width: 72,
                       height: 72,
-                      bgcolor: 'rgba(255, 255, 255, 0.9)',
+                      bgcolor: 'rgba(255, 255, 255, 0.95)',
+                      backdropFilter: 'blur(10px)',
                       borderRadius: 2,
                       display: 'flex',
                       alignItems: 'center',
@@ -185,6 +224,31 @@ const BackupSection: React.FC = () => {
           </Typography>
         </Box>
       </Container>
+
+      {/* CSS for floating animations */}
+      <style>
+        {`
+          @keyframes float {
+            0%, 100% { 
+              transform: translateY(0px) rotate(18deg);
+            }
+            50% { 
+              transform: translateY(-12px) rotate(18deg);
+            }
+          }
+          
+          @keyframes pulse {
+            0%, 100% { 
+              opacity: 0.6;
+              transform: scale(1);
+            }
+            50% { 
+              opacity: 0.8;
+              transform: scale(1.05);
+            }
+          }
+        `}
+      </style>
     </Box>
   )
 }
