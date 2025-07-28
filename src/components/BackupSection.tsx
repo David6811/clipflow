@@ -6,21 +6,21 @@ import {
   Badge
 } from '@mui/material'
 import {
-  Backup,
   Restore,
   Schedule,
-  CloudOff
+  Storage,
+  Save
 } from '@mui/icons-material'
 
 const BackupSection: React.FC = () => {
   const backupFeatures = [
     {
-      icon: CloudOff,
+      icon: Storage,
       title: 'Local Storage Only',
       description: 'All backups remain on your device. No cloud storage, no external servers - complete privacy and control.'
     },
     {
-      icon: Backup,
+      icon: Save,
       title: 'Manual Backup',
       description: 'Create secure backups of your clipboard history, OCR results, and organized notes anytime with full encryption.'
     },

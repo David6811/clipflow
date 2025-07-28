@@ -31,7 +31,7 @@ const SecuritySection: React.FC = () => {
       features: ['Hardware Fingerprint', 'Android KeyStore', 'Secure Enclave', 'Fast Unlock']
     },
     {
-      title: 'Note-Level Encryption',
+      title: 'Note-Level Protection',
       description: 'Individual encryption for each OCR result, screenshot, and organized note collection',
       icon: TextFields,
       color: '#544342', // ClipFlow brown
@@ -109,18 +109,63 @@ const SecuritySection: React.FC = () => {
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}
         <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Chip 
-            label="Enterprise Security" 
-            sx={{ 
+          <Box
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 1,
               mb: 4,
-              bgcolor: 'rgba(46, 89, 132, 0.1)',
-              color: 'secondary.main',
-              fontWeight: 600,
-              fontSize: '0.875rem',
-              px: 2,
-              py: 1
-            }} 
-          />
+              px: 3,
+              py: 1.5,
+              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%)',
+              backdropFilter: 'blur(10px)',
+              border: '2px solid',
+              borderColor: 'rgba(16, 185, 129, 0.3)',
+              borderRadius: 0,
+              position: 'relative',
+              transform: 'rotate(-1deg)',
+              boxShadow: '0 4px 12px rgba(16, 185, 129, 0.15)',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                transform: 'rotate(-1deg) scale(1.05)',
+                boxShadow: '0 6px 20px rgba(16, 185, 129, 0.2)'
+              },
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: '-2px',
+                left: '-2px',
+                right: '-2px',
+                bottom: '-2px',
+                background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.15) 100%)',
+                borderRadius: 0,
+                zIndex: -1
+              }
+            }}
+          >
+            <Box
+              sx={{
+                width: 8,
+                height: 8,
+                bgcolor: '#10B981',
+                borderRadius: '50%',
+                animation: 'pulse 2s ease-in-out infinite'
+              }}
+            />
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: 700,
+                fontSize: '0.95rem',
+                color: '#065F46',
+                letterSpacing: '0.5px',
+                textTransform: 'uppercase',
+                textShadow: '0 1px 2px rgba(255,255,255,0.8)'
+              }}
+            >
+              🔒 Enterprise Security
+            </Typography>
+          </Box>
           <Typography 
             variant="h2" 
             component="h2" 
@@ -190,10 +235,34 @@ const SecuritySection: React.FC = () => {
                   justifyContent: 'center',
                   mx: 'auto',
                   mb: 3,
-                  border: `2px solid ${layer.color}`
+                  border: `2px solid ${layer.color}`,
+                  position: 'relative',
+                  overflow: 'hidden',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: `radial-gradient(circle, ${layer.color}20 0%, transparent 70%)`,
+                    animation: index === 0 ? 'securityPulse 3s ease-in-out infinite' : 
+                              index === 1 ? 'fingerprintScan 2s ease-in-out infinite' :
+                              'protectionShield 2.5s ease-in-out infinite'
+                  }
                 }}
               >
-                <layer.icon sx={{ fontSize: 36, color: layer.color }} />
+                <layer.icon 
+                  sx={{ 
+                    fontSize: 36, 
+                    color: layer.color,
+                    position: 'relative',
+                    zIndex: 1,
+                    animation: index === 0 ? 'keyRotate 4s ease-in-out infinite' :
+                              index === 1 ? 'fingerprintGlow 2s ease-in-out infinite' :
+                              'textFieldsFloat 3s ease-in-out infinite'
+                  }} 
+                />
               </Box>
               <Typography
                 variant="h5"
@@ -270,6 +339,79 @@ const SecuritySection: React.FC = () => {
             50% { 
               opacity: 0.8;
               transform: scale(1.05);
+            }
+          }
+
+          /* Security icon animations */
+          @keyframes keyRotate {
+            0%, 100% { 
+              transform: rotate(0deg) scale(1);
+            }
+            25% { 
+              transform: rotate(-3deg) scale(1.05);
+            }
+            75% { 
+              transform: rotate(3deg) scale(1.05);
+            }
+          }
+
+          @keyframes fingerprintGlow {
+            0%, 100% { 
+              transform: scale(1);
+              filter: drop-shadow(0 0 0px currentColor);
+            }
+            50% { 
+              transform: scale(1.1);
+              filter: drop-shadow(0 0 8px currentColor);
+            }
+          }
+
+          @keyframes textFieldsFloat {
+            0%, 100% { 
+              transform: translateY(0px) scale(1);
+            }
+            33% { 
+              transform: translateY(-2px) scale(1.02);
+            }
+            66% { 
+              transform: translateY(1px) scale(0.98);
+            }
+          }
+
+          @keyframes securityPulse {
+            0%, 100% { 
+              opacity: 0.3;
+              transform: scale(1);
+            }
+            50% { 
+              opacity: 0.6;
+              transform: scale(1.2);
+            }
+          }
+
+          @keyframes fingerprintScan {
+            0%, 100% { 
+              opacity: 0.2;
+              transform: scale(0.8) rotate(0deg);
+            }
+            50% { 
+              opacity: 0.5;
+              transform: scale(1.1) rotate(180deg);
+            }
+          }
+
+          @keyframes protectionShield {
+            0%, 100% { 
+              opacity: 0.4;
+              transform: scale(1) skew(0deg);
+            }
+            25% { 
+              opacity: 0.6;
+              transform: scale(1.05) skew(1deg);
+            }
+            75% { 
+              opacity: 0.5;
+              transform: scale(0.95) skew(-1deg);
             }
           }
         `}
