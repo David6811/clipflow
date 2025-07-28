@@ -57,6 +57,7 @@ const Navigation: React.FC = () => {
       sx={{ 
         borderBottom: '1px solid',
         borderColor: scrolled ? 'rgba(84, 67, 66, 0.3)' : 'rgba(84, 67, 66, 0.2)',
+        borderRadius: 0,
         zIndex: 1100,
         backdropFilter: 'blur(10px)',
         bgcolor: scrolled ? 'rgba(248, 245, 242, 0.98)' : 'rgba(248, 245, 242, 0.95)',
