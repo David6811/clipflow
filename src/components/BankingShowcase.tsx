@@ -12,7 +12,7 @@ import {
   PhoneAndroid
 } from '@mui/icons-material'
 
-const BankingShowcase: React.FC = () => {
+const BankingShowcase: React.FC = React.memo(() => {
   const [centerPhone, setCenterPhone] = useState<number>(0) // 0: Phone1, 1: Phone2, 2: Phone3
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false)
   const [autoPlay, setAutoPlay] = useState<boolean>(true)
@@ -23,32 +23,39 @@ const BankingShowcase: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Optimized Intersection Observer with debouncing
+  // Optimized Intersection Observer with lazy image loading
   useEffect(() => {
     let timeoutId: NodeJS.Timeout
     
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Debounce the visibility state changes
         clearTimeout(timeoutId)
         timeoutId = setTimeout(() => {
           if (entry.isIntersecting) {
             setIsVisible(true)
-            // Optimized preloading: Load images with higher priority and better caching
-            availableImages.forEach((imageSrc, index) => {
-              const img = new Image()
-              img.src = imageSrc
-              img.loading = 'eager'
-              img.fetchPriority = index === 0 ? 'high' : 'low'
-              // Add to cache immediately
-              img.onload = () => setImagesLoaded(prev => new Set([...prev, index]))
-            })
+            // Load only the first image immediately, others on demand
+            const img = new Image()
+            img.src = availableImages[0]
+            img.loading = 'eager'
+            img.fetchPriority = 'high'
+            img.onload = () => setImagesLoaded(prev => new Set([...prev, 0]))
+            
+            // Preload other images with lower priority after a delay
+            setTimeout(() => {
+              availableImages.slice(1).forEach((imageSrc, index) => {
+                const img = new Image()
+                img.src = imageSrc
+                img.loading = 'lazy'
+                img.fetchPriority = 'low'
+                img.onload = () => setImagesLoaded(prev => new Set([...prev, index + 1]))
+              })
+            }, 500)
           }
-        }, 100) // 100ms debounce
+        }, 50) // Reduced debounce time
       },
       { 
-        threshold: 0.05, 
-        rootMargin: '200px' // Reduced margin to prevent early loading
+        threshold: 0.1, 
+        rootMargin: '100px' // Further reduced margin
       }
     )
 
@@ -151,93 +158,70 @@ const BankingShowcase: React.FC = () => {
     return relativePosition === 0 ? availableImages[0] : availableImages[2]
   }
 
-  // Wide arc layout with center focus
-  const getPhoneStyle = useMemo(() => (phoneIndex: number) => {
-    // Calculate position in a wide arc
-    const relativePosition = (phoneIndex - centerPhone + 3) % 3 // 0=left, 1=center, 2=right
-    
-    let x = 0
-    let z = 0
-    let y = 0
-    let scale = 1
-    let opacity = 1
-    let phoneRotationY = 0
-    let zIndex = 2
-    
-    if (relativePosition === 1) {
-      // Center phone - fully visible, no rotation
-      x = 0
-      z = 0
-      y = 0 // Centered vertically
-      scale = 1
-      opacity = 1
-      phoneRotationY = 0
-      zIndex = 10
-    } else if (relativePosition === 0) {
-      // Left phone - positioned to the left
-      x = -350 // Desktop spacing
-      z = -120
-      y = 40
-      scale = 0.9
-      opacity = 0.8
-      phoneRotationY = 35 // Rotate to face center
-      zIndex = 5
-    } else {
-      // Right phone - positioned to the right
-      x = 350 // Desktop spacing
-      z = -120
-      y = 40
-      scale = 0.9
-      opacity = 0.8
-      phoneRotationY = -35 // Rotate to face center
-      zIndex = 5
-    }
+  // Optimized phone styles with reduced calculation frequency
+  const phoneStyles = useMemo(() => {
+    const styles = []
+    for (let phoneIndex = 0; phoneIndex < 3; phoneIndex++) {
+      const relativePosition = (phoneIndex - centerPhone + 3) % 3 // 0=left, 1=center, 2=right
+      
+      let x = 0, z = 0, y = 0, scale = 1, opacity = 1, phoneRotationY = 0, zIndex = 2
+      
+      if (relativePosition === 1) {
+        x = 0; z = 0; y = 0; scale = 1; opacity = 1; phoneRotationY = 0; zIndex = 10
+      } else if (relativePosition === 0) {
+        x = -350; z = -50; y = 40; scale = 0.9; opacity = 0.8; phoneRotationY = 20; zIndex = 5
+      } else {
+        x = 350; z = -50; y = 40; scale = 0.9; opacity = 0.8; phoneRotationY = -20; zIndex = 5
+      }
 
-    return {
-      width: { xs: 240, md: relativePosition === 1 ? 320 : 280 },
-      height: { xs: 500, md: relativePosition === 1 ? 640 : 560 },
-      borderRadius: '32px',
-      border: '4px solid rgba(255,255,255,0.2)',
-      bgcolor: 'rgba(255,255,255,0.95)',
-      backdropFilter: 'blur(10px)', // Reduced blur for better performance
-      position: 'absolute',
-      left: '50%',
-      top: '50%',
-      overflow: 'hidden',
-      willChange: 'transform, opacity', // Performance optimization
-      backfaceVisibility: 'hidden', // Prevent flickering
-      boxShadow: relativePosition === 1
-        ? '0 40px 80px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.2)' // Restored dramatic center shadow
-        : '0 20px 40px rgba(0,0,0,0.15)', // Enhanced side shadows
-      transform: { 
-        xs: relativePosition === 1 
-          ? 'translate3d(-50%, -50%, 0) translateY(35px)'
-          : relativePosition === 0
-            ? 'translate3d(-50%, -50%, 0) translate(-120px, 55px) rotateY(25deg) scale(0.8)'
-            : 'translate3d(-50%, -50%, 0) translate(120px, 55px) rotateY(-25deg) scale(0.8)',
-        md: `translate3d(-50%, -50%, 0) translate3d(${x}px, ${y}px, ${z}px) rotateY(${phoneRotationY}deg) scale(${scale})` // Restored 3D transforms with depth
-      },
-      opacity,
-      zIndex,
-      transition: 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease', // Faster, smoother transitions
-      cursor: 'pointer',
-      '&:hover': {
+      styles[phoneIndex] = {
+        width: { xs: 240, md: relativePosition === 1 ? 320 : 280 },
+        height: { xs: 500, md: relativePosition === 1 ? 640 : 560 },
+        borderRadius: '32px',
+        border: '4px solid rgba(255,255,255,0.2)',
+        bgcolor: 'rgba(255,255,255,0.95)',
+        backdropFilter: 'blur(6px)', // Reduced blur
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        overflow: 'hidden',
+        willChange: 'transform', // Only transform changes
+        backfaceVisibility: 'hidden',
+        boxShadow: relativePosition === 1
+          ? '0 25px 50px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.2)'
+          : '0 15px 30px rgba(0,0,0,0.12)',
         transform: { 
           xs: relativePosition === 1 
-            ? 'translate3d(-50%, -50%, 0) translateY(20px) scale(1.02)'
+            ? 'translate3d(-50%, -50%, 0) translateY(35px)'
             : relativePosition === 0
-              ? 'translate3d(-50%, -50%, 0) translate(-120px, 40px) rotateY(25deg) scale(0.82)'
-              : 'translate3d(-50%, -50%, 0) translate(120px, 40px) rotateY(-25deg) scale(0.82)',
-          md: `translate3d(-50%, -50%, 0) translate3d(${x}px, ${y - 15}px, ${z + 20}px) rotateY(${phoneRotationY}deg) scale(${scale * 1.02})` // Restored 3D hover with depth
+              ? 'translate3d(-50%, -50%, 0) translate(-120px, 55px) scale(0.8)'
+              : 'translate3d(-50%, -50%, 0) translate(120px, 55px) scale(0.8)',
+          md: `translate3d(-50%, -50%, 0) translate3d(${x}px, ${y}px, ${z}px) rotateY(${phoneRotationY}deg) scale(${scale})`
         },
-        opacity: Math.min(1, opacity * 1.1),
-        boxShadow: relativePosition === 1
-          ? '0 50px 100px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.25)' // Restored dramatic hover shadow
-          : '0 30px 60px rgba(0,0,0,0.2)', // Enhanced hover shadow for sides
-        transition: 'all 0.2s ease-out' // Faster hover response
+        opacity,
+        zIndex,
+        transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)', // Smoother easing
+        cursor: 'pointer',
+        '&:hover': {
+          transform: { 
+            xs: relativePosition === 1 
+              ? 'translate3d(-50%, -50%, 0) translateY(25px) scale(1.02)'
+              : relativePosition === 0
+                ? 'translate3d(-50%, -50%, 0) translate(-120px, 45px) scale(0.82)'
+                : 'translate3d(-50%, -50%, 0) translate(120px, 45px) scale(0.82)',
+            md: `translate3d(-50%, -50%, 0) translate3d(${x}px, ${y - 10}px, ${z + 10}px) rotateY(${phoneRotationY}deg) scale(${scale * 1.02})`
+          },
+          boxShadow: relativePosition === 1
+            ? '0 35px 70px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.25)'
+            : '0 20px 40px rgba(0,0,0,0.15)',
+          transition: 'all 0.2s ease-out'
+        }
       }
     }
+    return styles
   }, [centerPhone])
+
+  const getPhoneStyle = (phoneIndex: number) => phoneStyles[phoneIndex]
 
   return (
     <Box 
@@ -290,12 +274,12 @@ const BankingShowcase: React.FC = () => {
               position: 'relative',
               width: '100%',
               height: { xs: '550px', md: '700px' },
-              perspective: '1200px', // Restored perspective for proper 3D depth
-              perspectiveOrigin: 'center 40%',
-              transformStyle: 'preserve-3d', // Restored 3D context
+              perspective: '1000px', // Reduced perspective for better performance
+              perspectiveOrigin: 'center 50%',
+              transformStyle: 'preserve-3d',
               overflow: 'visible',
-              willChange: 'auto', // Let browser optimize
-              containIntrinsicSize: '100% 700px' // Performance hint for layout
+              contain: 'layout style paint', // Performance containment
+              willChange: 'auto'
             }}
           >
             {phones.map((phone, index) => (
@@ -382,7 +366,7 @@ const BankingShowcase: React.FC = () => {
       {/* Optimized CSS animations */}
       <style>
         {`
-          /* Performance optimizations */
+          /* Optimized performance animations */
           * {
             transform-style: flat;
           }
@@ -396,35 +380,26 @@ const BankingShowcase: React.FC = () => {
             }
           }
           
-          /* Simplified animations for better performance */
-          @keyframes float {
-            0%, 100% { 
-              transform: translateY(0px);
-            }
-            50% { 
-              transform: translateY(-15px);
-            }
-          }
-          
-          @keyframes pulse {
-            0%, 100% { 
-              opacity: 0.6;
-            }
-            50% { 
-              opacity: 0.8;
+          /* Reduced motion for better performance */
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
             }
           }
           
-          /* GPU acceleration hints */
+          /* GPU optimized hints */
           .phone-container {
             will-change: transform;
             backface-visibility: hidden;
-            perspective: 1000px;
+            transform-style: preserve-3d;
+            contain: layout style paint;
           }
         `}
       </style>
     </Box>
   )
-}
+})
 
 export default BankingShowcase

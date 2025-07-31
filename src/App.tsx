@@ -10,6 +10,7 @@ import {
   BackupSection,
   NoteDetailSection,
   CommentsSection,
+  TeamSection,
   FloatingActionButton
 } from './components'
 import FooterSection from './components/FooterSection'
@@ -209,6 +210,7 @@ function App() {
         <div id="notes" style={{ scrollBehavior: 'smooth' }}><NoteDetailSection /></div>
         <div id="security" style={{ scrollBehavior: 'smooth' }}><SecuritySection /></div>
         <div id="backup" style={{ scrollBehavior: 'smooth' }}><BackupSection /></div>
+        <div id="team" style={{ scrollBehavior: 'smooth' }}><TeamSection /></div>
         <div id="comments" style={{ scrollBehavior: 'smooth' }}><CommentsSection /></div>
       </Box>
       

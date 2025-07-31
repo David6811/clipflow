@@ -159,16 +159,45 @@ const SecuritySection: React.FC = () => {
               sx={{
                 textAlign: 'center',
                 p: 4,
+                position: 'relative',
                 bgcolor: 'rgba(255, 255, 255, 0.95)',
                 backdropFilter: 'blur(10px)',
-                borderRadius: 3,
-                border: '1px solid rgba(0,0,0,0.1)',
-                boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-                transition: 'all 0.3s ease',
+                borderRadius: 1,
+                border: '2px solid rgba(71, 85, 105, 0.2)',
+                boxShadow: '0 8px 32px rgba(71, 85, 105, 0.12)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                // Clipboard shape with top clip
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: -8,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: 60,
+                  height: 16,
+                  bgcolor: 'rgba(71, 85, 105, 0.8)',
+                  borderRadius: '4px 4px 2px 2px',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                  zIndex: 2
+                },
+                // Metal clip detail
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  top: -6,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: 40,
+                  height: 8,
+                  bgcolor: 'rgba(148, 163, 184, 0.9)',
+                  borderRadius: '1px',
+                  zIndex: 3
+                },
                 '&:hover': {
                   transform: 'translateY(-4px)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                  bgcolor: 'rgba(255, 255, 255, 0.95)'
+                  boxShadow: '0 12px 48px rgba(71, 85, 105, 0.18)',
+                  bgcolor: 'rgba(255, 255, 255, 0.98)',
+                  borderColor: 'rgba(71, 85, 105, 0.3)'
                 }
               }}
             >
@@ -176,16 +205,19 @@ const SecuritySection: React.FC = () => {
                 sx={{
                   width: 72,
                   height: 72,
-                  bgcolor: layer.bgColor,
-                  borderRadius: 2,
+                  bgcolor: 'rgba(255, 255, 255, 0.9)',
+                  borderRadius: 1,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   mx: 'auto',
                   mb: 3,
-                  border: `2px solid ${layer.color}`,
+                  mt: 2,
+                  border: `1px solid ${layer.color}40`,
                   position: 'relative',
                   overflow: 'hidden',
+                  boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)',
+                  // Paper texture effect
                   '&::before': {
                     content: '""',
                     position: 'absolute',
@@ -193,7 +225,10 @@ const SecuritySection: React.FC = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: `radial-gradient(circle, ${layer.color}20 0%, transparent 70%)`,
+                    background: `linear-gradient(45deg, transparent 49%, ${layer.color}10 50%, transparent 51%), 
+                                linear-gradient(-45deg, transparent 49%, ${layer.color}08 50%, transparent 51%)`,
+                    backgroundSize: '4px 4px',
+                    opacity: 0.3,
                     animation: index === 0 ? 'securityPulse 3s ease-in-out infinite' : 
                               index === 1 ? 'fingerprintScan 2s ease-in-out infinite' :
                               'protectionShield 2.5s ease-in-out infinite'
@@ -212,12 +247,38 @@ const SecuritySection: React.FC = () => {
                   }} 
                 />
               </Box>
+              {/* Clipboard lines for paper effect */}
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: 80,
+                  left: 24,
+                  right: 24,
+                  zIndex: 0,
+                  '&::before, &::after': {
+                    content: '""',
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    height: 1,
+                    background: `linear-gradient(90deg, transparent 0%, ${layer.color}15 10%, ${layer.color}15 90%, transparent 100%)`
+                  },
+                  '&::before': {
+                    top: 60
+                  },
+                  '&::after': {
+                    top: 120
+                  }
+                }}
+              />
               <Typography
                 variant="h5"
                 sx={{
                   fontWeight: 600,
                   color: 'text.primary',
-                  mb: 2
+                  mb: 2,
+                  position: 'relative',
+                  zIndex: 1
                 }}
               >
                 {layer.title}
@@ -227,22 +288,30 @@ const SecuritySection: React.FC = () => {
                 sx={{
                   color: 'text.secondary',
                   lineHeight: 1.6,
-                  mb: 3
+                  mb: 3,
+                  position: 'relative',
+                  zIndex: 1
                 }}
               >
                 {layer.description}
               </Typography>
-              <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap justifyContent="center">
+              <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap justifyContent="center" sx={{ position: 'relative', zIndex: 1 }}>
                 {layer.features.map((feature, featureIndex) => (
                   <Chip
                     key={featureIndex}
                     label={feature}
                     size="small"
                     sx={{
-                      bgcolor: `${layer.color}20`,
+                      bgcolor: `${layer.color}15`,
                       color: layer.color,
                       fontWeight: 500,
-                      border: `1px solid ${layer.color}40`
+                      border: `1px solid ${layer.color}30`,
+                      borderRadius: 1,
+                      boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+                      '&:hover': {
+                        bgcolor: `${layer.color}25`,
+                        transform: 'translateY(-1px)'
+                      }
                     }}
                   />
                 ))}

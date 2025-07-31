@@ -235,6 +235,50 @@ const Navigation: React.FC = () => {
             >
               Backup
             </Button>
+            <Button 
+              color="inherit" 
+              onClick={() => scrollToSection('team')}
+              sx={{ 
+                mr: 2,
+                color: 'text.secondary',
+                fontWeight: 500,
+                textTransform: 'none',
+                fontSize: '1.05rem',
+                px: 3,
+                py: 1,
+                borderRadius: 2,
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  color: 'text.primary',
+                  bgcolor: 'rgba(84, 67, 66, 0.08)',
+                  transform: 'translateY(-1px)'
+                }
+              }}
+            >
+              About
+            </Button>
+            <Button 
+              color="inherit" 
+              onClick={() => scrollToSection('comments')}
+              sx={{ 
+                mr: 2,
+                color: 'text.secondary',
+                fontWeight: 500,
+                textTransform: 'none',
+                fontSize: '1.05rem',
+                px: 3,
+                py: 1,
+                borderRadius: 2,
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  color: 'text.primary',
+                  bgcolor: 'rgba(84, 67, 66, 0.08)',
+                  transform: 'translateY(-1px)'
+                }
+              }}
+            >
+              Reviews
+            </Button>
           </Box>
 
           {/* CTA Buttons */}
@@ -310,6 +354,12 @@ const Navigation: React.FC = () => {
               </MenuItem>
               <MenuItem onClick={() => scrollToSection('backup')} sx={{ color: 'text.secondary', py: 1.5 }}>
                 Backup
+              </MenuItem>
+              <MenuItem onClick={() => scrollToSection('team')} sx={{ color: 'text.secondary', py: 1.5 }}>
+                About
+              </MenuItem>
+              <MenuItem onClick={() => scrollToSection('comments')} sx={{ color: 'text.secondary', py: 1.5 }}>
+                Reviews
               </MenuItem>
             </Menu>
           </Box>
