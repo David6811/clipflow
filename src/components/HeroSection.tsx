@@ -219,7 +219,7 @@ const HeroSection: React.FC = () => {
               }
             }}
           >
-            Learn More
+            About Us
           </Button>
         </Stack>
         
