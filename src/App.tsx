@@ -216,6 +216,7 @@ function App() {
       
       <FloatingActionButton />
       <FooterSection />
+      {/* just want to fix CI */}
 
       {/* Global CSS Animations */}
       <style>
