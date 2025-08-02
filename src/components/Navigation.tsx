@@ -11,10 +11,10 @@ import {
   Container
 } from '@mui/material'
 import {
-  DocumentScanner,
   Menu as MenuIcon,
   GetApp
 } from '@mui/icons-material'
+import ClipFlowLogo from './ClipFlowLogo'
 
 const Navigation: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -68,59 +68,12 @@ const Navigation: React.FC = () => {
       <Container maxWidth="xl">
         <Toolbar sx={{ py: 1.5, px: 0 }}>
           {/* Logo */}
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              mr: 'auto', 
-              cursor: 'pointer',
-              transition: 'opacity 0.2s ease',
-              '&:hover': {
-                opacity: 0.8
-              }
-            }}
-            onClick={() => scrollToSection('home')}
-          >
-            <Box
-              sx={{
-                width: 44,
-                height: 44,
-                bgcolor: 'secondary.main',
-                borderRadius: 2.5,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                mr: 2.5,
-                boxShadow: '0 2px 8px rgba(46, 89, 132, 0.2)'
-              }}
-            >
-              <DocumentScanner sx={{ fontSize: 26, color: 'white' }} />
-            </Box>
-            <Box>
-              <Typography 
-                variant="h6" 
-                component="div" 
-                sx={{ 
-                  fontWeight: 700,
-                  color: 'text.primary',
-                  fontSize: '1.5rem',
-                  lineHeight: 1,
-                  letterSpacing: '-0.01em'
-                }}
-              >
-                ClipFlow
-              </Typography>
-              <Typography 
-                variant="caption" 
-                sx={{ 
-                  color: 'text.secondary',
-                  fontSize: '0.8rem',
-                  fontWeight: 500
-                }}
-              >
-                Smart Clipboard
-              </Typography>
-            </Box>
+          <Box sx={{ mr: 'auto' }}>
+            <ClipFlowLogo 
+              size="medium"
+              variant="horizontal"
+              onClick={() => scrollToSection('home')}
+            />
           </Box>
         
           {/* Desktop Navigation */}

@@ -214,7 +214,6 @@ function App() {
         <div id="comments" style={{ scrollBehavior: 'smooth' }}><CommentsSection /></div>
       </Box>
       
-      <FloatingActionButton />
       <FooterSection />
       {/* just want to fix CI */}
 

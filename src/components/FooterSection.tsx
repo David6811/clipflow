@@ -7,12 +7,12 @@ import {
   IconButton
 } from '@mui/material'
 import {
-  DocumentScanner,
   Email,
   GitHub,
   Twitter,
   LinkedIn
 } from '@mui/icons-material'
+import ClipFlowLogo from './ClipFlowLogo'
 
 const FooterSection: React.FC = () => {
   const currentYear = new Date().getFullYear()
@@ -38,31 +38,10 @@ const FooterSection: React.FC = () => {
           }}
         >
           {/* Brand */}
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                bgcolor: 'secondary.main',
-                borderRadius: 2,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                mr: 2
-              }}
-            >
-              <DocumentScanner sx={{ fontSize: 24, color: 'white' }} />
-            </Box>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 700,
-                color: 'text.primary'
-              }}
-            >
-              ClipFlow
-            </Typography>
-          </Box>
+          <ClipFlowLogo 
+            size="small"
+            variant="horizontal"
+          />
 
           {/* Copyright */}
           <Typography
