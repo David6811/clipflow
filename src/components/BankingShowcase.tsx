@@ -124,9 +124,9 @@ const BankingShowcase: React.FC = React.memo(() => {
 
   // Available images for rotation
   const availableImages = [
-    '/clipflow/1.png',
-    '/clipflow/2.png', 
-    '/clipflow/3.png'
+    '/1.png',
+    '/2.png', 
+    '/3.png'
   ]
 
   // Phone configuration with dynamic images

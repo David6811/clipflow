@@ -37,6 +37,9 @@ const NoteDetailSection: React.FC = () => {
 
     return () => observer.disconnect()
   }, [])
+  // Mobile-responsive configuration
+  const isMobile = window.innerWidth < 900
+  
   const noteActions = [
     {
       icon: Favorite,
@@ -44,8 +47,8 @@ const NoteDetailSection: React.FC = () => {
       description: 'Mark important notes as favorites for quick access',
       color: '#E91E63',
       angle: 0, // Top
-      radius: 220,
-      size: 110,
+      radius: isMobile ? 140 : 220,
+      size: isMobile ? 70 : 110,
       delay: '0s'
     },
     {
@@ -54,8 +57,8 @@ const NoteDetailSection: React.FC = () => {
       description: 'Organize notes with custom tags and categories',
       color: '#1976D2',
       angle: 60, // Top Right
-      radius: 170,
-      size: 85,
+      radius: isMobile ? 120 : 170,
+      size: isMobile ? 60 : 85,
       delay: '0.2s'
     },
     {
@@ -64,8 +67,8 @@ const NoteDetailSection: React.FC = () => {
       description: 'Organize notes into custom folders and collections',
       color: '#2196F3',
       angle: 120, // Right
-      radius: 200,
-      size: 100,
+      radius: isMobile ? 130 : 200,
+      size: isMobile ? 65 : 100,
       delay: '0.4s'
     },
     {
@@ -74,8 +77,8 @@ const NoteDetailSection: React.FC = () => {
       description: 'Transform text notes into shareable image format',
       color: '#4CAF50',
       angle: 180, // Bottom
-      radius: 210,
-      size: 105,
+      radius: isMobile ? 135 : 210,
+      size: isMobile ? 70 : 105,
       delay: '0.6s'
     },
     {
@@ -84,8 +87,8 @@ const NoteDetailSection: React.FC = () => {
       description: 'Share notes via messaging, email, or social platforms',
       color: '#9C27B0',
       angle: 240, // Bottom Left
-      radius: 220,
-      size: 80,
+      radius: isMobile ? 140 : 220,
+      size: isMobile ? 55 : 80,
       delay: '0.8s'
     },
     {
@@ -94,8 +97,8 @@ const NoteDetailSection: React.FC = () => {
       description: 'Secure sensitive notes with password protection',
       color: '#F44336',
       angle: 300, // Left
-      radius: 190,
-      size: 95,
+      radius: isMobile ? 125 : 190,
+      size: isMobile ? 65 : 95,
       delay: '1s'
     }
   ]
@@ -152,7 +155,7 @@ const NoteDetailSection: React.FC = () => {
             justifyContent: 'center',
             alignItems: 'center',
             gap: { xs: 2, md: 4 },
-            minHeight: { xs: '600px', md: '600px' },
+            minHeight: { xs: '450px', sm: '500px', md: '600px' },
             width: '100%',
             flexDirection: { xs: 'column', md: 'row' },
             py: { xs: 2, md: 0 }
@@ -171,10 +174,12 @@ const NoteDetailSection: React.FC = () => {
               component="svg"
               viewBox="0 0 600 600"
               sx={{
-                width: { xs: '400px', md: '500px' },
-                height: { xs: '400px', md: '500px' },
+                width: { xs: '350px', sm: '400px', md: '500px' },
+                height: { xs: '350px', sm: '400px', md: '500px' },
                 animation: isVisible ? 'svgFadeIn 1s ease-out' : 'none',
-                background: 'transparent'
+                background: 'transparent',
+                maxWidth: '100%',
+                maxHeight: '100%'
               }}
             >
             {/* Background Glow */}
@@ -337,14 +342,17 @@ const NoteDetailSection: React.FC = () => {
                         sx={{
                           fontWeight: 700,
                           color: action.color,
-                          fontSize: `${buttonSize * 0.12}px`,
+                          fontSize: { xs: `${Math.max(buttonSize * 0.12, 8)}px`, md: `${buttonSize * 0.12}px` },
                           textAlign: 'center',
-                          lineHeight: 1.2,
+                          lineHeight: 1.1,
                           textShadow: '0 1px 2px rgba(255,255,255,0.8)',
-                          px: 0.5
+                          px: 0.3,
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: isMobile ? 'nowrap' : 'normal'
                         }}
                       >
-                        {action.title.split(' ').map((word, i) => (
+                        {isMobile ? action.title.replace(' ', '') : action.title.split(' ').map((word, i) => (
                           <span key={i}>
                             {word}
                             {i < action.title.split(' ').length - 1 && <br />}
@@ -543,10 +551,11 @@ const NoteDetailSection: React.FC = () => {
       {/* CSS Animations */}
       <style>
         {`
+          /* Mobile-optimized animations */
           @keyframes svgFadeIn {
             0% { 
               opacity: 0;
-              transform: scale(0.9);
+              transform: scale(0.95);
             }
             100% { 
               opacity: 1;
@@ -556,17 +565,17 @@ const NoteDetailSection: React.FC = () => {
           @keyframes noteFloat {
             0%, 100% { 
               transform: scale(1);
-              filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+              filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
             }
             50% { 
-              transform: scale(1.02);
-              filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+              transform: scale(1.01);
+              filter: drop-shadow(0 3px 6px rgba(0,0,0,0.12));
             }
           }
           @keyframes actionFadeIn {
             0% { 
               opacity: 0;
-              transform: scale(0.3);
+              transform: scale(0.5);
             }
             100% { 
               opacity: 1;
@@ -585,44 +594,89 @@ const NoteDetailSection: React.FC = () => {
           }
           @keyframes lineGrowElastic {
             0% { 
-              stroke-dashoffset: 400;
+              stroke-dashoffset: 300;
               opacity: 0;
             }
-            40% { 
-              stroke-dashoffset: -50;
-              opacity: 0.6;
+            60% { 
+              stroke-dashoffset: -20;
+              opacity: 0.5;
             }
-            70% { 
-              stroke-dashoffset: 20;
-              opacity: 0.7;
-            }
-            90% { 
-              stroke-dashoffset: -10;
+            80% { 
+              stroke-dashoffset: 10;
               opacity: 0.6;
             }
             100% { 
               stroke-dashoffset: 0;
-              opacity: 0.5;
+              opacity: 0.4;
             }
           }
           @keyframes backgroundPulse {
             0%, 100% { 
-              opacity: 0.8;
+              opacity: 0.6;
               transform: scale(1);
             }
             50% { 
-              opacity: 1;
-              transform: scale(1.02);
+              opacity: 0.8;
+              transform: scale(1.01);
             }
           }
           @keyframes textFadeIn {
             0% { 
               opacity: 0;
-              transform: translateY(10px);
+              transform: translateY(5px);
             }
             100% { 
               opacity: 1;
               transform: translateY(0);
+            }
+          }
+          
+          /* Mobile performance optimizations */
+          @media (max-width: 900px) {
+            .note-animation {
+              will-change: transform;
+              backface-visibility: hidden;
+              transform-style: flat;
+            }
+            
+            /* Reduce animation complexity on mobile */
+            @keyframes noteFloat {
+              0%, 100% { 
+                transform: scale(1);
+              }
+              50% { 
+                transform: scale(1.005);
+              }
+            }
+            
+            @keyframes backgroundPulse {
+              0%, 100% { 
+                opacity: 0.5;
+              }
+              50% { 
+                opacity: 0.7;
+              }
+            }
+            
+            /* Simplify elastic animation for mobile */
+            @keyframes lineGrowElastic {
+              0% { 
+                stroke-dashoffset: 200;
+                opacity: 0;
+              }
+              100% { 
+                stroke-dashoffset: 0;
+                opacity: 0.3;
+              }
+            }
+          }
+          
+          /* Respect reduced motion preference */
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
             }
           }
         `}
