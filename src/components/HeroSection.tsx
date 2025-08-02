@@ -8,11 +8,11 @@ import {
   Stack
 } from '@mui/material'
 import {
-  DocumentScanner,
   Security,
   CloudOff,
   GetApp
 } from '@mui/icons-material'
+import ClipFlowLogo from './ClipFlowLogo'
 
 const HeroSection: React.FC = () => {
   return (
@@ -199,7 +199,7 @@ const HeroSection: React.FC = () => {
           <Button
             variant="outlined"
             size="large"
-            startIcon={<DocumentScanner />}
+            startIcon={<ClipFlowLogo variant="icon-only" size="small" showText={false} />}
             sx={{
               px: 4,
               py: 2,
@@ -233,7 +233,7 @@ const HeroSection: React.FC = () => {
           {[
             { icon: CloudOff, text: '100% Offline' },
             { icon: Security, text: 'Privacy First' },
-            { icon: DocumentScanner, text: 'Smart OCR' }
+            { icon: 'ClipFlowLogo', text: 'Smart Clipboard' }
           ].map((feature, index) => (
             <Box 
               key={index}
@@ -254,7 +254,11 @@ const HeroSection: React.FC = () => {
                 }
               }}
             >
-              <feature.icon sx={{ color: 'primary.main', fontSize: 24 }} />
+              {feature.icon === 'ClipFlowLogo' ? (
+                <ClipFlowLogo variant="icon-only" size="small" showText={false} />
+              ) : (
+                <feature.icon sx={{ color: 'primary.main', fontSize: 24 }} />
+              )}
               <Typography variant="body1" sx={{ fontWeight: 500, color: 'text.primary' }}>
                 {feature.text}
               </Typography>
