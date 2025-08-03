@@ -20,8 +20,10 @@ const BankingShowcase: React.FC = React.memo(() => {
   const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set())
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0) // 0: 1.png, 1: 2.png, 2: 3.png
   const [imageRotationActive, setImageRotationActive] = useState<boolean>(false)
+  const [videoCompleted, setVideoCompleted] = useState<boolean>(false)
   const sectionRef = useRef<HTMLDivElement>(null)
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   // Optimized Intersection Observer with lazy image loading
   useEffect(() => {
@@ -66,6 +68,23 @@ const BankingShowcase: React.FC = React.memo(() => {
     return () => observer.disconnect()
   }, [])
 
+  // Video autoplay when in center position
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !isVisible) return
+
+    // Check if video phone is in center position
+    const videoPhoneIndex = 1 // Phone 2 has video
+    const isVideoInCenter = centerPhone === videoPhoneIndex
+
+    if (isVideoInCenter) {
+      video.currentTime = 0 // Reset to beginning
+      video.play().catch(console.error)
+    } else {
+      video.pause()
+    }
+  }, [isVisible, centerPhone])
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
@@ -75,7 +94,7 @@ const BankingShowcase: React.FC = React.memo(() => {
     }
   }, [])
 
-  // Optimized image sequence with faster transitions
+  // Modified sequence to wait for video completion
   useEffect(() => {
     if (!autoPlay || !isVisible) return
 
@@ -85,30 +104,55 @@ const BankingShowcase: React.FC = React.memo(() => {
     let timeout4: NodeJS.Timeout
     
     const runSequence = () => {
+      // Reset video completed state when starting new sequence
+      setVideoCompleted(false)
+      
       // Start with 1.png immediately
       setCurrentImageIndex(0)
       
-      // Faster transitions: 1.5 seconds instead of 2
-      timeout1 = setTimeout(() => {
-        if (!autoPlay) return
-        setCurrentImageIndex(1)
-        
-        timeout2 = setTimeout(() => {
-          if (!autoPlay) return
-          setCurrentImageIndex(2)
-          
-          timeout3 = setTimeout(() => {
-            if (!autoPlay) return
+      // Check if current center phone should show video (phone index 1)
+      const shouldShowVideo = centerPhone === 1 // Phone index 1 shows video
+      
+      if (shouldShowVideo) {
+        // For video phone, wait for video completion instead of fixed time
+        const waitForVideo = () => {
+          if (videoCompleted) {
             setIsTransitioning(true)
             setCenterPhone(prev => (prev + 1) % 3)
             
-            // Faster transition: 800ms instead of 1200ms
             timeout4 = setTimeout(() => {
               setIsTransitioning(false)
             }, 800)
+          } else {
+            // Check again in 100ms
+            timeout3 = setTimeout(waitForVideo, 100)
+          }
+        }
+        
+        // Start waiting for video after a short delay
+        timeout1 = setTimeout(waitForVideo, 500)
+      } else {
+        // For non-video phones, use original image sequence timing
+        timeout1 = setTimeout(() => {
+          if (!autoPlay) return
+          setCurrentImageIndex(1)
+          
+          timeout2 = setTimeout(() => {
+            if (!autoPlay) return
+            setCurrentImageIndex(2)
+            
+            timeout3 = setTimeout(() => {
+              if (!autoPlay) return
+              setIsTransitioning(true)
+              setCenterPhone(prev => (prev + 1) % 3)
+              
+              timeout4 = setTimeout(() => {
+                setIsTransitioning(false)
+              }, 800)
+            }, 1500)
           }, 1500)
         }, 1500)
-      }, 1500)
+      }
     }
     
     // Start the sequence immediately
@@ -120,7 +164,7 @@ const BankingShowcase: React.FC = React.memo(() => {
       clearTimeout(timeout3)
       clearTimeout(timeout4)
     }
-  }, [autoPlay, isVisible, centerPhone])
+  }, [autoPlay, isVisible, centerPhone, videoCompleted])
 
   // Available images for rotation
   const availableImages = [
@@ -306,32 +350,148 @@ const BankingShowcase: React.FC = React.memo(() => {
                 }
               }}
             >
-              <Box
-                component="img"
-                src={getCurrentImage(index)}
-                alt={phone.alt}
-                loading="eager" // Changed to eager for better performance
-                decoding="async"
-                fetchpriority={index === centerPhone ? "high" : "low"}
-                sx={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
+              {/* Show video only for center phone (relativePosition === 1) */}
+              {(index - centerPhone + 3) % 3 === 1 ? (
+                <Box sx={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  bgcolor: '#1a1a1a',
                   borderRadius: '28px',
-                  transition: 'opacity 0.2s ease',
-                  opacity: 1, // Simplified opacity handling
-                  willChange: 'opacity',
-                  backfaceVisibility: 'hidden' // Prevent flickering
-                }}
-                onLoad={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.opacity = '1';
-                  setImagesLoaded(prev => new Set([...prev, index]));
-                }}
-                onError={(e) => {
-                  console.error(`Failed to load ${getCurrentImage(index)}:`, e);
-                }}
-              />
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  overflow: 'hidden',
+                  px: '2px',
+                  py: '8px'
+                }}>
+                  {/* Modern Phone Screen with Notch */}
+                  <Box sx={{
+                    flex: 1,
+                    borderRadius: '44px',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    bgcolor: '#000'
+                  }}>
+                    {/* Video Screen Area with Rounded Corners */}
+                    <Box sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '44px',
+                      overflow: 'hidden',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        borderRadius: '44px',
+                        zIndex: 1,
+                        pointerEvents: 'none'
+                      }
+                    }}>
+                      <video
+                        ref={videoRef}
+                        width="100%"
+                        height="100%"
+                        autoPlay
+                        muted
+                        playsInline
+                        preload="metadata"
+                        onEnded={() => setVideoCompleted(true)}
+                        onLoadStart={() => setVideoCompleted(false)}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          backfaceVisibility: 'hidden',
+                          clipPath: 'inset(0 round 44px)',
+                          WebkitClipPath: 'inset(0 round 44px)'
+                        }}
+                      >
+                        <source src="/capture-optimized.mp4" type="video/mp4" />
+                        <source src="/capture.mp4" type="video/mp4" />
+                      </video>
+                    </Box>
+
+                    {/* Dynamic Island / Notch */}
+                    <Box sx={{
+                      position: 'absolute',
+                      top: '8px',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      width: '120px',
+                      height: '28px',
+                      bgcolor: '#000',
+                      borderRadius: '14px',
+                      zIndex: 10,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      px: '12px',
+                      border: '1px solid rgba(255,255,255,0.1)'
+                    }}>
+                      {/* Front Camera */}
+                      <Box sx={{
+                        width: '6px',
+                        height: '6px',
+                        bgcolor: '#333',
+                        borderRadius: '50%'
+                      }} />
+                      {/* Speaker */}
+                      <Box sx={{
+                        width: '30px',
+                        height: '2px',
+                        bgcolor: '#333',
+                        borderRadius: '1px'
+                      }} />
+                    </Box>
+
+                    {/* Home Indicator */}
+                    <Box sx={{
+                      position: 'absolute',
+                      bottom: '8px',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      width: '35px',
+                      height: '3px',
+                      bgcolor: 'rgba(255,255,255,0.6)',
+                      borderRadius: '2px',
+                      zIndex: 10
+                    }} />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  component="img"
+                  src={getCurrentImage(index)}
+                  alt={phone.alt}
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority={index === centerPhone ? "high" : "low"}
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    borderRadius: '28px',
+                    transition: 'opacity 0.2s ease',
+                    opacity: 1,
+                    willChange: 'opacity',
+                    backfaceVisibility: 'hidden'
+                  }}
+                  onLoad={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.opacity = '1';
+                    setImagesLoaded(prev => new Set([...prev, index]));
+                  }}
+                  onError={(e) => {
+                    console.error(`Failed to load ${getCurrentImage(index)}:`, e);
+                  }}
+                />
+              )}
             </Box>
           ))}
           </Box>
