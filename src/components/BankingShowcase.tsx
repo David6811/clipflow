@@ -222,7 +222,7 @@ const BankingShowcase: React.FC = React.memo(() => {
         width: { xs: 240, md: relativePosition === 1 ? 320 : 280 },
         height: { xs: 500, md: relativePosition === 1 ? 640 : 560 },
         borderRadius: '32px',
-        border: '4px solid rgba(255,255,255,0.2)',
+        border: 'none',
         bgcolor: 'rgba(255,255,255,0.95)',
         backdropFilter: 'blur(6px)', // Reduced blur
         position: 'absolute',
@@ -361,13 +361,12 @@ const BankingShowcase: React.FC = React.memo(() => {
                   display: 'flex',
                   flexDirection: 'column',
                   overflow: 'hidden',
-                  px: '2px',
-                  py: '8px'
+                  px: '1px'
                 }}>
                   {/* Modern Phone Screen with Notch */}
                   <Box sx={{
                     flex: 1,
-                    borderRadius: '44px',
+                    borderRadius: '40px',
                     position: 'relative',
                     overflow: 'hidden',
                     bgcolor: '#000'
@@ -375,13 +374,14 @@ const BankingShowcase: React.FC = React.memo(() => {
                     {/* Video Screen Area with Rounded Corners */}
                     <Box sx={{
                       position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
+                      top: '8px',
+                      left: '4px',
+                      right: '4px',
+                      bottom: '8px',
                       borderRadius: '44px',
                       overflow: 'hidden',
-                      '&::before': {
+                      zIndex: 5,
+                      '&::after': {
                         content: '""',
                         position: 'absolute',
                         top: 0,
@@ -389,8 +389,8 @@ const BankingShowcase: React.FC = React.memo(() => {
                         right: 0,
                         bottom: 0,
                         borderRadius: '44px',
-                        zIndex: 1,
-                        pointerEvents: 'none'
+                        pointerEvents: 'none',
+                        zIndex: 2
                       }
                     }}>
                       <video
@@ -433,8 +433,9 @@ const BankingShowcase: React.FC = React.memo(() => {
                           height: '100%',
                           objectFit: 'cover',
                           backfaceVisibility: 'hidden',
-                          clipPath: 'inset(0 round 44px)',
-                          WebkitClipPath: 'inset(0 round 44px)'
+                          borderRadius: '44px',
+                          clipPath: 'inset(0 0 8px 0 round 44px)',
+                          WebkitClipPath: 'inset(0 0 8px 0 round 44px)'
                         }}
                       >
                         <source src="/capture-720p.mp4" type="video/mp4" />
@@ -443,51 +444,6 @@ const BankingShowcase: React.FC = React.memo(() => {
                       </video>
                     </Box>
 
-                    {/* Dynamic Island / Notch */}
-                    <Box sx={{
-                      position: 'absolute',
-                      top: '8px',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      width: '120px',
-                      height: '28px',
-                      bgcolor: '#000',
-                      borderRadius: '14px',
-                      zIndex: 10,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      px: '12px',
-                      border: '1px solid rgba(255,255,255,0.1)'
-                    }}>
-                      {/* Front Camera */}
-                      <Box sx={{
-                        width: '6px',
-                        height: '6px',
-                        bgcolor: '#333',
-                        borderRadius: '50%'
-                      }} />
-                      {/* Speaker */}
-                      <Box sx={{
-                        width: '30px',
-                        height: '2px',
-                        bgcolor: '#333',
-                        borderRadius: '1px'
-                      }} />
-                    </Box>
-
-                    {/* Home Indicator */}
-                    <Box sx={{
-                      position: 'absolute',
-                      bottom: '8px',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      width: '35px',
-                      height: '3px',
-                      bgcolor: 'rgba(255,255,255,0.6)',
-                      borderRadius: '2px',
-                      zIndex: 10
-                    }} />
                   </Box>
                 </Box>
               ) : (
