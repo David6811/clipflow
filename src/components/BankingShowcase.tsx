@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react'
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import {
   Box,
   Typography,
@@ -13,7 +13,7 @@ import {
 } from '@mui/icons-material'
 
 const BankingShowcase: React.FC = React.memo(() => {
-  const [centerPhone, setCenterPhone] = useState<number>(0) // 0: Phone1, 1: Phone2, 2: Phone3
+  const [centerPhone, setCenterPhone] = useState<number>(1) // 0: Phone1, 1: Phone2, 2: Phone3 - Start with video phone in center
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false)
   const [autoPlay, setAutoPlay] = useState<boolean>(true)
   const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -24,6 +24,26 @@ const BankingShowcase: React.FC = React.memo(() => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([null, null, null])
+
+  // Phone configuration with dynamic images
+  const phones = [
+    {
+      id: 0,
+      name: 'Phone 1',
+      alt: 'Clipflow App Interface - Screen 1'
+    },
+    {
+      id: 1,
+      name: 'Phone 2',
+      alt: 'Clipflow App Interface - Screen 2'
+    },
+    {
+      id: 2,
+      name: 'Phone 3',
+      alt: 'Clipflow App Interface - Screen 3'
+    }
+  ]
 
   // Optimized Intersection Observer with lazy image loading
   useEffect(() => {
@@ -68,22 +88,63 @@ const BankingShowcase: React.FC = React.memo(() => {
     return () => observer.disconnect()
   }, [])
 
-  // Video autoplay when in center position
+  // Video autoplay when showcase becomes visible
   useEffect(() => {
-    const video = videoRef.current
-    if (!video || !isVisible) return
+    if (!isVisible) return
 
-    // Check if video phone is in center position
-    const videoPhoneIndex = 1 // Phone 2 has video
-    const isVideoInCenter = centerPhone === videoPhoneIndex
-
-    if (isVideoInCenter) {
-      video.currentTime = 0 // Reset to beginning
-      video.play().catch(console.error)
-    } else {
-      video.pause()
+    // Find which phone is actually in the center position
+    const actualCenterPhoneIndex = phones.findIndex((phone, index) => {
+      const relativePosition = (index - centerPhone + 3) % 3
+      return relativePosition === 1 // center position
+    })
+    
+    const centerVideo = videoRefs.current[actualCenterPhoneIndex]
+    console.log(`Visibility change - centerPhone state: ${centerPhone}, actual center phone index: ${actualCenterPhoneIndex}`)
+    console.log(`Video refs array:`, videoRefs.current.map((v, i) => v ? `${i}: exists` : `${i}: null`))
+    if (centerVideo) {
+      setVideoCompleted(false)
+      centerVideo.currentTime = 0
+      setTimeout(() => {
+        centerVideo.play().catch(console.error)
+      }, 100)
     }
-  }, [isVisible, centerPhone])
+  }, [isVisible, centerPhone, phones])
+
+  // Handle video state changes when center phone changes
+  useEffect(() => {
+    console.log(`Center phone changed to: ${centerPhone}, isTransitioning: ${isTransitioning}`)
+    
+    if (isTransitioning) return
+
+    // Pause all videos first
+    videoRefs.current.forEach((video, i) => {
+      if (video) {
+        video.pause()
+        console.log(`Paused video ${i}`)
+      }
+    })
+
+    // Find which phone is actually in the center position
+    const actualCenterPhoneIndex = phones.findIndex((phone, index) => {
+      const relativePosition = (index - centerPhone + 3) % 3
+      return relativePosition === 1 // center position
+    })
+
+    // Play only the center phone's video
+    const centerVideo = videoRefs.current[actualCenterPhoneIndex]
+    console.log(`Video refs array after pause:`, videoRefs.current.map((v, i) => v ? `${i}: exists` : `${i}: null`))
+    console.log(`Center phone state: ${centerPhone}, actual center phone index: ${actualCenterPhoneIndex}`)
+    if (centerVideo && isVisible) {
+      console.log(`Starting to play video ${actualCenterPhoneIndex}`)
+      setVideoCompleted(false) // Reset completion status
+      centerVideo.currentTime = 0
+      setTimeout(() => {
+        centerVideo.play().then(() => {
+          console.log(`Video ${actualCenterPhoneIndex} started playing successfully`)
+        }).catch(console.error)
+      }, 100)
+    }
+  }, [centerPhone, isTransitioning, isVisible, phones])
 
   // Cleanup on unmount
   useEffect(() => {
@@ -94,102 +155,41 @@ const BankingShowcase: React.FC = React.memo(() => {
     }
   }, [])
 
-  // Modified sequence to wait for video completion
-  useEffect(() => {
-    if (!autoPlay || !isVisible) return
+  // Switch to next phone function
+  const switchToNextPhone = useCallback(() => {
+    console.log('switchToNextPhone called')
+    setIsTransitioning(true)
+    
+    setTimeout(() => {
+      console.log('Switch timeout executed')
+      setCenterPhone(prev => {
+        const nextPhone = (prev + 1) % 3
+        console.log(`Switching from centerPhone ${prev} to ${nextPhone}`)
+        return nextPhone
+      })
+      
+      setTimeout(() => {
+        console.log('Setting isTransitioning to false')
+        setIsTransitioning(false)
+      }, 800)
+    }, 200)
+  }, [])
 
-    let timeout1: NodeJS.Timeout
-    let timeout2: NodeJS.Timeout  
-    let timeout3: NodeJS.Timeout
-    let timeout4: NodeJS.Timeout
+  // Handle video completion and phone switching
+  useEffect(() => {
+    console.log(`Video completion effect triggered - videoCompleted: ${videoCompleted}, autoPlay: ${autoPlay}, isVisible: ${isVisible}, isTransitioning: ${isTransitioning}`)
     
-    const runSequence = () => {
-      // Reset video completed state when starting new sequence
-      setVideoCompleted(false)
-      
-      // Start with 1.png immediately
-      setCurrentImageIndex(0)
-      
-      // Check if current center phone should show video (phone index 1)
-      const shouldShowVideo = centerPhone === 1 // Phone index 1 shows video
-      
-      if (shouldShowVideo) {
-        // For video phone, wait for video completion instead of fixed time
-        const waitForVideo = () => {
-          if (videoCompleted) {
-            setIsTransitioning(true)
-            setCenterPhone(prev => (prev + 1) % 3)
-            
-            timeout4 = setTimeout(() => {
-              setIsTransitioning(false)
-            }, 800)
-          } else {
-            // Check again in 100ms
-            timeout3 = setTimeout(waitForVideo, 100)
-          }
-        }
-        
-        // Start waiting for video after a short delay
-        timeout1 = setTimeout(waitForVideo, 500)
-      } else {
-        // For non-video phones, use original image sequence timing
-        timeout1 = setTimeout(() => {
-          if (!autoPlay) return
-          setCurrentImageIndex(1)
-          
-          timeout2 = setTimeout(() => {
-            if (!autoPlay) return
-            setCurrentImageIndex(2)
-            
-            timeout3 = setTimeout(() => {
-              if (!autoPlay) return
-              setIsTransitioning(true)
-              setCenterPhone(prev => (prev + 1) % 3)
-              
-              timeout4 = setTimeout(() => {
-                setIsTransitioning(false)
-              }, 800)
-            }, 1500)
-          }, 1500)
-        }, 1500)
-      }
-    }
-    
-    // Start the sequence immediately
-    runSequence()
-    
-    return () => {
-      clearTimeout(timeout1)
-      clearTimeout(timeout2)
-      clearTimeout(timeout3)
-      clearTimeout(timeout4)
-    }
-  }, [autoPlay, isVisible, centerPhone, videoCompleted])
+    if (!videoCompleted || !autoPlay || !isVisible || isTransitioning) return
+
+    console.log('Video completed, switching phones...')
+    switchToNextPhone()
+  }, [videoCompleted, autoPlay, isVisible, isTransitioning, switchToNextPhone])
 
   // Available images for rotation
   const availableImages = [
     '/1.png',
     '/2.png', 
     '/3.png'
-  ]
-
-  // Phone configuration with dynamic images
-  const phones = [
-    {
-      id: 0,
-      name: 'Phone 1',
-      alt: 'Clipflow App Interface - Screen 1'
-    },
-    {
-      id: 1,
-      name: 'Phone 2',
-      alt: 'Clipflow App Interface - Screen 2'
-    },
-    {
-      id: 2,
-      name: 'Phone 3',
-      alt: 'Clipflow App Interface - Screen 3'
-    }
   ]
 
   // Get current image for a phone - center phone shows rotating images, others show static
@@ -350,8 +350,8 @@ const BankingShowcase: React.FC = React.memo(() => {
                 }
               }}
             >
-              {/* Show video only for center phone (relativePosition === 1) */}
-              {(index - centerPhone + 3) % 3 === 1 ? (
+              {/* Show video for all phones temporarily */}
+              {true ? (
                 <Box sx={{ 
                   width: '100%', 
                   height: '100%', 
@@ -394,15 +394,40 @@ const BankingShowcase: React.FC = React.memo(() => {
                       }
                     }}>
                       <video
-                        ref={videoRef}
+                        ref={(el) => {
+                          videoRefs.current[index] = el
+                          console.log(`Setting video ref for phone ${index}, centerPhone is ${centerPhone}`)
+                          if (index === centerPhone) {
+                            videoRef.current = el // Keep the main ref for the center video
+                          }
+                        }}
                         width="100%"
                         height="100%"
-                        autoPlay
                         muted
                         playsInline
                         preload="metadata"
-                        onEnded={() => setVideoCompleted(true)}
-                        onLoadStart={() => setVideoCompleted(false)}
+                        onEnded={() => {
+                          // Only trigger completion if this video is actually in the center position
+                          const relativePosition = (index - centerPhone + 3) % 3
+                          const isInCenterPosition = relativePosition === 1
+                          
+                          console.log(`Video ${index} ended - relativePosition: ${relativePosition}, isInCenterPosition: ${isInCenterPosition}, isTransitioning: ${isTransitioning}`)
+                          
+                          if (isInCenterPosition && !isTransitioning) {
+                            console.log(`Video ${index} completed (center position), centerPhone state: ${centerPhone}, setting videoCompleted to true`)
+                            setVideoCompleted(true)
+                          }
+                        }}
+                        onPlay={() => {
+                          // Only log for the video that's actually in center position
+                          const relativePosition = (index - centerPhone + 3) % 3
+                          const isInCenterPosition = relativePosition === 1
+                          
+                          if (isInCenterPosition) {
+                            console.log(`Video ${index} started playing (center position)`)
+                            setVideoCompleted(false)
+                          }
+                        }}
                         style={{
                           width: '100%',
                           height: '100%',
@@ -412,7 +437,8 @@ const BankingShowcase: React.FC = React.memo(() => {
                           WebkitClipPath: 'inset(0 round 44px)'
                         }}
                       >
-                        <source src="/capture-optimized.mp4" type="video/mp4" />
+                        <source src="/capture-720p.mp4" type="video/mp4" />
+                        <source src="/capture-540p.mp4" type="video/mp4" />
                         <source src="/capture.mp4" type="video/mp4" />
                       </video>
                     </Box>
