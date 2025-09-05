@@ -4,7 +4,8 @@ import {
   Typography,
   Container,
   Stack,
-  IconButton
+  IconButton,
+  Link
 } from '@mui/material'
 import {
   Email,
@@ -12,6 +13,7 @@ import {
   Twitter,
   LinkedIn
 } from '@mui/icons-material'
+import { Link as RouterLink } from 'react-router-dom'
 import ClipFlowLogo from './ClipFlowLogo'
 
 const FooterSection: React.FC = () => {
@@ -43,16 +45,33 @@ const FooterSection: React.FC = () => {
             variant="horizontal"
           />
 
-          {/* Copyright */}
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              textAlign: 'center'
-            }}
-          >
-            © {currentYear} ClipFlow. All rights reserved.
-          </Typography>
+          {/* Copyright and Links */}
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography
+              variant="body2"
+              sx={{
+                color: 'text.secondary',
+                mb: 1
+              }}
+            >
+              © {currentYear} ClipFlow. All rights reserved.
+            </Typography>
+            <Link
+              component={RouterLink}
+              to="/privacy-policy"
+              sx={{
+                color: 'text.secondary',
+                textDecoration: 'none',
+                fontSize: '0.875rem',
+                '&:hover': {
+                  color: 'secondary.main',
+                  textDecoration: 'underline'
+                }
+              }}
+            >
+              Privacy Policy
+            </Link>
+          </Box>
 
           {/* Social Links */}
           <Stack direction="row" spacing={1}>
