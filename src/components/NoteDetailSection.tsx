@@ -10,8 +10,7 @@ import {
   LocalOffer,
   Folder,
   Image,
-  Share,
-  Lock
+  Share
 } from '@mui/icons-material'
 
 const NoteDetailSection: React.FC = () => {
@@ -56,9 +55,9 @@ const NoteDetailSection: React.FC = () => {
       title: 'Add Tag',
       description: 'Organize notes with custom tags and categories',
       color: '#1976D2',
-      angle: 60, // Top Right
-      radius: isMobile ? 120 : 170,
-      size: isMobile ? 60 : 85,
+      angle: 72, // Top Right (360/5 = 72 degrees apart)
+      radius: isMobile ? 130 : 200,
+      size: isMobile ? 65 : 95,
       delay: '0.2s'
     },
     {
@@ -66,9 +65,9 @@ const NoteDetailSection: React.FC = () => {
       title: 'Move to Folder',
       description: 'Organize notes into custom folders and collections',
       color: '#2196F3',
-      angle: 120, // Right
-      radius: isMobile ? 130 : 200,
-      size: isMobile ? 65 : 100,
+      angle: 144, // Right (72*2)
+      radius: isMobile ? 135 : 210,
+      size: isMobile ? 70 : 105,
       delay: '0.4s'
     },
     {
@@ -76,9 +75,9 @@ const NoteDetailSection: React.FC = () => {
       title: 'Convert to Image',
       description: 'Transform text notes into shareable image format',
       color: '#4CAF50',
-      angle: 180, // Bottom
-      radius: isMobile ? 135 : 210,
-      size: isMobile ? 70 : 105,
+      angle: 216, // Bottom Left (72*3)
+      radius: isMobile ? 130 : 200,
+      size: isMobile ? 65 : 95,
       delay: '0.6s'
     },
     {
@@ -86,20 +85,10 @@ const NoteDetailSection: React.FC = () => {
       title: 'Share Note',
       description: 'Share notes via messaging, email, or social platforms',
       color: '#9C27B0',
-      angle: 240, // Bottom Left
+      angle: 288, // Left (72*4)
       radius: isMobile ? 140 : 220,
-      size: isMobile ? 55 : 80,
+      size: isMobile ? 70 : 110,
       delay: '0.8s'
-    },
-    {
-      icon: Lock,
-      title: 'Lock Note',
-      description: 'Secure sensitive notes with password protection',
-      color: '#F44336',
-      angle: 300, // Left
-      radius: isMobile ? 125 : 190,
-      size: isMobile ? 65 : 95,
-      delay: '1s'
     }
   ]
 
