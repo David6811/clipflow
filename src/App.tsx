@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {
   Navigation,
   HeroSection,
+  PlayStoreFeatureSection,
   FeaturesSection,
   BankingShowcase,
   SecuritySection,
@@ -206,6 +207,7 @@ const MainPage = () => (
     {/* Section with Professional Backgrounds and Smooth Transitions */}
     <Box sx={{ position: 'relative', zIndex: 1 }}>
       <div id="home" style={{ scrollBehavior: 'smooth' }}><HeroSection /></div>
+      <div id="playstore-feature" style={{ scrollBehavior: 'smooth' }}><PlayStoreFeatureSection /></div>
       <div id="features" style={{ scrollBehavior: 'smooth' }}><FeaturesSection /></div>
       <div id="showcase" style={{ scrollBehavior: 'smooth' }}><BankingShowcase /></div>
       <div id="notes" style={{ scrollBehavior: 'smooth' }}><NoteDetailSection /></div>
