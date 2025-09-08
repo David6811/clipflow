@@ -9,8 +9,7 @@ import {
 } from '@mui/material'
 import {
   Security,
-  CloudOff,
-  GetApp
+  CloudOff
 } from '@mui/icons-material'
 import ClipFlowLogo from './ClipFlowLogo'
 
@@ -164,64 +163,6 @@ const HeroSection: React.FC = () => {
           Extract text from images, organize your clips, and boost your productivity - all offline.
         </Typography>
         
-        {/* CTA Buttons */}
-        <Stack 
-          direction={{ xs: 'column', sm: 'row' }} 
-          spacing={3} 
-          justifyContent="center"
-          alignItems="center"
-          sx={{ mb: 8 }}
-        >
-          <Button
-            variant="contained"
-            size="large"
-            startIcon={<GetApp />}
-            sx={{
-              px: 4,
-              py: 2,
-              fontSize: '1.1rem',
-              fontWeight: 600,
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)',
-              boxShadow: '0 8px 32px rgba(59, 130, 246, 0.3)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              animation: 'fadeInUp 1s ease-out 0.6s both',
-              '&:hover': {
-                transform: 'translateY(-2px)',
-                boxShadow: '0 12px 40px rgba(59, 130, 246, 0.4)',
-                background: 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)'
-              }
-            }}
-          >
-            Download Now
-          </Button>
-          
-          <Button
-            variant="outlined"
-            size="large"
-            startIcon={<ClipFlowLogo variant="icon-only" size="small" showText={false} />}
-            sx={{
-              px: 4,
-              py: 2,
-              fontSize: '1.1rem',
-              fontWeight: 600,
-              borderRadius: '16px',
-              borderColor: 'primary.main', 
-              color: 'primary.main',
-              backdropFilter: 'blur(10px)',
-              background: 'rgba(255, 255, 255, 0.1)',
-              borderWidth: '2px',
-              animation: 'fadeInUp 1s ease-out 0.8s both',
-              '&:hover': {
-                borderWidth: '2px',
-                transform: 'translateY(-2px)',
-                background: 'rgba(59, 130, 246, 0.1)'
-              }
-            }}
-          >
-            About Us
-          </Button>
-        </Stack>
         
         {/* Feature Highlights */}
         <Stack 

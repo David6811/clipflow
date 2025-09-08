@@ -1,6 +1,5 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
-import { DocumentScanner } from '@mui/icons-material'
 
 interface ClipFlowLogoProps {
   size?: 'small' | 'medium' | 'large'
@@ -47,23 +46,24 @@ const ClipFlowLogo: React.FC<ClipFlowLogoProps> = ({
         sx={{
           width: config.iconContainer,
           height: config.iconContainer,
-          bgcolor: 'secondary.main',
-          borderRadius: config.borderRadius,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           cursor: onClick ? 'pointer' : 'default',
           transition: 'all 0.2s ease',
-          boxShadow: '0 2px 8px rgba(59, 130, 246, 0.2)',
           '&:hover': onClick ? {
             opacity: 0.9,
-            transform: 'translateY(-1px)',
-            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
+            transform: 'translateY(-1px)'
           } : {}
         }}
         onClick={onClick}
       >
-        <DocumentScanner sx={{ fontSize: config.iconSize, color: 'white' }} />
+        <img 
+          src="/logo.png" 
+          alt="ClipFlow Logo" 
+          style={{ 
+            width: '100%', 
+            height: '100%',
+            objectFit: 'contain'
+          }} 
+        />
       </Box>
     )
   }
@@ -85,16 +85,18 @@ const ClipFlowLogo: React.FC<ClipFlowLogoProps> = ({
           sx={{
             width: config.iconContainer,
             height: config.iconContainer,
-            bgcolor: 'secondary.main',
-            borderRadius: config.borderRadius,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            mb: showText ? 1.5 : 0,
-            boxShadow: '0 2px 8px rgba(59, 130, 246, 0.2)'
+            mb: showText ? 1.5 : 0
           }}
         >
-          <DocumentScanner sx={{ fontSize: config.iconSize, color: 'white' }} />
+          <img 
+            src="/logo.png" 
+            alt="ClipFlow Logo" 
+            style={{ 
+              width: '100%', 
+              height: '100%',
+              objectFit: 'contain'
+            }} 
+          />
         </Box>
         {showText && (
           <Box sx={{ textAlign: 'center' }}>
@@ -143,16 +145,18 @@ const ClipFlowLogo: React.FC<ClipFlowLogoProps> = ({
         sx={{
           width: config.iconContainer,
           height: config.iconContainer,
-          bgcolor: 'secondary.main',
-          borderRadius: config.borderRadius,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          mr: showText ? 2.5 : 0,
-          boxShadow: '0 2px 8px rgba(59, 130, 246, 0.2)'
+          mr: showText ? 2.5 : 0
         }}
       >
-        <DocumentScanner sx={{ fontSize: config.iconSize, color: 'white' }} />
+        <img 
+          src="/logo.png" 
+          alt="ClipFlow Logo" 
+          style={{ 
+            width: '100%', 
+            height: '100%',
+            objectFit: 'contain'
+          }} 
+        />
       </Box>
       {showText && (
         <Box>
