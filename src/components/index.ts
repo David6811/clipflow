@@ -2,6 +2,7 @@
 export { default as Navigation } from './Navigation'
 export { default as HeroSection } from './HeroSection'
 export { default as PlayStoreFeatureSection } from './PlayStoreFeatureSection'
+export { default as CombinedHeroSection } from './CombinedHeroSection'
 export { default as FeaturesSection } from './FeaturesSection'
 export { default as SecuritySection } from './SecuritySection'
 export { default as BackupSection } from './BackupSection'
