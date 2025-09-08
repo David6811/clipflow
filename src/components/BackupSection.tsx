@@ -28,12 +28,12 @@ const BackupSection: React.FC = () => {
       icon: Restore,
       title: 'Quick Restore',
       description: 'Restore your clipboard data from backups instantly. Seamlessly recover notes, tags, and extracted text.'
-    },
-    {
-      icon: Schedule,
-      title: 'Auto Backup',
-      description: 'Automatic scheduled backups ensure your data is always protected. Configure backup frequency and retention policies.'
     }
+    // {
+    //   icon: Schedule,
+    //   title: 'Auto Backup',
+    //   description: 'Automatic scheduled backups ensure your data is always protected. Configure backup frequency and retention policies.'
+    // }
   ]
 
   return (
@@ -75,7 +75,7 @@ const BackupSection: React.FC = () => {
             }}
           >
             Protect your clipboard data with comprehensive backup solutions. 
-            Manual, automatic, and scheduled backups keep your OCR results safe and accessible.
+            Manual and quick restore options keep your OCR results safe and accessible.
           </Typography>
         </Box>
         
@@ -87,7 +87,7 @@ const BackupSection: React.FC = () => {
               gridTemplateColumns: {
                 xs: '1fr',
                 sm: 'repeat(2, 1fr)',
-                md: 'repeat(4, 1fr)'
+                md: 'repeat(3, 1fr)'
               },
               gap: 4,
               justifyItems: 'center'

@@ -101,6 +101,10 @@ const FooterSection: React.FC = () => {
             </IconButton>
             <IconButton
               size="small"
+              component="a"
+              href="https://x.com/clipflow_me"
+              target="_blank"
+              rel="noopener noreferrer"
               sx={{
                 color: 'text.secondary',
                 '&:hover': {
